@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/error_user_id"
+    tools:context=".activity.newActivity.StudentAddActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <EditText
+                android:id="@+id/ET_Add_ID_Enter_Student1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="id ученика"
+                android:textColor="@color/colorText" />
+
+            <EditText
+                android:id="@+id/ET_Add_AdminOrUser_Student1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="admin или user"
+                android:textColor="@color/colorText" />
+
+            <EditText
+                android:id="@+id/ET_Add_NemeStudent_Student1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Ф.И.О."
+                android:textColor="@color/colorText" />
+
+            <Spinner
+                android:id="@+id/SP_Group_Id_Student_Enter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/colorText"/>
+
+            <EditText
+                android:id="@+id/ET_Add_RangStudent_Student1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="ранг ученика"
+                android:textColor="@color/colorText" />
+
+            <EditText
+                android:id="@+id/ET_Add_DataStudent_Student1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="дата рождения"
+                android:textColor="@color/colorText" />
+
+            <EditText
+                android:id="@+id/ET_Add_Dost1_Student_Student1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="достижение 1"
+                android:textColor="@color/colorText" />
+
+            <EditText
+                android:id="@+id/ET_Add_Dost2_Student_Student1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="достижение 2"
+                android:textColor="@color/colorText" />
+
+            <EditText
+                android:id="@+id/ET_Add_Dost3_Student_Student1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="достижение 3"
+                android:textColor="@color/colorText" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/IV_student_image_Add"
+                    android:layout_width="match_parent"
+                    android:layout_height="78dp" />
+
+            </RelativeLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_Add_getPahsFotoStudent1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_open_gal" />
+
+                <Button
+                    android:id="@+id/btn_ADD_Student1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_add" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

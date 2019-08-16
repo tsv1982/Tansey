@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/error_user_id"
+    tools:context=".activity.newActivity.TraineAddActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/ET_AdminOrUser_Trener1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/colorText"
+                android:text="admin или user" />
+
+            <EditText
+                android:id="@+id/ET_idEnterUser_Trener1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/colorText"
+                android:text="id пользователя" />
+
+            <EditText
+                android:id="@+id/ET_Trener_Name1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/colorText"
+                android:text="Ф.И.О" />
+
+            <EditText
+                android:id="@+id/ET_Trener_Data_B1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/colorText"
+                android:text="дата рождения" />
+
+            <EditText
+                android:id="@+id/ET_Abaut_Trner1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/colorText"
+                android:text="о тренере" />
+
+            <EditText
+                android:id="@+id/ET_Grafic_Zanjatiy1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/colorText"
+                android:text="график занятий" />
+
+            <EditText
+                android:id="@+id/ET_Trener_URL_Picture1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="URL PICTURE" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/IV_trainer_image_Add"
+                        android:layout_width="match_parent"
+                        android:layout_height="78dp"/>
+
+                </RelativeLayout>
+
+            <TextView
+                android:id="@+id/TV_Pahs_Foto_Trene1"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:text="111" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_getPahsFotoTrener1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/btn_open_gal"/>
+
+                <Button
+                    android:id="@+id/btn_ADD_Trener1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/btn_add"/>
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#090D13</color>
+    <color name="colorPrimaryDark">#070707</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="colorEnterId">#47585F</color>
+    <color name="colorErrorUserId">#47585F</color>
+    <color name="colorLentaNews">#D7E4E9</color>
+    <color name="colorLentaNewsTitle">#F7F1F1</color>
+    <color name="colorText">#F7F1F1</color>
+    <color name="colorText2">#E29E9E</color>
+    <color name="colorLentaNewsPlusFoto">#0E19F0</color>
+    <color name="colorTrenerName">#B1A9A9</color>
+</resources>

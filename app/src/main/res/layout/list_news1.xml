@@ -1,0 +1,120 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/IV_news_image1"
+                android:layout_width="match_parent"
+                android:layout_height="266dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="0dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginEnd="0dp"
+                android:layout_marginRight="0dp"
+                android:src="@drawable/error_text" />
+
+            <TextView
+                android:id="@+id/TV_Lenta_News_Plus_foto"
+                android:layout_width="139dp"
+                android:layout_height="69dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginStart="295dp"
+                android:layout_marginLeft="295dp"
+                android:layout_marginTop="210dp"
+                android:layout_marginEnd="-23dp"
+                android:layout_marginRight="-23dp"
+                android:typeface="serif"
+                android:text="+22"
+                android:textColor="@color/colorLentaNewsPlusFoto"
+                android:textSize="30dp" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="7"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/name_news1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            tools:text="название новости"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/colorLentaNewsTitle"
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/text_news1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:maxLength="250"
+            tools:text="лывоарываджфылвоадлфывоаджлд"
+            android:textColor="@color/colorLentaNews"
+            android:layout_marginTop="15dp"
+            android:textSize="15dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp">
+
+            <TextView
+                android:id="@+id/data_news1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="20.10/19"
+                android:textColor="@color/colorLentaNews"
+                android:textSize="12dp" />
+
+            <TextView
+                android:id="@+id/time_news1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                tools:text="18:50"
+                android:textColor="@color/colorLentaNews"
+                android:textSize="12dp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/autor_news1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:paddingRight="10dp"
+            tools:text="колян"
+            android:textColor="@color/colorLentaNews"
+            android:textSize="10dp" />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">TANSEY</string>
+    <string name="enter_your_id">Введите ваш ID</string>
+    <string name="b_enter_id">Enter ID</string>
+    <string name="lenta_news">лента новостей</string>
+    <string name="Karta_People">карта ученика</string>
+    <string name="Kalendar_sob">Календарь событий</string>
+    <string name="pay">оплата</string>
+
+
+    <string name="lbl_amount">Amount:</string>
+    <string name="lbl_ccy">Currency:</string>
+    <string name="lbl_email">Email:</string>
+    <string name="lbl_description">Description:</string>
+    <string name="btn_pay">Pay</string>
+    <string name="e_invalid_amount">Invalid amount</string>
+    <string name="e_invalid_email">Invalid email</string>
+    <string name="e_invalid_description">Enter description</string>
+
+    <string name="add_user">добавить пользователя</string>
+    <string name="exit_user">выйти из аккаунта</string>
+    <string name="enter_yor_id">введите ваш ID</string>
+    <string name="dounloat_news">загрузить архив новостей</string>
+    <string name="label_trenera">Тренера</string>
+</resources>

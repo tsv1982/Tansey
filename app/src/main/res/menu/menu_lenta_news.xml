@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
+    <item
+        android:id="@+id/action_menu_lenta_news_add"
+        android:orderInCategory="100"
+        android:title="добавить новость"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/aaction_menu_lenta_news_delete"
+        android:orderInCategory="100"
+        android:title="удалить новость"
+        app:showAsAction="never"/>
+
+</menu>

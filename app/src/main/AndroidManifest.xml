@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.ex_1">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".activity.newActivity.StudentAddActivity"
+        android:label="добавить ученика"
+        android:parentActivityName=".activity.newActivity.StudentAddActivity" />
+        <activity
+            android:name=".activity.newActivity.StudentListActivity"
+            android:label="cписок учеников"
+            android:parentActivityName=".activity.newActivity.StudentListActivity" />
+        <activity
+            android:name=".activity.newActivity.StudentChekActivity"
+            android:label="отметить посещение"
+            android:parentActivityName=".activity.newActivity.StudentChekActivity" />
+        <activity
+            android:name=".activity.newActivity.StudentGroupRefactorActivity"
+            android:label="изменить группу"
+            android:parentActivityName=".activity.newActivity.StudentGroupRefactorActivity" />
+        <activity
+            android:name=".activity.newActivity.StudentGroupAddActivity"
+            android:label="добавить группу"
+            android:parentActivityName=".activity.newActivity.StudentGroupAddActivity" />
+        <activity
+            android:name=".activity.newActivity.StudentGroupActivity"
+            android:label="список групп"
+            android:parentActivityName=".activity.newActivity.StudentGroupActivity" />
+        <activity
+            android:name=".activity.newActivity.StudentActivity"
+            android:label="TANSEY"
+            android:parentActivityName=".activity.newActivity.StudentActivity" />
+        <activity
+            android:name=".activity.newActivity.ShopActivity"
+            android:label="TANSEY SHOP"
+            android:parentActivityName=".activity.newActivity.ShopActivity" />
+        <activity
+            android:name=".activity.newActivity.TrainerRefactorActivity"
+            android:label="редактировать тренера"
+            android:parentActivityName=".activity.newActivity.TrainerRefactorActivity" />
+        <activity
+            android:name=".activity.newActivity.TraineAddActivity"
+            android:label="добавить тренера"
+            android:parentActivityName=".activity.newActivity.TraineAddActivity" />
+        <activity
+            android:name=".activity.newActivity.TrenerActivity"
+            android:label="@string/label_trenera"
+            android:parentActivityName=".activity.newActivity.TrenerActivity" />
+        <activity
+            android:name=".activity.newActivity.StudentGraficPosActivity"
+            android:label="add people"
+            android:parentActivityName=".activity.newActivity.StudentGraficPosActivity" />
+        <activity
+            android:name=".activity.ListPeopleActivity"
+            android:label="list people"
+            android:parentActivityName=".activity.ListPeopleActivity" />
+        <activity
+            android:name=".activity.AddLentaNewsActivity"
+            android:label="добавить новость"
+            android:parentActivityName=".activity.LentaNewsActivity1" />
+        <activity
+            android:name=".activity.LentaNewsActivity1"
+            android:label="TANSEY NEWS"
+            android:parentActivityName=".activity.LentaNewsActivity1" />
+        <activity
+            android:name=".activity.newActivity.ShopAddActivity"
+            android:label="добавить товар"
+            android:parentActivityName=".activity.newActivity.ShopAddActivity" />
+        <activity
+            android:name=".activity.AddNewsActivity"
+            android:parentActivityName=".activity.AddNewsActivity" />
+        <activity
+            android:name=".activity.ShopActivity1"
+            android:label="TANSEY SHOP"
+            android:parentActivityName=".activity.ShopActivity1" />
+        <activity
+            android:name=".activity.ErrorUserActivity"
+            android:label="@string/app_name"
+            android:parentActivityName=".activity.ErrorUserActivity" />
+
+        <service
+            android:name=".activity.MyService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity
+            android:name=".activity.PaymentActivity"
+            android:label="Оплата"
+            android:parentActivityName=".activity.PaymentActivity" />
+        <activity
+            android:name=".activity.MessageActivity"
+            android:label="Сообщение"
+            android:parentActivityName=".activity.MessageActivity" />
+        <activity
+            android:name=".activity.KalendarActivity"
+            android:label="Календарь событий"
+            android:parentActivityName=".activity.KalendarActivity" />
+        <activity
+            android:name=".activity.newActivity.StudentKartaPeopleActivity"
+            android:label="Карта ученика"
+            android:parentActivityName=".activity.newActivity.StudentKartaPeopleActivity" />
+        <activity
+            android:name=".activity.HomeActivity"
+            android:label="@string/app_name" />
+        <activity android:name=".activity.User_passActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

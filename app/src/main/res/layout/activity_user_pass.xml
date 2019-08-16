@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/android_mobile3"
+    android:orientation="vertical"
+    tools:context=".activity.User_passActivity">
+
+    <LinearLayout
+        android:id="@+id/linerUserEnter1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/linerUserEnter2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#550C0C"
+                android:gravity="center_horizontal"
+                android:inputType=""
+                android:text="@string/enter_yor_id"
+                android:textColor="@color/colorEnterId"
+                android:textSize="25dp" />
+
+            <Button
+                android:id="@+id/buttonID"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/enter_id" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linerUserEnterNull"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"></LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linerUserEnterBootom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/text_tell_info_home" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>
+

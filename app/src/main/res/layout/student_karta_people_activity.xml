@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/error_user_id">
+
+    <ImageView
+        android:id="@+id/Iv_picture_student"
+        android:layout_width="149dp"
+        android:layout_height="138dp"
+        android:src="@drawable/loading" />
+
+    <TextView
+        android:id="@+id/tv_student_name"
+        android:layout_width="247dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="7dp"
+        android:layout_toRightOf="@id/Iv_picture_student"
+        android:text="Иванов \n Иван \n Иванович"
+        android:textAlignment="center"
+        android:textColor="@color/colorLentaNews"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/tv_student_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/TV_Rang_student"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="246dp"
+        android:layout_marginLeft="246dp"
+        android:layout_marginBottom="46dp"
+        android:text="28.15.15"
+        android:textColor="@color/colorLentaNews"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/tv_student_Group_Name"
+        android:layout_width="383dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/TV_Rang_student"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginEnd="13dp"
+        android:layout_marginRight="13dp"
+        android:layout_marginBottom="13dp"
+        android:text="группа"
+        android:textColor="@color/colorLentaNews"
+        android:textAlignment="center"
+        android:textSize="15dp"
+        android:textStyle="normal|italic" />
+
+
+    <View
+        android:id="@+id/VRang_student"
+        android:layout_width="fill_parent"
+        android:layout_height="30dp"
+        android:layout_alignBottom="@id/Iv_picture_student"
+        android:layout_marginBottom="-62dp"
+        android:background="@android:color/holo_green_light" />
+
+    <TextView
+        android:id="@+id/TV_Rang_student"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       android:layout_alignBottom="@id/VRang_student"
+        android:text="ранг"
+        android:layout_centerHorizontal="true"
+        android:textSize="20dp" />
+
+
+
+
+    <TextView
+        android:id="@+id/TV_D1_student"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/TV_Rang_student"
+        android:layout_marginBottom="-47dp"
+        android:textColor="@color/colorLentaNews"
+        android:text="  достижение 1"
+        android:textStyle="normal|italic"
+        android:textSize="25dp" />
+
+    <TextView
+        android:id="@+id/TV_D2_student"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/TV_D1_student"
+        android:layout_marginBottom="-47dp"
+        android:textColor="@color/colorLentaNews"
+        android:text="  достижение 2"
+        android:textStyle="normal|italic"
+        android:textSize="25dp" />
+
+    <TextView
+        android:id="@+id/TV_D3_student"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/TV_D2_student"
+        android:layout_marginBottom="-47dp"
+        android:textColor="@color/colorLentaNews"
+        android:text="  достижение 3"
+        android:textStyle="normal|italic"
+        android:textSize="25dp" />
+
+
+    <TextView
+        android:id="@+id/playOrDontPlay_student"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/TV_D3_student"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="-56dp"
+        android:text="Не оплачено"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="20dp"
+        android:textStyle="normal|italic" />
+
+
+    <Button
+        android:id="@+id/btnPeopleGrofik_student"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="208dp"
+        android:layout_marginBottom="9dp"
+        android:background="@drawable/btn_grafic" />
+
+    <Button
+        android:id="@+id/btnPeoplePay_student"
+        android:layout_width="148dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="11dp"
+        android:background="@drawable/btn_play" />
+
+
+</RelativeLayout>

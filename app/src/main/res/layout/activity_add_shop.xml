@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.newActivity.ShopAddActivity">
+
+    <EditText
+        android:id="@+id/ET_ID_Shop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="255"
+        android:inputType="number"/>
+
+    <EditText
+        android:id="@+id/ET_Shop_Name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="найменование товара " />
+
+    <EditText
+        android:id="@+id/ET_Shop_Size"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="размер товара" />
+
+    <EditText
+        android:id="@+id/ET_Shop_Price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="цена" />
+
+    <EditText
+        android:id="@+id/ET_Url_Shop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Url товара" />
+
+    <EditText
+        android:id="@+id/ET_abaut_Shop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="о товаре" />
+
+
+    <TextView
+        android:id="@+id/XXXXXX_Shop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="111"/>
+
+
+
+    <Button
+        android:id="@+id/btn_ADD_Shop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="add"/>
+
+    <Button
+        android:id="@+id/btn_xxxxxx_Shop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="открыть галерею"/>
+
+
+
+</LinearLayout>
