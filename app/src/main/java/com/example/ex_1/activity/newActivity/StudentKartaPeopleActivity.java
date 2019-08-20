@@ -8,10 +8,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.example.ex_1.Entity.StudentСardEntity;
@@ -50,6 +53,8 @@ public class StudentKartaPeopleActivity extends AppCompatActivity implements Vie
     private String saveIdStudent;
     private Context context;
 
+    TextView textView11111;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,7 +73,11 @@ public class StudentKartaPeopleActivity extends AppCompatActivity implements Vie
         textViewD2 = findViewById(R.id.TV_D2_student);
         textViewD3 = findViewById(R.id.TV_D3_student);
 
-        databaseReference.addChildEventListener(new ChildEventListener() {
+        textView11111 = findViewById(R.id.iiiiiiiiiiiiiiiiiiiii);
+        textView11111.setText("75");
+        textView11111.setTextColor(Color.RED);
+
+         databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {  //вытаскиваем с базы
 

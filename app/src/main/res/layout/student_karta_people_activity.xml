@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/error_user_id">
 
+
     <ImageView
         android:id="@+id/Iv_picture_student"
         android:layout_width="149dp"
@@ -28,12 +29,43 @@
         android:layout_above="@+id/TV_Rang_student"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
-        android:layout_marginStart="246dp"
-        android:layout_marginLeft="246dp"
-        android:layout_marginBottom="46dp"
+        android:layout_marginStart="233dp"
+        android:layout_marginLeft="233dp"
+        android:layout_marginBottom="87dp"
         android:text="28.15.15"
+        android:textAlignment="center"
         android:textColor="@color/colorLentaNews"
-        android:textSize="20dp" />
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/tv_student_vozrast"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/TV_Rang_student"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="306dp"
+        android:layout_marginLeft="306dp"
+        android:layout_marginBottom="27dp"
+        android:text="12 лет"
+        android:textAlignment="center"
+        android:textColor="@color/colorLentaNews"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/tv_student_ves"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/TV_Rang_student"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="306dp"
+        android:layout_marginLeft="306dp"
+        android:layout_marginBottom="49dp"
+        android:text="45 кг"
+        android:textAlignment="center"
+        android:textColor="@color/colorLentaNews"
+        android:textSize="15dp" />
 
     <TextView
         android:id="@+id/tv_student_Group_Name"
@@ -44,15 +76,15 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginStart="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginEnd="13dp"
-        android:layout_marginRight="13dp"
-        android:layout_marginBottom="13dp"
+        android:layout_marginStart="95dp"
+        android:layout_marginLeft="95dp"
+        android:layout_marginEnd="-68dp"
+        android:layout_marginRight="-68dp"
+        android:layout_marginBottom="72dp"
         android:text="группа"
-        android:textColor="@color/colorLentaNews"
         android:textAlignment="center"
-        android:textSize="15dp"
+        android:textColor="@color/colorLentaNews"
+        android:textSize="10dp"
         android:textStyle="normal|italic" />
 
 
@@ -62,18 +94,240 @@
         android:layout_height="30dp"
         android:layout_alignBottom="@id/Iv_picture_student"
         android:layout_marginBottom="-62dp"
-        android:background="@android:color/holo_green_light" />
+         />
 
     <TextView
         android:id="@+id/TV_Rang_student"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
        android:layout_alignBottom="@id/VRang_student"
-        android:text="ранг"
+        android:text="титулы ученика"
+        android:textAlignment="center"
         android:layout_centerHorizontal="true"
-        android:textSize="20dp" />
+        android:textColor="@color/colorLentaNews"
+        android:textSize="15dp" />
 
 
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/table_student_01"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:stretchColumns="*"
+        android:layout_alignBottom="@id/TV_D2_student"
+        android:background="#000">
+        <TableRow>
+            <TextView android:textColor="#fff"
+                android:textStyle="bold"
+                android:gravity="center_horizontal"
+                android:background="#7fc342"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_span="5"
+                android:text="сезон 2019/2020"/>
+        </TableRow>
+        <TableRow>
+            <TextView android:background="#fff"
+                android:layout_margin="1dip"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#36a300"
+                android:gravity="center_horizontal"
+                android:textSize="10dp"
+                android:text="турнир "/>
+            <TextView android:background="#fff"
+                android:layout_margin="1dip"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#36a300"
+                android:gravity="center_horizontal"
+                android:textSize="10dp"
+                android:text="боев"/>
+            <TextView android:background="#fff"
+                android:layout_margin="1dip"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#36a300"
+                android:gravity="center_horizontal"
+                android:textSize="10dp"
+                android:text="побед"/>
+            <TextView android:background="#fff"
+                android:layout_margin="1dip"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#36a300"
+                android:gravity="center_horizontal"
+                android:textSize="10dp"
+                android:text="поражений"/>
+            <TextView android:background="#fff"
+                android:layout_margin="1dip"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#36a300"
+                android:gravity="center_horizontal"
+                android:textSize="10dp"
+                android:text="очков"/>
+        </TableRow>
+        <TableRow>
+            <TextView android:background="#ccc"
+                android:layout_margin="1dip"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#36a300"
+                android:gravity="center_horizontal"
+                android:textSize="10dp"
+                android:text="3"/>
+            <TextView android:background="#ccc"
+                android:layout_margin="1dip"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#36a300"
+                android:gravity="center_horizontal"
+                android:textSize="10dp"
+                android:text="8"/>
+            <TextView android:background="#ccc"
+                android:layout_margin="1dip"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#36a300"
+                android:gravity="center_horizontal"
+                android:textSize="10dp"
+                android:text="5"/>
+            <TextView android:background="#ccc"
+                android:layout_margin="1dip"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#36a300"
+                android:gravity="center_horizontal"
+                android:textSize="10dp"
+                android:text="3"/>
+            <TextView android:background="#ccc"
+                android:layout_margin="1dip"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#36a300"
+                android:gravity="center_horizontal"
+                android:textSize="10dp"
+                android:text="5"/>
+        </TableRow>
+    </TableLayout>
+
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:stretchColumns="*"
+        android:layout_alignBottom="@+id/playOrDontPlay_student"
+        android:background="#000">
+        <TableRow>
+            <TextView android:textColor="#fff"
+                android:textStyle="bold"
+                android:gravity="center_horizontal"
+                android:background="#7fc342"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_span="5"
+                android:text="норматив"/>
+        </TableRow>
+        <TableRow>
+            <TextView android:background="#fff"
+                android:layout_margin="1dip"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#36a300"
+                android:gravity="center_horizontal"
+                android:textSize="10dp"
+                android:text="пресс"/>
+            <TextView android:background="#fff"
+                android:layout_margin="1dip"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#36a300"
+                android:gravity="center_horizontal"
+                android:textSize="10dp"
+                android:text="отжиманий"/>
+            <TextView android:background="#fff"
+                android:layout_margin="1dip"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#36a300"
+                android:gravity="center_horizontal"
+                android:textSize="10dp"
+                android:text="подтяг"/>
+            <TextView android:background="#fff"
+                android:layout_margin="1dip"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#36a300"
+                android:gravity="center_horizontal"
+                android:textSize="10dp"
+                android:text="розношка"/>
+            <TextView android:background="#fff"
+                android:layout_margin="1dip"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#36a300"
+                android:gravity="center_horizontal"
+                android:textSize="10dp"
+                android:text="прижки"/>
+        </TableRow>
+        <TableRow>
+            <TextView android:background="#ccc"
+                android:id="@+id/iiiiiiiiiiiiiiiiiiiii"
+                android:layout_margin="1dip"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#36a300"
+                android:gravity="center_horizontal"
+                android:textSize="10dp"
+                android:text="50"/>
+            <TextView android:background="#ccc"
+                android:layout_margin="1dip"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#36a300"
+                android:gravity="center_horizontal"
+                android:textSize="10dp"
+                android:text="50"/>
+            <TextView android:background="#ccc"
+                android:layout_margin="1dip"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#36a300"
+                android:gravity="center_horizontal"
+                android:textSize="10dp"
+                android:text="50"/>
+            <TextView android:background="#ccc"
+                android:layout_margin="1dip"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#36a300"
+                android:gravity="center_horizontal"
+                android:textSize="10dp"
+                android:text="50"/>
+            <TextView android:background="#ccc"
+                android:layout_margin="1dip"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#36a300"
+                android:gravity="center_horizontal"
+                android:textSize="10dp"
+                android:text="50"/>
+        </TableRow>
+        <TableRow>
+            <TextView android:background="#ccc"
+                android:layout_margin="1dip"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#36a300"
+                android:gravity="center_horizontal"
+                android:textSize="10dp"
+                android:text="23"/>
+            <TextView android:background="#ccc"
+                android:layout_margin="1dip"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#36a300"
+                android:gravity="center_horizontal"
+                android:textSize="10dp"
+                android:text="55"/>
+            <TextView android:background="#ccc"
+                android:layout_margin="1dip"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#36a300"
+                android:gravity="center_horizontal"
+                android:textSize="10dp"
+                android:text="20"/>
+            <TextView android:background="#ccc"
+                android:layout_margin="1dip"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#36a300"
+                android:gravity="center_horizontal"
+                android:textSize="10dp"
+                android:text="45"/>
+            <TextView android:background="#ccc"
+                android:layout_margin="1dip"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#36a300"
+                android:gravity="center_horizontal"
+                android:textSize="10dp"
+                android:text="80"/>
+        </TableRow>
+    </TableLayout>
 
 
     <TextView
@@ -83,8 +337,9 @@
         android:layout_alignBottom="@id/TV_Rang_student"
         android:layout_marginBottom="-47dp"
         android:textColor="@color/colorLentaNews"
-        android:text="  достижение 1"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:textStyle="normal|italic"
+
         android:textSize="25dp" />
 
     <TextView
@@ -94,7 +349,6 @@
         android:layout_alignBottom="@id/TV_D1_student"
         android:layout_marginBottom="-47dp"
         android:textColor="@color/colorLentaNews"
-        android:text="  достижение 2"
         android:textStyle="normal|italic"
         android:textSize="25dp" />
 
@@ -105,7 +359,6 @@
         android:layout_alignBottom="@id/TV_D2_student"
         android:layout_marginBottom="-47dp"
         android:textColor="@color/colorLentaNews"
-        android:text="  достижение 3"
         android:textStyle="normal|italic"
         android:textSize="25dp" />
 
@@ -116,8 +369,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/TV_D3_student"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="-56dp"
-        android:text="Не оплачено"
+        android:layout_marginBottom="-65dp"
         android:textColor="@android:color/holo_red_dark"
         android:textSize="20dp"
         android:textStyle="normal|italic" />
@@ -141,6 +393,5 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="11dp"
         android:background="@drawable/btn_play" />
-
 
 </RelativeLayout>

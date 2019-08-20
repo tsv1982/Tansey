@@ -18,7 +18,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <EditText
+            <Spinner
                 android:id="@+id/ET_AdminOrUser_Trener1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -15,9 +16,12 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,7 +49,7 @@ public class TraineAddActivity extends AppCompatActivity implements View.OnClick
 
     private StorageReference mStorageRef;
 
-    private EditText editTextAdminOrUserTrener;
+//    private EditText editTextAdminOrUserTrener;
     private EditText editTextIdEnterUserTrener1;
     private EditText editTextTrenerName;
     private EditText editTextTrenerDataB;
@@ -54,11 +58,17 @@ public class TraineAddActivity extends AppCompatActivity implements View.OnClick
     private EditText editTextTrenerURLPicture;
     private ImageView imageViewFotoTrener;
 
+    String spinerAdmonOrUserArray[] = {"user", "admin"};
+    private ArrayAdapter<String> adapterSpinerUserOrAdmin;
+    private Spinner spinerTextUserOrAdmin;
+
     private Button btnAddTrener;
     private Button btnGetFotoTrener1;
     private TextView tvPahsFotoTrene1;
     private String photoLink;
     private String filePut;
+
+    private int positionSpinerAdminOrUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +79,27 @@ public class TraineAddActivity extends AppCompatActivity implements View.OnClick
 
         mStorageRef = FirebaseStorage.getInstance().getReference();
 
-        editTextAdminOrUserTrener = findViewById(R.id.ET_AdminOrUser_Trener1);
+        adapterSpinerUserOrAdmin = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, spinerAdmonOrUserArray);
+        adapterSpinerUserOrAdmin.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinerTextUserOrAdmin = findViewById(R.id.ET_AdminOrUser_Trener1);
+        spinerTextUserOrAdmin.getBackground().setColorFilter(getResources().getColor(R.color.colorText), PorterDuff.Mode.SRC_ATOP);
+        spinerTextUserOrAdmin.setAdapter(adapterSpinerUserOrAdmin);
+        spinerTextUserOrAdmin.setSelection(0);
+
+        spinerTextUserOrAdmin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view,int position, long id) {
+                ((TextView) parent.getChildAt(0)).setTextColor(getResources().getColor(R.color.colorText));
+                ((TextView) parent.getChildAt(0)).setTextSize(20);
+                positionSpinerAdminOrUser = position;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+            }
+        });
+
+//        editTextAdminOrUserTrener = findViewById(R.id.ET_AdminOrUser_Trener1);
         editTextIdEnterUserTrener1 = findViewById(R.id.ET_idEnterUser_Trener1);
         editTextTrenerName = findViewById(R.id.ET_Trener_Name1);
         editTextTrenerDataB = findViewById(R.id.ET_Trener_Data_B1);
@@ -145,7 +175,7 @@ public class TraineAddActivity extends AppCompatActivity implements View.OnClick
                     trenierEntity.setDateObirth(String.valueOf(editTextTrenerDataB.getText()));
                     trenierEntity.setAboutTrener(String.valueOf(editTextAbautTrner.getText()));
                     trenierEntity.setGrafikZanjatiy(String.valueOf(editTextGraficZanjatiy.getText()));
-                    trenierEntity.setAdminOrUser(String.valueOf(editTextAdminOrUserTrener.getText()));
+                    trenierEntity.setAdminOrUser(String.valueOf(spinerAdmonOrUserArray[positionSpinerAdminOrUser]));
                     trenierEntity.setIdEnterUser(String.valueOf(editTextIdEnterUserTrener1.getText()));
 
 

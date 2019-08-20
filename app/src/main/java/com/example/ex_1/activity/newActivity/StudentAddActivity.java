@@ -66,12 +66,15 @@ public class StudentAddActivity extends AppCompatActivity implements View.OnClic
     private StorageReference  mStorageRef = FirebaseStorage.getInstance().getReference();
 
     private ArrayAdapter<String> adapterSpiner;
+    private ArrayAdapter<String> adapterSpinerUserOrAdmin;
     private ArrayList<String> arrayListNameGroupStudent = new ArrayList<>();
+    String spinerAdmonOrUserArray[] = {"user", "admin"};
 
     private Spinner spinnerGroup;
+    private Spinner spinerTextUserOrAdmin;
 
     private EditText editTextIdEnterStudent;
-    private EditText editTextUserOrAdmin;
+//    private EditText editTextUserOrAdmin;
     private EditText editTextNameStudent;
     private EditText editTextRang;
     private EditText editTextDate;
@@ -88,6 +91,7 @@ public class StudentAddActivity extends AppCompatActivity implements View.OnClic
     private String filePut;
 
     private int positionSpiner;
+    private int positionSpinerAdminOrUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,13 +101,12 @@ public class StudentAddActivity extends AppCompatActivity implements View.OnClic
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN); // убрать фокус при загрузке
 
         editTextIdEnterStudent = findViewById(R.id.ET_Add_ID_Enter_Student1);
-        editTextUserOrAdmin = findViewById(R.id.ET_Add_AdminOrUser_Student1);
         editTextNameStudent = findViewById(R.id.ET_Add_NemeStudent_Student1);
         editTextRang = findViewById(R.id.ET_Add_RangStudent_Student1);
         editTextDate = findViewById(R.id.ET_Add_DataStudent_Student1);
-        editTextDost1 = findViewById(R.id.ET_Add_Dost1_Student_Student1);
-        editTextDost2 = findViewById(R.id.ET_Add_Dost2_Student_Student1);
-        editTextDost3 = findViewById(R.id.ET_Add_Dost3_Student_Student1);
+//        editTextDost1 = findViewById(R.id.ET_Add_Dost1_Student_Student1);
+//        editTextDost2 = findViewById(R.id.ET_Add_Dost2_Student_Student1);
+//        editTextDost3 = findViewById(R.id.ET_Add_Dost3_Student_Student1);
 
         imageViewFotoStudent = findViewById(R.id.IV_student_image_Add);
 
@@ -111,6 +114,29 @@ public class StudentAddActivity extends AppCompatActivity implements View.OnClic
         btnPashUrlFoto.setOnClickListener(this);
         btnAddStudent = findViewById(R.id.btn_ADD_Student1);
         btnAddStudent.setOnClickListener(this);
+
+
+
+        adapterSpinerUserOrAdmin = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, spinerAdmonOrUserArray);
+        adapterSpinerUserOrAdmin.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinerTextUserOrAdmin = findViewById(R.id.ET_Add_AdminOrUser_Student1);
+        spinerTextUserOrAdmin.getBackground().setColorFilter(getResources().getColor(R.color.colorText), PorterDuff.Mode.SRC_ATOP);
+        spinerTextUserOrAdmin.setAdapter(adapterSpinerUserOrAdmin);
+        spinerTextUserOrAdmin.setSelection(0);
+
+        spinerTextUserOrAdmin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view,int position, long id) {
+                ((TextView) parent.getChildAt(0)).setTextColor(getResources().getColor(R.color.colorText));
+                ((TextView) parent.getChildAt(0)).setTextSize(20);
+                positionSpinerAdminOrUser = position;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+            }
+        });
+
 
         adapterSpiner = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, arrayListNameGroupStudent);
         adapterSpiner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -244,7 +270,7 @@ public class StudentAddActivity extends AppCompatActivity implements View.OnClic
 
                   studentСardEntity.setIdstudent("000");
                   studentСardEntity.setIdEnterStudent(String.valueOf(editTextIdEnterStudent.getText()));
-                  studentСardEntity.setUserOrAdmin(String.valueOf(editTextUserOrAdmin.getText()));
+                  studentСardEntity.setUserOrAdmin(String.valueOf(spinerAdmonOrUserArray[positionSpinerAdminOrUser]));
                   studentСardEntity.setNameStudent(String.valueOf(editTextNameStudent.getText()));
 
                   if (arrayListNameGroupStudent.size() == 0) {
