@@ -158,7 +158,7 @@ public class StudentGroupActivity extends AppCompatActivity implements View.OnCl
 
                                         textViewGetGroup.setText("");
 
-                                        Toast.makeText(view.getContext(), "удаленный тренер \n" + studentGroupEntityArrayList.get(position2).getNameGroup(), Toast.LENGTH_LONG).show();
+                                        Toast.makeText(view.getContext(), "группа удалена \n" + studentGroupEntityArrayList.get(position2).getNameGroup(), Toast.LENGTH_LONG).show();
                                         adapter.remove(studentGroupEntityArrayList.get(position2));
                                         dialog.cancel();
                                     }

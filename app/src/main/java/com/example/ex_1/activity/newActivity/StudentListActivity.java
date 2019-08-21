@@ -193,6 +193,13 @@ public class StudentListActivity extends AppCompatActivity implements View.OnCli
             }
 
             case R.id.btn_Student_Refactor01: {
+                sharedPreferences = getSharedPreferences("MyPref", MODE_PRIVATE);
+                editor = sharedPreferences.edit();
+                editor.putString("saveIdStudent", saveIdStudent);
+                editor.apply();
+
+                Intent intent = new Intent(this, StudentRefactorActivity.class);
+                startActivity(intent);
                 break;
             }
             case R.id.btn_ADD_Prosmotr_Student01: {

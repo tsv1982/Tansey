@@ -185,7 +185,6 @@ public class StudentGroupRefactorActivity extends AppCompatActivity implements V
             case R.id.btn_ADD_Group_Refactor: {
 
                 databaseReferenceGroup.child(studentGroupEntity.getIdGroupBD()).removeValue();
-                System.out.println(studentGroupEntity.getIdGroupBD());
 
                 StudentGroupEntity studentGroupEntity = new StudentGroupEntity();
                 studentGroupEntity.setIdGroupBD(studentGroupEntity.getIdGroupBD());

@@ -209,12 +209,26 @@ public class TrainerRefactorActivity extends AppCompatActivity implements View.O
 
 
                 if (filePutRefactor != null) {
-                    System.out.println("1111111111111111111111");
+
+                    StorageReference mStorageRef = FirebaseStorage.getInstance().getReferenceFromUrl(trenierEntityFromBD.getUrlFotoTrener());
+                    mStorageRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            // File deleted successfully
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception exception) {
+                            // Uh-oh, an error occurred!
+                        }
+                    });
+
                     File destinationDirectory = new File(this.getCacheDir().getAbsolutePath());
                     String filePath = SiliCompressor.with(this).compress(filePutRefactor, destinationDirectory);
 
                     Uri file = Uri.fromFile(new File(filePath));
-                    StorageReference riversRef = mStorageRef.child("trenerFoto/" + editTextTrenerNameRefactor.getText() + ".jpg");
+                    StorageReference mStorageRef1 = FirebaseStorage.getInstance().getReference();
+                    StorageReference riversRef = mStorageRef1.child("trenerFoto/" + editTextTrenerNameRefactor.getText() + ".jpg");
 
                     riversRef.putFile(file)
                             .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {

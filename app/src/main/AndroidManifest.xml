@@ -17,9 +17,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activity.newActivity.StudentAddActivity"
-        android:label="добавить ученика"
-        android:parentActivityName=".activity.newActivity.StudentAddActivity" />
+        <activity android:name=".activity.newActivity.StudentRefactorActivity"
+        android:label="изменить ученика"
+        android:parentActivityName=".activity.newActivity.StudentRefactorActivity" />
+
+        <activity
+            android:name=".activity.newActivity.StudentAddActivity"
+            android:label="добавить ученика"
+            android:parentActivityName=".activity.newActivity.StudentAddActivity" />
         <activity
             android:name=".activity.newActivity.StudentListActivity"
             android:label="cписок учеников"

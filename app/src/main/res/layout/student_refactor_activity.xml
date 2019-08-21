@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="@drawable/error_user_id"
+android:orientation="vertical"
+    android:id="@+id/LinearLayout1_Refactor_Student"
+tools:context=".activity.newActivity.StudentRefactorActivity">
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/IV_student_image_Add_Refactor"
+                android:layout_width="match_parent"
+                android:layout_height="78dp" />
+
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/btn_Add_getPahsFotoStudent1_Refactor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/btn_open_gal" />
+
+
+        <TextView
+            android:id="@+id/ET_Add_ID_Enter_Student1_Refactor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="id ученика"
+            android:textColor="@color/colorText" />
+
+        <Spinner
+            android:id="@+id/ET_Add_AdminOrUser_Student1_Refactor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="admin или user"
+            android:textColor="@color/colorText" />
+
+        <EditText
+            android:id="@+id/ET_Add_NemeStudent_Student1_Refactor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Ф.И.О."
+            android:textColor="@color/colorText" />
+
+        <Spinner
+            android:id="@+id/SP_Group_Id_Student_Enter_Refactor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/colorText" />
+
+        <EditText
+            android:id="@+id/ET_Add_ves_Student1_Refactor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="вес ученика"
+            android:textColor="@color/colorText"
+            android:inputType="numberDecimal"/>
+
+
+        <EditText
+            android:id="@+id/ET_Add_TitulStudent_Student1_Refactor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="титулы ученика"
+            android:textColor="@color/colorText" />
+
+        <EditText
+            android:id="@+id/ET_Add_DataStudent_Student1_Refactor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="дата рождения"
+            android:textColor="@color/colorText" />
+
+
+        <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/table_student_01_Refactor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:background="#000"
+            android:layout_marginTop="20dp"
+            android:stretchColumns="*">
+
+            <TableRow>
+
+                <EditText
+                    android:id="@+id/ET_Add_sezon_Student1_Refactor"
+                    android:layout_span="5"
+                    android:background="#7fc342"
+                    android:gravity="center_horizontal"
+                    android:text="сезон 2019/2020"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#0E19F0"
+                    android:textStyle="bold" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_margin="1dip"
+                    android:background="#fff"
+                    android:gravity="center_horizontal"
+                    android:text="турнир"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#36a300"
+                    android:textSize="10dp" />
+
+                <TextView
+                    android:layout_margin="1dip"
+                    android:background="#fff"
+                    android:gravity="center_horizontal"
+                    android:text="боев"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#36a300"
+                    android:textSize="10dp" />
+
+                <TextView
+                    android:layout_margin="1dip"
+                    android:background="#fff"
+                    android:gravity="center_horizontal"
+                    android:text="побед"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#36a300"
+                    android:textSize="10dp" />
+
+                <TextView
+                    android:layout_margin="1dip"
+                    android:background="#fff"
+                    android:gravity="center_horizontal"
+                    android:text="поражений"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#36a300"
+                    android:textSize="10dp" />
+
+                <TextView
+                    android:layout_margin="1dip"
+                    android:background="#fff"
+                    android:gravity="center_horizontal"
+                    android:text="очков"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#36a300"
+                    android:textSize="10dp" />
+            </TableRow>
+
+            <TableRow>
+
+                <EditText
+                    android:id="@+id/ET_Add_turnir_Student1_Refactor"
+                    android:layout_margin="1dip"
+                    android:background="#ccc"
+                    android:gravity="center_horizontal"
+                    android:text="3"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#0E19F0"
+                    android:textSize="20dp"
+                    android:inputType="numberDecimal"/>
+
+                <EditText
+                    android:id="@+id/ET_Add_boiov_Student1_Refactor"
+                    android:layout_margin="1dip"
+                    android:background="#ccc"
+                    android:gravity="center_horizontal"
+                    android:text="8"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#0E19F0"
+                    android:textSize="20dp"
+                    android:inputType="numberDecimal"/>
+
+                <EditText
+                    android:id="@+id/ET_Add_pobed_Student1_Refactor"
+                    android:layout_margin="1dip"
+                    android:background="#ccc"
+                    android:gravity="center_horizontal"
+                    android:text="5"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#0E19F0"
+                    android:textSize="20dp"
+                    android:inputType="numberDecimal"/>
+
+                <EditText
+                    android:id="@+id/ET_Add_poragenii_Student1_Refactor"
+                    android:layout_margin="1dip"
+                    android:background="#ccc"
+                    android:gravity="center_horizontal"
+                    android:text="3"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#0E19F0"
+                    android:textSize="20dp"
+                    android:inputType="numberDecimal"/>
+
+                <EditText
+                    android:id="@+id/ET_Add_ochkov_Student1_Refactor"
+                    android:layout_margin="1dip"
+                    android:background="#ccc"
+                    android:gravity="center_horizontal"
+                    android:text="5"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#0E19F0"
+                    android:textSize="20dp"
+                    android:inputType="numberDecimal"/>
+            </TableRow>
+        </TableLayout>
+
+        <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:background="#000"
+            android:stretchColumns="*">
+
+            <TableRow>
+
+                <TextView
+                    android:layout_span="5"
+                    android:background="#7fc342"
+                    android:gravity="center_horizontal"
+                    android:text="норматив"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#fff"
+                    android:textStyle="bold" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_margin="1dip"
+                    android:background="#fff"
+                    android:gravity="center_horizontal"
+                    android:text="пресс"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#36a300"
+                    android:textSize="10dp" />
+
+                <TextView
+                    android:layout_margin="1dip"
+                    android:background="#fff"
+                    android:gravity="center_horizontal"
+                    android:text="отжиманий"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#36a300"
+                    android:textSize="10dp" />
+
+                <TextView
+                    android:layout_margin="1dip"
+                    android:background="#fff"
+                    android:gravity="center_horizontal"
+                    android:text="подтяг"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#36a300"
+                    android:textSize="10dp" />
+
+                <TextView
+                    android:layout_margin="1dip"
+                    android:background="#fff"
+                    android:gravity="center_horizontal"
+                    android:text="розношка"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#36a300"
+                    android:textSize="10dp" />
+
+                <TextView
+                    android:layout_margin="1dip"
+                    android:background="#fff"
+                    android:gravity="center_horizontal"
+                    android:text="прижки"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#36a300"
+                    android:textSize="10dp" />
+            </TableRow>
+
+            <TableRow>
+
+                <EditText
+                    android:id="@+id/ET_Add_press_norma_Student1_Refactor"
+                    android:layout_margin="1dip"
+                    android:background="#ccc"
+                    android:gravity="center_horizontal"
+                    android:text="50"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#0E19F0"
+                    android:textSize="20dp"
+                    android:inputType="numberDecimal"/>
+
+                <EditText
+                    android:id="@+id/ET_Add_otgimanii_norma_Student1_Refactor"
+                    android:layout_margin="1dip"
+                    android:background="#ccc"
+                    android:gravity="center_horizontal"
+                    android:text="50"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#0E19F0"
+                    android:textSize="20dp"
+                    android:inputType="numberDecimal"/>
+
+                <EditText
+                    android:id="@+id/ET_Add_podtjag_norma_Student1_Refactor"
+                    android:layout_margin="1dip"
+                    android:background="#ccc"
+                    android:gravity="center_horizontal"
+                    android:text="50"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#0E19F0"
+                    android:textSize="20dp"
+                    android:inputType="numberDecimal"/>
+
+                <EditText
+                    android:id="@+id/ET_Add_roznogka_norma_Student1_Refactor"
+                    android:layout_margin="1dip"
+                    android:background="#ccc"
+                    android:gravity="center_horizontal"
+                    android:text="50"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#0E19F0"
+                    android:textSize="20dp"
+                    android:inputType="numberDecimal"/>
+
+                <EditText
+                    android:id="@+id/ET_Add_prigki_norma_Student1_Refactor"
+                    android:layout_margin="1dip"
+                    android:background="#ccc"
+                    android:gravity="center_horizontal"
+                    android:text="50"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#0E19F0"
+                    android:textSize="20dp"
+                    android:inputType="numberDecimal"/>
+            </TableRow>
+
+            <TableRow>
+
+                <EditText
+                    android:id="@+id/ET_Add_press_fakt_Student1_Refactor"
+                    android:layout_margin="1dip"
+                    android:background="#ccc"
+                    android:gravity="center_horizontal"
+                    android:text="23"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#0E19F0"
+                    android:textSize="20dp"
+                    android:inputType="numberDecimal"/>
+
+                <EditText
+                    android:id="@+id/ET_Add_otgimanii_fact_Student1_Refactor"
+                    android:layout_margin="1dip"
+                    android:background="#ccc"
+                    android:gravity="center_horizontal"
+                    android:text="55"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#0E19F0"
+                    android:textSize="20dp"
+                    android:inputType="numberDecimal"/>
+
+                <EditText
+                    android:id="@+id/ET_Add_podtjag_fakt_Student1_Refactor"
+                    android:layout_margin="1dip"
+                    android:background="#ccc"
+                    android:gravity="center_horizontal"
+                    android:text="20"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#0E19F0"
+                    android:textSize="20dp"
+                    android:inputType="numberDecimal"/>
+
+                <EditText
+                    android:id="@+id/ET_Add_roznogka_fact_Student1_Refactor"
+                    android:layout_margin="1dip"
+                    android:background="#ccc"
+                    android:gravity="center_horizontal"
+                    android:text="45"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#0E19F0"
+                    android:textSize="20dp"
+                    android:inputType="numberDecimal"/>
+
+                <EditText
+                    android:id="@+id/ET_Add_prigki_fact_Student1_Refactor"
+                    android:layout_margin="1dip"
+                    android:background="#ccc"
+                    android:gravity="center_horizontal"
+                    android:text="80"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#0E19F0"
+                    android:textSize="20dp"
+                    android:inputType="numberDecimal"/>
+            </TableRow>
+        </TableLayout>
+
+        <Button
+            android:id="@+id/btn_ADD_Student1_Refactor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/btn_add" />
+
+
+    </LinearLayout>
+</ScrollView>
+
+</LinearLayout>
