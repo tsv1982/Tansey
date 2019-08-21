@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Html;
@@ -41,6 +42,10 @@ public class StudentGroupActivity extends AppCompatActivity implements View.OnCl
 
     private ArrayList<StudentGroupEntity> studentGroupEntityArrayList = new ArrayList();
     private StudentGroupAdapter adapter;
+
+    private SharedPreferences sharedPreferences;   // для сохранения позиции
+    private SharedPreferences.Editor editor;
+
 
     private Button btnAddGroup;
     private Button btnRefactorGroup;
@@ -124,6 +129,12 @@ public class StudentGroupActivity extends AppCompatActivity implements View.OnCl
                 break;
             }
             case R.id.btnRefactorGroup: {
+
+                sharedPreferences = getSharedPreferences("MyPref", MODE_PRIVATE);
+                editor = sharedPreferences.edit();
+                editor.putString("saveIdGroupp", studentGroupEntityArrayList.get(position2).getIdGroupBD());
+                editor.apply();
+
                 Intent intent = new Intent(this, StudentGroupRefactorActivity.class);
                 startActivity(intent);
                 finish();

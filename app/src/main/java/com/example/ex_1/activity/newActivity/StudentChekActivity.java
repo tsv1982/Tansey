@@ -201,15 +201,10 @@ public class StudentChekActivity extends AppCompatActivity implements View.OnCli
             case R.id.bntChekDateAdd: {
                 ArrayList<StudentСardEntity> array = boxAdapter.getReternStudentArray();
                 for (int i = 0; i < array.size(); i++) {
-
                     StudentСardEntity studentСardEntity = boxAdapter.getReternStudentArray().get(i);
-
-                    System.out.println("rrrrrrrrrrrrrrrrrrrr " + studentСardEntity.getNameStudent());
-
                     databaseReference.child(studentСardEntity.getIdstudent()).removeValue();
 
                     addJson(studentСardEntity);
-
                     Intent intent = new Intent(this, StudentActivity.class);
                     startActivity(intent);
                     finish();
@@ -222,9 +217,7 @@ public class StudentChekActivity extends AppCompatActivity implements View.OnCli
     private void addJson(StudentСardEntity studentСardEntity) {   //  c EDIT TEXT парсим JSON
         String jsonAddDate = new Gson().toJson(new DateEntity(
                 day, monts, year));
-
         String jsonAdd = new Gson().toJson(new StudentСardEntity(
-
                 studentСardEntity.getIdstudent(),
                 studentСardEntity.getIdEnterStudent(),
                 studentСardEntity.getUserOrAdmin(),
@@ -263,16 +256,6 @@ public class StudentChekActivity extends AppCompatActivity implements View.OnCli
         return aDate.getActualMaximum(Calendar.DAY_OF_MONTH);
     }
 
-
-    // выводим информацию о корзине
-//    public void showResult(View v) {
-//        String result = "Товары в корзине:";
-//        for (Product p : boxAdapter.getReternStudentArray()) {
-//            if (p.box)
-//                result += "\n" + p.name;
-//        }
-//        Toast.makeText(this, result, Toast.LENGTH_LONG).show();
-//    }
 }
 
 
