@@ -5,10 +5,49 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/error_user_id">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="45dp">
+
+        <Spinner
+            android:id="@+id/TV_Day_Kalendar_Cheked"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:textSize="25dp"
+            android:text="25"
+            android:textColor="@color/colorText"/>
+
+        <Spinner
+            android:id="@+id/TV_Mounts_Kalendar_Cheked"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:textSize="25dp"
+            android:text="Февраль"
+            android:textColor="@color/colorText"/>
+
+        <Spinner
+            android:id="@+id/TV_Year_Kalendar_Cheked"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:textSize="25dp"
+            android:text="2019"
+            android:textColor="@color/colorText"/>
+
+    </LinearLayout>
     <ListView
         android:id="@+id/lvMain222"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="25dp"
         android:layout_weight="1">
     </ListView>
     <Button

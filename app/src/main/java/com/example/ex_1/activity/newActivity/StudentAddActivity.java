@@ -63,7 +63,7 @@ public class StudentAddActivity extends AppCompatActivity implements View.OnClic
     private DatabaseReference databaseReference = firebaseDatabase.getReference("student");
     private DatabaseReference databaseReferenceGroup = firebaseDatabase.getReference("group");
 
-    private StorageReference  mStorageRef = FirebaseStorage.getInstance().getReference();
+    private StorageReference mStorageRef = FirebaseStorage.getInstance().getReference();
 
     private ArrayAdapter<String> adapterSpiner;
     private ArrayAdapter<String> adapterSpinerUserOrAdmin;
@@ -73,14 +73,28 @@ public class StudentAddActivity extends AppCompatActivity implements View.OnClic
     private Spinner spinnerGroup;
     private Spinner spinerTextUserOrAdmin;
 
-    private EditText editTextIdEnterStudent;
-//    private EditText editTextUserOrAdmin;
-    private EditText editTextNameStudent;
-    private EditText editTextRang;
-    private EditText editTextDate;
-    private EditText editTextDost1;
-    private EditText editTextDost2;
-    private EditText editTextDost3;
+
+    private EditText editTextidEnterStudent;
+    private EditText editTextnameStudent;
+    private EditText editTextves;
+    private EditText editTexttitul;
+    private EditText editTextdate;
+    private EditText editTextseson;
+    private EditText editTextturnir;
+    private EditText editTextboiov;
+    private EditText editTextpobed;
+    private EditText editTextporagenii;
+    private EditText editTextochkov;
+    private EditText editTextpressNorma;
+    private EditText editTextpressFact;
+    private EditText editTextotgimaniyNorma;
+    private EditText editTextotgimaniyFact;
+    private EditText editTextpodtjagNorma;
+    private EditText editTextpodtjagFact;
+    private EditText editTextroznogkaNorma;
+    private EditText editTextroznogkaFact;
+    private EditText editTextprugkiNorma;
+    private EditText editTextprugkiFact;
 
     private ImageView imageViewFotoStudent;
 
@@ -100,13 +114,28 @@ public class StudentAddActivity extends AppCompatActivity implements View.OnClic
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN); // убрать фокус при загрузке
 
-        editTextIdEnterStudent = findViewById(R.id.ET_Add_ID_Enter_Student1);
-        editTextNameStudent = findViewById(R.id.ET_Add_NemeStudent_Student1);
-        editTextRang = findViewById(R.id.ET_Add_RangStudent_Student1);
-        editTextDate = findViewById(R.id.ET_Add_DataStudent_Student1);
-//        editTextDost1 = findViewById(R.id.ET_Add_Dost1_Student_Student1);
-//        editTextDost2 = findViewById(R.id.ET_Add_Dost2_Student_Student1);
-//        editTextDost3 = findViewById(R.id.ET_Add_Dost3_Student_Student1);
+        editTextidEnterStudent = findViewById(R.id.ET_Add_ID_Enter_Student1);
+        editTextnameStudent = findViewById(R.id.ET_Add_NemeStudent_Student1);
+        editTextves = findViewById(R.id.ET_Add_ves_Student1);
+        editTexttitul = findViewById(R.id.ET_Add_TitulStudent_Student1);
+        editTextdate = findViewById(R.id.ET_Add_DataStudent_Student1);
+        editTextseson = findViewById(R.id.ET_Add_sezon_Student1);
+        editTextturnir = findViewById(R.id.ET_Add_turnir_Student1);
+        editTextboiov = findViewById(R.id.ET_Add_boiov_Student1);
+        editTextpobed = findViewById(R.id.ET_Add_pobed_Student1);
+        editTextporagenii = findViewById(R.id.ET_Add_poragenii_Student1);
+        editTextochkov = findViewById(R.id.ET_Add_ochkov_Student1);
+        editTextpressNorma = findViewById(R.id.ET_Add_press_norma_Student1);
+        editTextpressFact = findViewById(R.id.ET_Add_press_fakt_Student1);
+        editTextotgimaniyNorma = findViewById(R.id.ET_Add_otgimanii_norma_Student1);
+        editTextotgimaniyFact = findViewById(R.id.ET_Add_otgimanii_fact_Student1);
+        editTextpodtjagNorma = findViewById(R.id.ET_Add_podtjag_norma_Student1);
+        editTextpodtjagFact = findViewById(R.id.ET_Add_podtjag_fakt_Student1);
+        editTextroznogkaNorma = findViewById(R.id.ET_Add_roznogka_norma_Student1);
+        editTextroznogkaFact = findViewById(R.id.ET_Add_roznogka_fact_Student1);
+        editTextprugkiNorma = findViewById(R.id.ET_Add_prigki_norma_Student1);
+        editTextprugkiFact = findViewById(R.id.ET_Add_prigki_fact_Student1);
+
 
         imageViewFotoStudent = findViewById(R.id.IV_student_image_Add);
 
@@ -114,7 +143,6 @@ public class StudentAddActivity extends AppCompatActivity implements View.OnClic
         btnPashUrlFoto.setOnClickListener(this);
         btnAddStudent = findViewById(R.id.btn_ADD_Student1);
         btnAddStudent.setOnClickListener(this);
-
 
 
         adapterSpinerUserOrAdmin = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, spinerAdmonOrUserArray);
@@ -126,7 +154,7 @@ public class StudentAddActivity extends AppCompatActivity implements View.OnClic
 
         spinerTextUserOrAdmin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view,int position, long id) {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 ((TextView) parent.getChildAt(0)).setTextColor(getResources().getColor(R.color.colorText));
                 ((TextView) parent.getChildAt(0)).setTextSize(20);
                 positionSpinerAdminOrUser = position;
@@ -147,7 +175,7 @@ public class StudentAddActivity extends AppCompatActivity implements View.OnClic
 
         spinnerGroup.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view,int position, long id) {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 ((TextView) parent.getChildAt(0)).setTextColor(getResources().getColor(R.color.colorText));
                 ((TextView) parent.getChildAt(0)).setTextSize(20);
                 positionSpiner = position;
@@ -193,24 +221,37 @@ public class StudentAddActivity extends AppCompatActivity implements View.OnClic
         });
 
 
-
     }
 
     private void addJson(StudentСardEntity studentСardEntity) {   //  c EDIT TEXT парсим JSON
         String jsonAdd = new Gson().toJson(new StudentСardEntity(
 
                 studentСardEntity.getIdstudent(),
-                        studentСardEntity.getIdEnterStudent(),
-                        studentСardEntity.getUserOrAdmin(),
-                        studentСardEntity.getNameStudent(),
-                        studentСardEntity.getGroupName(),
-                        studentСardEntity.getRang(),
-                        studentСardEntity.getDate(),
-                        studentСardEntity.getDost1(),
-                        studentСardEntity.getDost2(),
-                        studentСardEntity.getDost3(),
-                        studentСardEntity.getPosechenie(),
-                        studentСardEntity.getUrlStudentFotoCard()));
+                studentСardEntity.getIdEnterStudent(),
+                studentСardEntity.getUserOrAdmin(),
+                studentСardEntity.getNameStudent(),
+                studentСardEntity.getGroupName(),
+                studentСardEntity.getVes(),
+                studentСardEntity.getTitul(),
+                studentСardEntity.getDate(),
+                studentСardEntity.getSeson(),
+                studentСardEntity.getTurnir(),
+                studentСardEntity.getBoiov(),
+                studentСardEntity.getPobed(),
+                studentСardEntity.getPoragenii(),
+                studentСardEntity.getOchkov(),
+                studentСardEntity.getPressNorma(),
+                studentСardEntity.getPressFact(),
+                studentСardEntity.getOtgimaniyNorma(),
+                studentСardEntity.getOtgimaniyFact(),
+                studentСardEntity.getPodtjagNorma(),
+                studentСardEntity.getPodtjagFact(),
+                studentСardEntity.getRoznogkaNorma(),
+                studentСardEntity.getRoznogkaFact(),
+                studentСardEntity.getPrugkiNorma(),
+                studentСardEntity.getPrugkiFact(),
+                studentСardEntity.getUrlStudentFotoCard(),
+                studentСardEntity.getReiting()));
 
         databaseReference.push().setValue(jsonAdd);
     }
@@ -254,79 +295,94 @@ public class StudentAddActivity extends AppCompatActivity implements View.OnClic
 
     @Override
     public void onClick(View view) {
-      switch (view.getId()){
-          case R.id.btn_Add_getPahsFotoStudent1:{
-              Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-              intent.setType("image/*");
-              startActivityForResult(intent, 101);
-              break;
-          }
-          case R.id.btn_ADD_Student1:{
-              if (filePut == null) {
-                  Toast.makeText(view.getContext(), "выберите изображение", Toast.LENGTH_LONG).show();
-              } else {
+        switch (view.getId()) {
+            case R.id.btn_Add_getPahsFotoStudent1: {
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType("image/*");
+                startActivityForResult(intent, 101);
+                break;
+            }
+            case R.id.btn_ADD_Student1: {
+                if (filePut == null) {
+                    Toast.makeText(view.getContext(), "выберите изображение", Toast.LENGTH_LONG).show();
+                } else {
 
-                  studentСardEntity = new StudentСardEntity();
+                    studentСardEntity = new StudentСardEntity();
 
-                  studentСardEntity.setIdstudent("000");
-                  studentСardEntity.setIdEnterStudent(String.valueOf(editTextIdEnterStudent.getText()));
-                  studentСardEntity.setUserOrAdmin(String.valueOf(spinerAdmonOrUserArray[positionSpinerAdminOrUser]));
-                  studentСardEntity.setNameStudent(String.valueOf(editTextNameStudent.getText()));
+                    studentСardEntity.setIdstudent("000");
+                    studentСardEntity.setIdEnterStudent(String.valueOf(editTextidEnterStudent.getText()));
+                    studentСardEntity.setUserOrAdmin(String.valueOf(spinerAdmonOrUserArray[positionSpinerAdminOrUser]));
+                    studentСardEntity.setNameStudent(String.valueOf(editTextnameStudent.getText()));
 
-                  if (arrayListNameGroupStudent.size() == 0) {
-                      Toast.makeText(view.getContext(), "создайте сначала группу", Toast.LENGTH_LONG).show();
-                  } else {
+                    if (arrayListNameGroupStudent.size() == 0) {
+                        Toast.makeText(view.getContext(), "создайте сначала группу", Toast.LENGTH_LONG).show();
+                    } else {
 
-                      studentСardEntity.setGroupName(arrayListNameGroupStudent.get(positionSpiner));
-                      studentСardEntity.setRang(String.valueOf(editTextRang.getText()));
-                      studentСardEntity.setDate(String.valueOf(editTextDate.getText()));
-                      studentСardEntity.setDost1(String.valueOf(editTextDost1.getText()));
-                      studentСardEntity.setDost2(String.valueOf(editTextDost2.getText()));
-                      studentСardEntity.setDost3(String.valueOf(editTextDost3.getText()));
-                      studentСardEntity.setPosechenie("no");
-
-                      File destinationDirectory = new File(this.getCacheDir().getAbsolutePath());
-                      String filePath = SiliCompressor.with(this).compress(filePut, destinationDirectory);
-
-                      Uri file = Uri.fromFile(new File(filePath));
-                      StorageReference riversRef = mStorageRef.child("StudentFoto/" + editTextNameStudent.getText() + ".jpg");
-
-                      riversRef.putFile(file)
-                              .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                                  @Override
-                                  public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                      Task<Uri> task = taskSnapshot.getMetadata().getReference().getDownloadUrl();
-                                      task.addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                          @Override
-                                          public void onSuccess(Uri uri) {
-                                              photoLink = uri.toString();
-                                              studentСardEntity.setUrlStudentFotoCard(photoLink);
-                                              addJson(studentСardEntity);
-                                          }
-                                      });
-                                      finish();
-                                      return;
-                                  }
-                              })
-                              .addOnFailureListener(new OnFailureListener() {
-                                  @Override
-                                  public void onFailure(@NonNull Exception exception) {
-                                      // Handle unsuccessful uploads
-                                      // ...
-                                  }
-                              });
-
-                      Toast.makeText(view.getContext(), "добавлен тренер \n" + editTextNameStudent.getText(), Toast.LENGTH_LONG).show();
-                      Intent intent = new Intent(this, StudentListActivity.class);
-                      startActivity(intent);
-                      finish();
-                  }
-              }
-              break;
-          }
+                        studentСardEntity.setGroupName(arrayListNameGroupStudent.get(positionSpiner));
+                        studentСardEntity.setVes(String.valueOf(editTextves.getText()));
+                        studentСardEntity.setTitul(String.valueOf(editTexttitul.getText()));
+                        studentСardEntity.setDate(String.valueOf(editTextdate.getText()));
+                        studentСardEntity.setSeson(String.valueOf(editTextseson.getText()));
+                        studentСardEntity.setTurnir(String.valueOf(editTextturnir.getText()));
+                        studentСardEntity.setBoiov(String.valueOf(editTextboiov.getText()));
+                        studentСardEntity.setPobed(String.valueOf(editTextpobed.getText()));
+                        studentСardEntity.setPoragenii(String.valueOf(editTextporagenii.getText()));
+                        studentСardEntity.setOchkov(String.valueOf(editTextochkov.getText()));
+                        studentСardEntity.setPressNorma(String.valueOf(editTextpressNorma.getText()));
+                        studentСardEntity.setPressFact(String.valueOf(editTextpressFact.getText()));
+                        studentСardEntity.setOtgimaniyNorma(String.valueOf(editTextotgimaniyNorma.getText()));
+                        studentСardEntity.setOtgimaniyFact(String.valueOf(editTextotgimaniyFact.getText()));
+                        studentСardEntity.setPodtjagNorma(String.valueOf(editTextpodtjagNorma.getText()));
+                        studentСardEntity.setPodtjagFact(String.valueOf(editTextpodtjagFact.getText()));
+                        studentСardEntity.setRoznogkaNorma(String.valueOf(editTextroznogkaNorma.getText()));
+                        studentСardEntity.setRoznogkaFact(String.valueOf(editTextroznogkaFact.getText()));
+                        studentСardEntity.setPrugkiNorma(String.valueOf(editTextprugkiNorma.getText()));
+                        studentСardEntity.setPrugkiFact(String.valueOf(editTextprugkiFact.getText()));
+                        studentСardEntity.setReiting("0");
 
 
-      }
+                        File destinationDirectory = new File(this.getCacheDir().getAbsolutePath());
+                        String filePath = SiliCompressor.with(this).compress(filePut, destinationDirectory);
+
+                        Uri file = Uri.fromFile(new File(filePath));
+                        StorageReference riversRef = mStorageRef.child("StudentFoto/" + editTextnameStudent.getText() + ".jpg");
+
+                        riversRef.putFile(file)
+                                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                    @Override
+                                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                        Task<Uri> task = taskSnapshot.getMetadata().getReference().getDownloadUrl();
+                                        task.addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                            @Override
+                                            public void onSuccess(Uri uri) {
+                                                photoLink = uri.toString();
+                                                studentСardEntity.setUrlStudentFotoCard(photoLink);
+                                                addJson(studentСardEntity);
+                                            }
+                                        });
+                                        finish();
+                                        return;
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception exception) {
+                                        // Handle unsuccessful uploads
+                                        // ...
+                                    }
+                                });
+
+                        Toast.makeText(view.getContext(), "добавлен тренер \n" + editTextnameStudent.getText(), Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(this, StudentListActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                }
+                break;
+            }
+
+
+        }
     }
 }
 

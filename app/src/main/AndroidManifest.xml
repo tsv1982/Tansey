@@ -62,7 +62,7 @@
             android:parentActivityName=".activity.newActivity.TrenerActivity" />
         <activity
             android:name=".activity.newActivity.StudentGraficPosActivity"
-            android:label="add people"
+            android:label="график посещений"
             android:parentActivityName=".activity.newActivity.StudentGraficPosActivity" />
         <activity
             android:name=".activity.ListPeopleActivity"

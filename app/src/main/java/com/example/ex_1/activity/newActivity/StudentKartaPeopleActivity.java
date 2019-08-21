@@ -2,7 +2,6 @@ package com.example.ex_1.activity.newActivity;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -13,8 +12,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TableLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.example.ex_1.Entity.StudentСardEntity;
@@ -38,13 +35,27 @@ public class StudentKartaPeopleActivity extends AppCompatActivity implements Vie
     private ImageView imageViewFotoStudent;
 
     private TextView textViewNameStudent;
+    private TextView textViewGroupName;
+    private TextView textViewVes;
+    private TextView textViewTitul;
     private TextView textViewDate;
-    private TextView textViewNameGroup;
-    private TextView textViewRang;
-
-    private TextView textViewD1;
-    private TextView textViewD2;
-    private TextView textViewD3;
+    private TextView textViewSeson;
+    private TextView textViewTurnir;
+    private TextView textViewBoiov;
+    private TextView textViewPobed;
+    private TextView textViewPoragenii;
+    private TextView textViewOchkov;
+    private TextView textViewPressNorma;
+    private TextView textViewPressFact;
+    private TextView textViewOtgimaniyNorma;
+    private TextView textViewOtgimaniyFact;
+    private TextView textViewPodtjagNorma;
+    private TextView textViewPodtjagFact;
+    private TextView textViewRoznogkaNorma;
+    private TextView textViewRoznogkaFact;
+    private TextView textViewPrugkiNorma;
+    private TextView textViewPrugkiFact;
+    private TextView textViewReiting;
 
     private Button btnGrafic;
     private Button btnPeoplePay;
@@ -52,8 +63,6 @@ public class StudentKartaPeopleActivity extends AppCompatActivity implements Vie
     private StudentСardEntity studentСardEntity;
     private String saveIdStudent;
     private Context context;
-
-    TextView textView11111;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,19 +74,32 @@ public class StudentKartaPeopleActivity extends AppCompatActivity implements Vie
         saveIdStudent = sharedPreferences.getString("saveIdStudent", "");
 
         imageViewFotoStudent = findViewById(R.id.Iv_picture_student);
+
         textViewNameStudent = findViewById(R.id.tv_student_name);
         textViewDate = findViewById(R.id.tv_student_date);
-        textViewNameGroup = findViewById(R.id.tv_student_Group_Name);
-        textViewRang = findViewById(R.id.TV_Rang_student);
-        textViewD1 = findViewById(R.id.TV_D1_student);
-        textViewD2 = findViewById(R.id.TV_D2_student);
-        textViewD3 = findViewById(R.id.TV_D3_student);
+        textViewReiting = findViewById(R.id.tv_student_reiting);
+        textViewVes = findViewById(R.id.tv_student_ves);
+        textViewGroupName = findViewById(R.id.tv_student_Group_Name);
+        textViewTitul = findViewById(R.id.TV_Titul_student);
+        textViewSeson = findViewById(R.id.TV_seson_student);
+        textViewTurnir = findViewById(R.id.TV_turnir_Student);
+        textViewBoiov = findViewById(R.id.TV_Boiov_Student);
+        textViewPobed = findViewById(R.id.TV_pobed_Student);
+        textViewPoragenii = findViewById(R.id.TV_porageniy_Student);
+        textViewOchkov = findViewById(R.id.TV_ochkov_Student);
+        textViewPressNorma = findViewById(R.id.TV_Press_Norma_Student);
+        textViewOtgimaniyNorma = findViewById(R.id.TV_Otgimaniy_Norma_Student);
+        textViewPodtjagNorma = findViewById(R.id.TV_Podtjag_Norma_Student);
+        textViewRoznogkaNorma = findViewById(R.id.TV_Roznogka_Norma_Student);
+        textViewPrugkiNorma = findViewById(R.id.TV_Prugki_Norma_Student);
+        textViewPressFact = findViewById(R.id.TV_Press_Fact_Student);
+        textViewOtgimaniyFact = findViewById(R.id.TV_Otgimaniy_Fact_Student);
+        textViewPodtjagFact = findViewById(R.id.TV_Podtjag_Fact_Student);
+        textViewRoznogkaFact = findViewById(R.id.TV_Roznogka_Fact_Student);
+        textViewPrugkiFact = findViewById(R.id.TV_Prugki_Fact_Student);
 
-        textView11111 = findViewById(R.id.iiiiiiiiiiiiiiiiiiiii);
-        textView11111.setText("75");
-        textView11111.setTextColor(Color.RED);
 
-         databaseReference.addChildEventListener(new ChildEventListener() {
+        databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {  //вытаскиваем с базы
 
@@ -85,6 +107,7 @@ public class StudentKartaPeopleActivity extends AppCompatActivity implements Vie
 
                 if (saveIdStudent.equals(sKey)) {
                     String s1 = String.valueOf(dataSnapshot.getValue());
+
                     studentСardEntity = new Gson().fromJson(s1, StudentСardEntity.class);
 
                     Picasso.with(context)
@@ -94,12 +117,54 @@ public class StudentKartaPeopleActivity extends AppCompatActivity implements Vie
                             .into(imageViewFotoStudent);
 
                     textViewNameStudent.setText(studentСardEntity.getNameStudent());
+                    textViewGroupName.setText(studentСardEntity.getGroupName());
+                    textViewVes.setText(studentСardEntity.getVes() + " " + "кг");
+                    textViewTitul.setText(studentСardEntity.getTitul());
                     textViewDate.setText(studentСardEntity.getDate());
-                    textViewNameGroup.setText(studentСardEntity.getGroupName());
-                    textViewRang.setText(studentСardEntity.getRang());
-                    textViewD1.setText(studentСardEntity.getDost1());
-                    textViewD2.setText(studentСardEntity.getDost2());
-                    textViewD3.setText(studentСardEntity.getDost3());
+                    textViewSeson.setText(studentСardEntity.getSeson());
+                    textViewTurnir.setText(studentСardEntity.getTurnir());
+                    textViewBoiov.setText(studentСardEntity.getBoiov());
+                    textViewPobed.setText(studentСardEntity.getPobed());
+                    textViewPoragenii.setText(studentСardEntity.getPoragenii());
+                    textViewOchkov.setText(studentСardEntity.getOchkov());
+
+                    textViewPressNorma.setText(studentСardEntity.getPressNorma());
+                    textViewPressFact.setText(studentСardEntity.getPressFact());
+                    if (Integer.parseInt(studentСardEntity.getPressNorma()) >
+                           Integer.parseInt(studentСardEntity.getPressFact())){
+                        textViewPressFact.setTextColor(Color.RED);
+                    }
+
+                    textViewOtgimaniyNorma.setText(studentСardEntity.getOtgimaniyNorma());
+                    textViewOtgimaniyFact.setText(studentСardEntity.getOtgimaniyFact());
+                    if (Integer.parseInt(studentСardEntity.getOtgimaniyNorma()) >
+                            Integer.parseInt(studentСardEntity.getOtgimaniyFact())){
+                        textViewOtgimaniyFact.setTextColor(Color.RED);
+                    }
+
+                    textViewPodtjagNorma.setText(studentСardEntity.getPodtjagNorma());
+                    textViewPodtjagFact.setText(studentСardEntity.getPodtjagFact());
+                    if (Integer.parseInt(studentСardEntity.getPodtjagNorma()) >
+                            Integer.parseInt(studentСardEntity.getPodtjagFact())){
+                        textViewPodtjagFact.setTextColor(Color.RED);
+                    }
+
+                    textViewRoznogkaNorma.setText(studentСardEntity.getRoznogkaNorma());
+                    textViewRoznogkaFact.setText(studentСardEntity.getRoznogkaFact());
+                    if (Integer.parseInt(studentСardEntity.getRoznogkaNorma()) >
+                            Integer.parseInt(studentСardEntity.getRoznogkaFact())){
+                        textViewRoznogkaFact.setTextColor(Color.RED);
+                    }
+
+                    textViewPrugkiNorma.setText(studentСardEntity.getPrugkiNorma());
+                    textViewPrugkiFact.setText(studentСardEntity.getPrugkiFact());
+                    if (Integer.parseInt(studentСardEntity.getPrugkiNorma()) >
+                            Integer.parseInt(studentСardEntity.getPrugkiFact())){
+                        textViewPrugkiFact.setTextColor(Color.RED);
+                    }
+
+                    textViewReiting.setText("рейтинг по клубу - " + studentСardEntity.getReiting());
+
                 }
             }
 
@@ -129,9 +194,6 @@ public class StudentKartaPeopleActivity extends AppCompatActivity implements Vie
         btnGrafic = findViewById(R.id.btnPeopleGrofik_student);
         btnGrafic.setOnClickListener(this);
 
-        textViewD1.setOnClickListener(this);
-        textViewD2.setOnClickListener(this);
-        textViewD3.setOnClickListener(this);
     }
 
     @Override
@@ -142,49 +204,17 @@ public class StudentKartaPeopleActivity extends AppCompatActivity implements Vie
                 startActivity(intent);
                 break;
             }
-            case R.id.btnPeopleGrofik_student:{
+            case R.id.btnPeopleGrofik_student: {
+
+//                SharedPreferences sharedPreferences = getSharedPreferences("MyPref", MODE_PRIVATE);
+//                SharedPreferences.Editor editor = sharedPreferences.edit();
+//                editor.putString("passSave", studentСardEntity.geti);
+//                editor.apply();
+
                 Intent intent = new Intent(this, StudentGraficPosActivity.class);
                 startActivity(intent);
                 break;
             }
-//            case R.id.TV_D1_student: {
-//
-//                GraphViewSeries exampleSeries = new GraphViewSeries(
-//                        new GraphView.GraphViewData[]{
-//
-//                                new GraphView.GraphViewData(1, 20),
-//                                new GraphView.GraphViewData(2, 1),
-//                                new GraphView.GraphViewData(3, 2),
-//                                new GraphView.GraphViewData(4, 4),
-//                                new GraphView.GraphViewData(5, 5)});
-//
-//
-//                GraphView graphView = new LineGraphView(this, "График каких-то данных");
-//                graphView.addSeries(exampleSeries);
-//
-//                graphView.getGraphViewStyle().setHorizontalLabelsColor(Color.WHITE);
-//                graphView.getGraphViewStyle().setVerticalLabelsColor(Color.WHITE);
-//
-//
-//                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-//                builder.setView(graphView)
-//                        .setNegativeButton("выход",
-//                                new DialogInterface.OnClickListener() {
-//                                    public void onClick(DialogInterface dialog, int id) {
-//                                        dialog.cancel();
-////                                        listImage.clear();
-//                                    }
-//                                });
-//                AlertDialog alert = builder.create();
-//                alert.show();
-//                alert.getWindow().setBackgroundDrawableResource(R.drawable.error_user_id);
-//
-//                Button nbutton = alert.getButton(DialogInterface.BUTTON_NEGATIVE);
-//                nbutton.setTextColor(Color.BLUE);
-//
-//                break;
-//
-//            }
 
         }
 

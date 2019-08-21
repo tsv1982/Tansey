@@ -75,18 +75,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="вес ученика"
-                android:textColor="@color/colorText" />
+                android:textColor="@color/colorText"
+                android:inputType="numberDecimal"/>
+
 
             <EditText
-                android:id="@+id/ET_Add_vozrast_Student1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="возраст ученика"
-                android:textColor="@color/colorText" />
-
-            <EditText
-                android:id="@+id/ET_Add_RangStudent_Student1"
+                android:id="@+id/ET_Add_TitulStudent_Student1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -108,6 +102,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:background="#000"
+                android:layout_marginTop="20dp"
                 android:stretchColumns="*">
 
                 <TableRow>
@@ -119,7 +114,7 @@
                         android:gravity="center_horizontal"
                         android:text="сезон 2019/2020"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="#fff"
+                        android:textColor="#0E19F0"
                         android:textStyle="bold" />
                 </TableRow>
 
@@ -180,8 +175,9 @@
                         android:gravity="center_horizontal"
                         android:text="3"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="#36a300"
-                        android:textSize="10dp" />
+                        android:textColor="#0E19F0"
+                        android:textSize="20dp"
+                        android:inputType="numberDecimal"/>
 
                     <EditText
                         android:id="@+id/ET_Add_boiov_Student1"
@@ -190,27 +186,31 @@
                         android:gravity="center_horizontal"
                         android:text="8"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="#36a300"
-                        android:textSize="10dp" />
+                        android:textColor="#0E19F0"
+                        android:textSize="20dp"
+                        android:inputType="numberDecimal"/>
+
+                    <EditText
+                        android:id="@+id/ET_Add_pobed_Student1"
+                        android:layout_margin="1dip"
+                        android:background="#ccc"
+                        android:gravity="center_horizontal"
+                        android:text="5"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#0E19F0"
+                        android:textSize="20dp"
+                        android:inputType="numberDecimal"/>
 
                     <EditText
                         android:id="@+id/ET_Add_poragenii_Student1"
                         android:layout_margin="1dip"
                         android:background="#ccc"
                         android:gravity="center_horizontal"
-                        android:text="5"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="#36a300"
-                        android:textSize="10dp" />
-
-                    <EditText
-                        android:layout_margin="1dip"
-                        android:background="#ccc"
-                        android:gravity="center_horizontal"
                         android:text="3"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="#36a300"
-                        android:textSize="10dp" />
+                        android:textColor="#0E19F0"
+                        android:textSize="20dp"
+                        android:inputType="numberDecimal"/>
 
                     <EditText
                         android:id="@+id/ET_Add_ochkov_Student1"
@@ -219,8 +219,9 @@
                         android:gravity="center_horizontal"
                         android:text="5"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="#36a300"
-                        android:textSize="10dp" />
+                        android:textColor="#0E19F0"
+                        android:textSize="20dp"
+                        android:inputType="numberDecimal"/>
                 </TableRow>
             </TableLayout>
 
@@ -300,8 +301,9 @@
                         android:gravity="center_horizontal"
                         android:text="50"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="#36a300"
-                        android:textSize="10dp" />
+                        android:textColor="#0E19F0"
+                        android:textSize="20dp"
+                        android:inputType="numberDecimal"/>
 
                     <EditText
                         android:id="@+id/ET_Add_otgimanii_norma_Student1"
@@ -310,8 +312,9 @@
                         android:gravity="center_horizontal"
                         android:text="50"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="#36a300"
-                        android:textSize="10dp" />
+                        android:textColor="#0E19F0"
+                        android:textSize="20dp"
+                        android:inputType="numberDecimal"/>
 
                     <EditText
                         android:id="@+id/ET_Add_podtjag_norma_Student1"
@@ -320,8 +323,9 @@
                         android:gravity="center_horizontal"
                         android:text="50"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="#36a300"
-                        android:textSize="10dp" />
+                        android:textColor="#0E19F0"
+                        android:textSize="20dp"
+                        android:inputType="numberDecimal"/>
 
                     <EditText
                         android:id="@+id/ET_Add_roznogka_norma_Student1"
@@ -330,8 +334,9 @@
                         android:gravity="center_horizontal"
                         android:text="50"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="#36a300"
-                        android:textSize="10dp" />
+                        android:textColor="#0E19F0"
+                        android:textSize="20dp"
+                        android:inputType="numberDecimal"/>
 
                     <EditText
                         android:id="@+id/ET_Add_prigki_norma_Student1"
@@ -340,8 +345,9 @@
                         android:gravity="center_horizontal"
                         android:text="50"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="#36a300"
-                        android:textSize="10dp" />
+                        android:textColor="#0E19F0"
+                        android:textSize="20dp"
+                        android:inputType="numberDecimal"/>
                 </TableRow>
 
                 <TableRow>
@@ -353,8 +359,9 @@
                         android:gravity="center_horizontal"
                         android:text="23"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="#36a300"
-                        android:textSize="10dp" />
+                        android:textColor="#0E19F0"
+                        android:textSize="20dp"
+                        android:inputType="numberDecimal"/>
 
                     <EditText
                         android:id="@+id/ET_Add_otgimanii_fact_Student1"
@@ -363,8 +370,9 @@
                         android:gravity="center_horizontal"
                         android:text="55"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="#36a300"
-                        android:textSize="10dp" />
+                        android:textColor="#0E19F0"
+                        android:textSize="20dp"
+                        android:inputType="numberDecimal"/>
 
                     <EditText
                         android:id="@+id/ET_Add_podtjag_fakt_Student1"
@@ -373,8 +381,9 @@
                         android:gravity="center_horizontal"
                         android:text="20"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="#36a300"
-                        android:textSize="10dp" />
+                        android:textColor="#0E19F0"
+                        android:textSize="20dp"
+                        android:inputType="numberDecimal"/>
 
                     <EditText
                         android:id="@+id/ET_Add_roznogka_fact_Student1"
@@ -383,8 +392,9 @@
                         android:gravity="center_horizontal"
                         android:text="45"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="#36a300"
-                        android:textSize="10dp" />
+                        android:textColor="#0E19F0"
+                        android:textSize="20dp"
+                        android:inputType="numberDecimal"/>
 
                     <EditText
                         android:id="@+id/ET_Add_prigki_fact_Student1"
@@ -393,8 +403,9 @@
                         android:gravity="center_horizontal"
                         android:text="80"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="#36a300"
-                        android:textSize="10dp" />
+                        android:textColor="#0E19F0"
+                        android:textSize="20dp"
+                        android:inputType="numberDecimal"/>
                 </TableRow>
             </TableLayout>
 
