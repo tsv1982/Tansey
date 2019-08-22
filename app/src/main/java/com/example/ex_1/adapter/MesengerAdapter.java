@@ -41,8 +41,8 @@ public class MesengerAdapter extends ArrayAdapter<Mesage> {
         Mesage mesage = mesages.get(position);
 
         String textReplace = mesage.getTextMesage();
-        if (textReplace.length() > 65) {
-            textReplace = textReplace.substring(0, 65) + " ..........";
+        if (textReplace.length() > 20) {
+            textReplace = textReplace.substring(0, 20) + " ..........";
         }
         textMessageView.setText(textReplace);
 

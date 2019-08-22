@@ -6,6 +6,7 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.IBinder;
 import android.os.Vibrator;
 import android.widget.Toast;
@@ -22,6 +23,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class MyService extends Service {
+
     public MyService() {
     }
 
@@ -29,6 +31,8 @@ public class MyService extends Service {
     private static final int MY_NOTIFICATION_ID = 12345;
     private static final int MY_REQUEST_CODE = 100;
     private boolean aBoolean;
+
+    SharedPreferences sharedPreferences;
 
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference("messages");
@@ -59,6 +63,8 @@ public class MyService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+
+
 
         databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
@@ -97,6 +103,8 @@ public class MyService extends Service {
         });
 
         return super.onStartCommand(intent, flags, startId);
+//        return Service.START_REDELIVER_INTENT;
+
     }
 
 
@@ -115,20 +123,26 @@ public class MyService extends Service {
         this.notBuilder.setContentIntent(pendingIntent);
         Notification notification = notBuilder.build();
         notificationService.notify(MY_NOTIFICATION_ID, notification);
-        long mills = 1000L;
-        Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        if (vibrator.hasVibrator()) {
-            vibrator.vibrate(mills);
-        }
+
+        sharedPreferences = getSharedPreferences("MyPref", MODE_PRIVATE);
+
+            long mills = 1000L;
+            Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+            if (vibrator.hasVibrator()) {
+                vibrator.vibrate(mills);
+            }
+
     }
 
     public IBinder onBind(Intent intent) {
+        startService(new Intent(this, MyService.class));
         return null;
     }
 
 
     @Override
     public void onDestroy() {
+        startService(new Intent(this, MyService.class));
         Toast.makeText(this, "destroy", Toast.LENGTH_LONG).show();
         super.onDestroy();
     }

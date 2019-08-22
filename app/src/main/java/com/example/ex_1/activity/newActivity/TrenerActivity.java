@@ -51,6 +51,8 @@ public class TrenerActivity extends AppCompatActivity implements View.OnClickLis
     private TrenierAdapter trenierAdapter;
     private List<TrenierEntity> trenerArray = new ArrayList();
     private int position;
+    String adminOrUser;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +65,19 @@ public class TrenerActivity extends AppCompatActivity implements View.OnClickLis
         btnDeleteTrener1.setOnClickListener(this);
         btnRefactorTrener1 = findViewById(R.id.btnRefactorTrenet1);
         btnRefactorTrener1.setOnClickListener(this);
+
+        sharedPreferences = getSharedPreferences("MyPref", MODE_PRIVATE);
+        adminOrUser = sharedPreferences.getString("passSaveUserOrAdmin", "");
+
+        if (adminOrUser.equals("admin")){
+           btnAddTrener1.setVisibility(View.VISIBLE);
+           btnDeleteTrener1.setVisibility(View.VISIBLE);
+           btnRefactorTrener1.setVisibility(View.VISIBLE);
+        }else {
+            btnAddTrener1.setVisibility(View.GONE);
+            btnDeleteTrener1.setVisibility(View.GONE);
+            btnRefactorTrener1.setVisibility(View.GONE);
+        }
 
         listViewTrenier1 = findViewById(R.id.LV_Trainer1);
         trenierAdapter = new TrenierAdapter(this, R.layout.trainer_list_activity, trenerArray);

@@ -145,14 +145,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         // Операции для выбранного пункта меню
         switch (id) {
             case R.id.action_0:
-                Toast.makeText(this, "включенно оповищение", Toast.LENGTH_LONG).show();
-                startService(new Intent(this, MyService.class));
-                return true;
-            case R.id.action_1:
-                Toast.makeText(this, "выключенно оповищение", Toast.LENGTH_LONG).show();
-                stopService(new Intent(this, MyService.class));
-                return true;
-            case R.id.action_2:
                 SharedPreferences sharedPreferences = getSharedPreferences("MyPref", MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putBoolean("passSave", false);
@@ -181,15 +173,16 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             }
             case R.id.btnKartaPeople: {
 
-                if (adminOrUser.equals("admin")){
-                    Intent intent = new Intent(this, StudentActivity.class);
-                    startActivity(intent);
-                }else {
-                    Intent intent = new Intent(this, StudentKartaPeopleActivity.class);
-                    startActivity(intent);
+                if (utilZaprosov.hasConnection(this)) {
+
+                    if (adminOrUser.equals("admin")) {
+                        Intent intent = new Intent(this, StudentActivity.class);
+                        startActivity(intent);
+                    } else {
+                        Intent intent = new Intent(this, StudentKartaPeopleActivity.class);
+                        startActivity(intent);
+                    }
                 }
-
-
 
                 break;
             }

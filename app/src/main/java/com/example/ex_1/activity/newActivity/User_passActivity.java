@@ -5,11 +5,13 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.IntentService;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -23,6 +25,7 @@ import com.example.ex_1.Entity.TrenierEntity;
 import com.example.ex_1.R;
 import com.example.ex_1.activity.ErrorUserActivity;
 import com.example.ex_1.activity.MyService;
+import com.example.ex_1.java.UtilZaprosov;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -46,6 +49,7 @@ public class User_passActivity extends AppCompatActivity implements View.OnClick
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReferenceStudent = firebaseDatabase.getReference("student");
     private DatabaseReference databaseReferenceTrener = firebaseDatabase.getReference("trener");
+    private UtilZaprosov utilZaprosov;
 
     // TODO: 16.07.19 проверка подключения интернета
 
@@ -62,6 +66,8 @@ public class User_passActivity extends AppCompatActivity implements View.OnClick
         button.setOnClickListener(this);
         editText = findViewById(R.id.editText);
         editText.setOnClickListener(this);
+
+        utilZaprosov = new UtilZaprosov();
 
         databaseReferenceStudent.addChildEventListener(new ChildEventListener() {
             @Override
@@ -141,6 +147,10 @@ public class User_passActivity extends AppCompatActivity implements View.OnClick
         switch (view.getId()) {
             case R.id.buttonID: {
 
+                if (utilZaprosov.hasConnection(this)) {
+
+
+
                 for (int i = 0; i < trenierEntityArrayList.size(); i++) {
                     if (trenierEntityArrayList.get(i).getIdEnterUser().equals(String.valueOf(editText.getText()))) {
 
@@ -189,17 +199,19 @@ public class User_passActivity extends AppCompatActivity implements View.OnClick
                         startService(new Intent(this, MyService.class));
 
                         Intent intent = new Intent(this, HomeActivity.class);
+
                         startActivity(intent);
                         finish();
                         return;
                     }
                 }
 
-                if (isTrueEnter){
+                if (isTrueEnter) {
                     Intent intent = new Intent(this, ErrorUserActivity.class);
                     startActivity(intent);
                 }
                 break;
+            }
             }
 
             case R.id.editText: {
@@ -209,11 +221,6 @@ public class User_passActivity extends AppCompatActivity implements View.OnClick
         }
     }
 
-    void startServis(){
-//        onStartCommand()
-
-
-    }
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {

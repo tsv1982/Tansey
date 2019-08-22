@@ -55,6 +55,8 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
 
     private ListView mesageList;
 
+    String adminOrUser;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +69,19 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
 
         editTextMessage = findViewById(R.id.editAddMesagge);
         editTextMessage.setOnClickListener(this);
+
+        sharedPreferences = getSharedPreferences("MyPref", MODE_PRIVATE);
+        adminOrUser = sharedPreferences.getString("passSaveUserOrAdmin", "");
+
+        if (adminOrUser.equals("admin")) {
+            btnAddMessage.setVisibility(View.VISIBLE);
+            editTextMessage.setVisibility(View.VISIBLE);
+
+        } else {
+            btnAddMessage.setVisibility(View.GONE);
+            editTextMessage.setVisibility(View.GONE);
+
+        }
 
         mesageList = findViewById(R.id.countriesListMesage);
 
@@ -117,11 +132,11 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
                 alert.getWindow().setBackgroundDrawableResource(R.drawable.error_user_id);
 
                 Button nbuttonN = alert.getButton(DialogInterface.BUTTON_NEGATIVE);
+
                 nbuttonN.setTextColor(Color.RED);
 
-                sharedPreferences = getSharedPreferences("MyPref", MODE_PRIVATE);   // вытаскиваем переменную
-                String ss = sharedPreferences.getString("userOrAdmin", ZaprosF.getInstance().getAdminOrUser());
-                if (ss.equals("admin")) {          // проверяет админ или нет кнопки видны будут или нет
+
+                if (adminOrUser.equals("admin")) {          // проверяет админ или нет кнопки видны будут или нет
                     nbuttonN.setVisibility(View.VISIBLE);
 
                 } else {
@@ -144,16 +159,6 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
 
         mesageList.setOnItemClickListener(itemListener);
 
-        sharedPreferences = getSharedPreferences("MyPref", MODE_PRIVATE);   // вытаскиваем переменную
-        String ss = sharedPreferences.getString("userOrAdmin", ZaprosF.getInstance().getAdminOrUser());
-
-        if (ss.equals("admin")) {          // проверяет админ или нет кнопки видны будут или нет
-            btnAddMessage.setVisibility(View.VISIBLE);
-            editTextMessage.setVisibility(View.VISIBLE);
-        } else {
-            btnAddMessage.setVisibility(View.GONE);
-            editTextMessage.setVisibility(View.GONE);
-        }
 
         databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
@@ -195,7 +200,8 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
             case R.id.btnAddMesagge: {
                 SimpleDateFormat sdf = new SimpleDateFormat("d MMM yyyy  HH:mm");
                 String currentDateandTime = sdf.format(new Date());
-                if (editTextMessage.equals("")) {
+
+                if (String.valueOf(editTextMessage.getText()).equals("") || String.valueOf(editTextMessage.getText()).equals("текст смс")) {
                     Toast.makeText(getApplicationContext(), "пустое сообщение", Toast.LENGTH_SHORT).show();
                 } else {
                     String strEdit = String.valueOf(editTextMessage.getText());
