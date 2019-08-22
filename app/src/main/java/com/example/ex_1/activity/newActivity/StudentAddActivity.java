@@ -66,12 +66,12 @@ public class StudentAddActivity extends AppCompatActivity implements View.OnClic
     private StorageReference mStorageRef = FirebaseStorage.getInstance().getReference();
 
     private ArrayAdapter<String> adapterSpiner;
-    private ArrayAdapter<String> adapterSpinerUserOrAdmin;
     private ArrayList<String> arrayListNameGroupStudent = new ArrayList<>();
-    String spinerAdmonOrUserArray[] = {"user", "admin"};
-
     private Spinner spinnerGroup;
-    private Spinner spinerTextUserOrAdmin;
+
+//    private ArrayAdapter<String> adapterSpinerUserOrAdmin;
+//    String spinerAdmonOrUserArray[] = {"user", "admin"};
+//    private Spinner spinerTextUserOrAdmin;
 
 
     private EditText editTextidEnterStudent;
@@ -145,25 +145,25 @@ public class StudentAddActivity extends AppCompatActivity implements View.OnClic
         btnAddStudent.setOnClickListener(this);
 
 
-        adapterSpinerUserOrAdmin = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, spinerAdmonOrUserArray);
-        adapterSpinerUserOrAdmin.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinerTextUserOrAdmin = findViewById(R.id.ET_Add_AdminOrUser_Student1);
-        spinerTextUserOrAdmin.getBackground().setColorFilter(getResources().getColor(R.color.colorText), PorterDuff.Mode.SRC_ATOP);
-        spinerTextUserOrAdmin.setAdapter(adapterSpinerUserOrAdmin);
-        spinerTextUserOrAdmin.setSelection(0);
-
-        spinerTextUserOrAdmin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ((TextView) parent.getChildAt(0)).setTextColor(getResources().getColor(R.color.colorText));
-                ((TextView) parent.getChildAt(0)).setTextSize(20);
-                positionSpinerAdminOrUser = position;
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> arg0) {
-            }
-        });
+//        adapterSpinerUserOrAdmin = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, spinerAdmonOrUserArray);
+//        adapterSpinerUserOrAdmin.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        spinerTextUserOrAdmin = findViewById(R.id.ET_Add_AdminOrUser_Student1);
+//        spinerTextUserOrAdmin.getBackground().setColorFilter(getResources().getColor(R.color.colorText), PorterDuff.Mode.SRC_ATOP);
+//        spinerTextUserOrAdmin.setAdapter(adapterSpinerUserOrAdmin);
+//        spinerTextUserOrAdmin.setSelection(0);
+//
+//        spinerTextUserOrAdmin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                ((TextView) parent.getChildAt(0)).setTextColor(getResources().getColor(R.color.colorText));
+//                ((TextView) parent.getChildAt(0)).setTextSize(20);
+//                positionSpinerAdminOrUser = position;
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> arg0) {
+//            }
+//        });
 
 
         adapterSpiner = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, arrayListNameGroupStudent);
@@ -311,7 +311,7 @@ public class StudentAddActivity extends AppCompatActivity implements View.OnClic
 
                     studentСardEntity.setIdstudent("000");
                     studentСardEntity.setIdEnterStudent(String.valueOf(editTextidEnterStudent.getText()));
-                    studentСardEntity.setUserOrAdmin(String.valueOf(spinerAdmonOrUserArray[positionSpinerAdminOrUser]));
+                    studentСardEntity.setUserOrAdmin("user");
                     studentСardEntity.setNameStudent(String.valueOf(editTextnameStudent.getText()));
 
                     if (arrayListNameGroupStudent.size() == 0) {

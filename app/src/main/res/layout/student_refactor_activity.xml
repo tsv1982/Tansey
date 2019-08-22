@@ -47,13 +47,13 @@ tools:context=".activity.newActivity.StudentRefactorActivity">
             android:text="id ученика"
             android:textColor="@color/colorText" />
 
-        <Spinner
-            android:id="@+id/ET_Add_AdminOrUser_Student1_Refactor"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="admin или user"
-            android:textColor="@color/colorText" />
+        <!--<Spinner-->
+            <!--android:id="@+id/ET_Add_AdminOrUser_Student1_Refactor"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="20dp"-->
+            <!--android:text="admin или user"-->
+            <!--android:textColor="@color/colorText" />-->
 
         <EditText
             android:id="@+id/ET_Add_NemeStudent_Student1_Refactor"
@@ -416,7 +416,7 @@ tools:context=".activity.newActivity.StudentRefactorActivity">
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:background="@drawable/btn_add" />
+            android:background="@drawable/btn_chench" />
 
 
     </LinearLayout>

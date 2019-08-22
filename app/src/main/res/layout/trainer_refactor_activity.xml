@@ -16,23 +16,68 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="25dp"
             android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/ET_AdminOrUser_Trener1_Refactor"
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/IV_trainer_image_Add_Refactor"
+                    android:layout_width="match_parent"
+                    android:layout_height="78dp"
+                    android:src="@drawable/sergey"/>
+
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/btn_getPahsFotoTrener1_Refactor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center"
+                android:background="@drawable/btn_open_gal"/>
+
+            <TextView
+                android:id="@+id/TV_Pahs_Foto_Trene1_Refactor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="111" />
+
+            <Spinner
+                android:id="@+id/SP_AdminOrUser_Trener1_Refactor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:textColor="@color/colorText"
                 android:text="admin or user" />
 
-            <TextView
-                android:id="@+id/ET_idEnterUser_Trener1_Refactor"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:textColor="@color/colorText"
-                android:text="id пользователя" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginTop="25dp"
+                    android:textColor="@color/colorText"
+                    android:text="id пользователя" />
+
+                <TextView
+                    android:id="@+id/ET_idEnterUser_Trener1_Refactor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginTop="25dp"
+                    android:textColor="@color/colorText"
+                    android:text="id пользователя" />
+
+            </LinearLayout>
+
+
 
             <EditText
                 android:id="@+id/ET_Trener_Name1_Refactor"
@@ -74,47 +119,14 @@
                 android:textColor="@color/colorText"
                 android:text="URL PICTURE" />
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
 
-                <ImageView
-                    android:id="@+id/IV_trainer_image_Add_Refactor"
-                    android:layout_width="match_parent"
-                    android:layout_height="78dp"
-                    android:src="@drawable/sergey"/>
-
-            </RelativeLayout>
-
-            <TextView
-                android:id="@+id/TV_Pahs_Foto_Trene1_Refactor"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="111" />
-
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
-
-    <Button
-        android:id="@+id/btn_getPahsFotoTrener1_Refactor"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/btn_open_gal"/>
-
-    <Button
+   <Button
         android:id="@+id/btn_ADD_Trener1_Refactor"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:background="@drawable/btn_chench"/>
-
-</LinearLayout>
-
 
 
         </LinearLayout>

@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/android_mobile3"
     android:orientation="vertical"
-    tools:context=".activity.User_passActivity">
+    tools:context=".activity.newActivity.User_passActivity">
 
     <LinearLayout
         android:id="@+id/linerUserEnter1"

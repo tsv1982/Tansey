@@ -63,12 +63,10 @@ public class StudentRefactorActivity extends AppCompatActivity implements View.O
 //    private StorageReference mStorageRef = FirebaseStorage.getInstance().getReference();
 
     private ArrayAdapter<String> adapterSpiner;
-    private ArrayAdapter<String> adapterSpinerUserOrAdmin;
     private ArrayList<String> arrayListNameGroupStudent = new ArrayList<>();
-    String spinerAdmonOrUserArray[] = {"user", "admin"};
 
     private Spinner spinnerGroup;
-    private Spinner spinerTextUserOrAdmin;
+
 
     private TextView textViewIdEnterStudent;
     private EditText editTextnameStudent;
@@ -101,7 +99,11 @@ public class StudentRefactorActivity extends AppCompatActivity implements View.O
     private String filePut;
 
     private int positionSpiner;
-    private int positionSpinerAdminOrUser;
+
+    //    private int positionSpinerAdminOrUser;
+//    private ArrayAdapter<String> adapterSpinerUserOrAdmin;
+//    String spinerAdmonOrUserArray[] = {"user", "admin"};
+//    private Spinner spinerTextUserOrAdmin;
 
     private Context context;
 
@@ -118,7 +120,7 @@ public class StudentRefactorActivity extends AppCompatActivity implements View.O
         sharedPreferences = getSharedPreferences("MyPref", MODE_PRIVATE);   // вытаскиваем переменную
         saveIdStudent = sharedPreferences.getString("saveIdStudent", "");
 
-         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN); // убрать фокус при загрузке
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN); // убрать фокус при загрузке
 
         linearLayout = findViewById(R.id.LinearLayout1_Refactor_Student);
 
@@ -152,25 +154,25 @@ public class StudentRefactorActivity extends AppCompatActivity implements View.O
         btnAddStudent.setOnClickListener(this);
 
 
-        adapterSpinerUserOrAdmin = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, spinerAdmonOrUserArray);
-        adapterSpinerUserOrAdmin.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinerTextUserOrAdmin = findViewById(R.id.ET_Add_AdminOrUser_Student1_Refactor);
-        spinerTextUserOrAdmin.getBackground().setColorFilter(getResources().getColor(R.color.colorText), PorterDuff.Mode.SRC_ATOP);
-        spinerTextUserOrAdmin.setAdapter(adapterSpinerUserOrAdmin);
-        spinerTextUserOrAdmin.setSelection(0);
-
-        spinerTextUserOrAdmin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ((TextView) parent.getChildAt(0)).setTextColor(getResources().getColor(R.color.colorText));
-                ((TextView) parent.getChildAt(0)).setTextSize(20);
-                positionSpinerAdminOrUser = position;
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> arg0) {
-            }
-        });
+//        adapterSpinerUserOrAdmin = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, spinerAdmonOrUserArray);
+//        adapterSpinerUserOrAdmin.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        spinerTextUserOrAdmin = findViewById(R.id.ET_Add_AdminOrUser_Student1_Refactor);
+//        spinerTextUserOrAdmin.getBackground().setColorFilter(getResources().getColor(R.color.colorText), PorterDuff.Mode.SRC_ATOP);
+//        spinerTextUserOrAdmin.setAdapter(adapterSpinerUserOrAdmin);
+//        spinerTextUserOrAdmin.setSelection(0);
+//
+//        spinerTextUserOrAdmin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                ((TextView) parent.getChildAt(0)).setTextColor(getResources().getColor(R.color.colorText));
+//                ((TextView) parent.getChildAt(0)).setTextSize(20);
+//                positionSpinerAdminOrUser = position;
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> arg0) {
+//            }
+//        });
 
 
         adapterSpiner = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, arrayListNameGroupStudent);
@@ -197,7 +199,7 @@ public class StudentRefactorActivity extends AppCompatActivity implements View.O
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {  //вытаскиваем с базы
 
-                if (saveIdStudent.equals(dataSnapshot.getKey())){
+                if (saveIdStudent.equals(dataSnapshot.getKey())) {
                     String s1 = String.valueOf(dataSnapshot.getValue());
 
                     studentСardEntity = new Gson().fromJson(s1, StudentСardEntity.class);
@@ -267,7 +269,7 @@ public class StudentRefactorActivity extends AppCompatActivity implements View.O
                 studentGroupEntity.setIdGroupBD(dataSnapshot.getKey());
                 arrayListNameGroupStudent.add(studentGroupEntity.getNameGroup());
                 for (int i = 0; i < arrayListNameGroupStudent.size(); i++) {
-                    if (arrayListNameGroupStudent.get(i).equals(studentСardEntity.getGroupName())){
+                    if (arrayListNameGroupStudent.get(i).equals(studentСardEntity.getGroupName())) {
                         spinnerGroup.setSelection(i);
                     }
                 }
@@ -385,93 +387,93 @@ public class StudentRefactorActivity extends AppCompatActivity implements View.O
 
                 System.out.println(filePut);
 
-                    studentСardEntity.setIdstudent("000");
-                    studentСardEntity.setIdEnterStudent(String.valueOf(textViewIdEnterStudent.getText()));
-                    studentСardEntity.setUserOrAdmin(String.valueOf(spinerAdmonOrUserArray[positionSpinerAdminOrUser]));
-                    studentСardEntity.setNameStudent(String.valueOf(editTextnameStudent.getText()));
+                studentСardEntity.setIdstudent("000");
+                studentСardEntity.setIdEnterStudent(String.valueOf(textViewIdEnterStudent.getText()));
+                studentСardEntity.setUserOrAdmin("user");
+                studentСardEntity.setNameStudent(String.valueOf(editTextnameStudent.getText()));
 
-                    if (arrayListNameGroupStudent.size() == 0) {
-                        Toast.makeText(view.getContext(), "создайте сначала группу", Toast.LENGTH_LONG).show();
-                    } else {
+                if (arrayListNameGroupStudent.size() == 0) {
+                    Toast.makeText(view.getContext(), "создайте сначала группу", Toast.LENGTH_LONG).show();
+                } else {
 
-                        studentСardEntity.setGroupName(arrayListNameGroupStudent.get(positionSpiner));
-                        studentСardEntity.setVes(String.valueOf(editTextves.getText()));
-                        studentСardEntity.setTitul(String.valueOf(editTexttitul.getText()));
-                        studentСardEntity.setDate(String.valueOf(editTextdate.getText()));
-                        studentСardEntity.setSeson(String.valueOf(editTextseson.getText()));
-                        studentСardEntity.setTurnir(String.valueOf(editTextturnir.getText()));
-                        studentСardEntity.setBoiov(String.valueOf(editTextboiov.getText()));
-                        studentСardEntity.setPobed(String.valueOf(editTextpobed.getText()));
-                        studentСardEntity.setPoragenii(String.valueOf(editTextporagenii.getText()));
-                        studentСardEntity.setOchkov(String.valueOf(editTextochkov.getText()));
-                        studentСardEntity.setPressNorma(String.valueOf(editTextpressNorma.getText()));
-                        studentСardEntity.setPressFact(String.valueOf(editTextpressFact.getText()));
-                        studentСardEntity.setOtgimaniyNorma(String.valueOf(editTextotgimaniyNorma.getText()));
-                        studentСardEntity.setOtgimaniyFact(String.valueOf(editTextotgimaniyFact.getText()));
-                        studentСardEntity.setPodtjagNorma(String.valueOf(editTextpodtjagNorma.getText()));
-                        studentСardEntity.setPodtjagFact(String.valueOf(editTextpodtjagFact.getText()));
-                        studentСardEntity.setRoznogkaNorma(String.valueOf(editTextroznogkaNorma.getText()));
-                        studentСardEntity.setRoznogkaFact(String.valueOf(editTextroznogkaFact.getText()));
-                        studentСardEntity.setPrugkiNorma(String.valueOf(editTextprugkiNorma.getText()));
-                        studentСardEntity.setPrugkiFact(String.valueOf(editTextprugkiFact.getText()));
-                        studentСardEntity.setReiting("0");
+                    studentСardEntity.setGroupName(arrayListNameGroupStudent.get(positionSpiner));
+                    studentСardEntity.setVes(String.valueOf(editTextves.getText()));
+                    studentСardEntity.setTitul(String.valueOf(editTexttitul.getText()));
+                    studentСardEntity.setDate(String.valueOf(editTextdate.getText()));
+                    studentСardEntity.setSeson(String.valueOf(editTextseson.getText()));
+                    studentСardEntity.setTurnir(String.valueOf(editTextturnir.getText()));
+                    studentСardEntity.setBoiov(String.valueOf(editTextboiov.getText()));
+                    studentСardEntity.setPobed(String.valueOf(editTextpobed.getText()));
+                    studentСardEntity.setPoragenii(String.valueOf(editTextporagenii.getText()));
+                    studentСardEntity.setOchkov(String.valueOf(editTextochkov.getText()));
+                    studentСardEntity.setPressNorma(String.valueOf(editTextpressNorma.getText()));
+                    studentСardEntity.setPressFact(String.valueOf(editTextpressFact.getText()));
+                    studentСardEntity.setOtgimaniyNorma(String.valueOf(editTextotgimaniyNorma.getText()));
+                    studentСardEntity.setOtgimaniyFact(String.valueOf(editTextotgimaniyFact.getText()));
+                    studentСardEntity.setPodtjagNorma(String.valueOf(editTextpodtjagNorma.getText()));
+                    studentСardEntity.setPodtjagFact(String.valueOf(editTextpodtjagFact.getText()));
+                    studentСardEntity.setRoznogkaNorma(String.valueOf(editTextroznogkaNorma.getText()));
+                    studentСardEntity.setRoznogkaFact(String.valueOf(editTextroznogkaFact.getText()));
+                    studentСardEntity.setPrugkiNorma(String.valueOf(editTextprugkiNorma.getText()));
+                    studentСardEntity.setPrugkiFact(String.valueOf(editTextprugkiFact.getText()));
+                    studentСardEntity.setReiting("0");
 
-                        if (filePut != null) {
+                    if (filePut != null) {
 
 
-                            StorageReference mStorageRef = FirebaseStorage.getInstance().getReferenceFromUrl(studentСardEntity.getUrlStudentFotoCard());
-                            mStorageRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    // File deleted successfully
-                                }
-                            }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception exception) {
-                                    // Uh-oh, an error occurred!
-                                }
-                            });
-
-                            File destinationDirectory = new File(this.getCacheDir().getAbsolutePath());
-                            String filePath = SiliCompressor.with(this).compress(filePut, destinationDirectory);
-
-                            Uri file = Uri.fromFile(new File(filePath));
-                            StorageReference mStorageRef1 = FirebaseStorage.getInstance().getReference();
-                            StorageReference riversRef = mStorageRef1.child("StudentFoto/" + editTextnameStudent.getText() + ".jpg");
-
-                            riversRef.putFile(file)
-                                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                                        @Override
-                                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                            Task<Uri> task = taskSnapshot.getMetadata().getReference().getDownloadUrl();
-                                            task.addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                                @Override
-                                                public void onSuccess(Uri uri) {
-                                                    photoLink = uri.toString();
-                                                    studentСardEntity.setUrlStudentFotoCard(photoLink);
-                                                    addJson(studentСardEntity);
-                                                }
-                                            });
-                                            finish();
-                                            return;
-                                        }
-                                    })
-                                    .addOnFailureListener(new OnFailureListener() {
-                                        @Override
-                                        public void onFailure(@NonNull Exception exception) {
-                                            // Handle unsuccessful uploads
-                                            // ...
-                                        }
-                                    });
-                        } else {
-                                addJson(studentСardEntity);
+                        StorageReference mStorageRef = FirebaseStorage.getInstance().getReferenceFromUrl(studentСardEntity.getUrlStudentFotoCard());
+                        mStorageRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                // File deleted successfully
                             }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception exception) {
+                                // Uh-oh, an error occurred!
+                            }
+                        });
 
-                        Toast.makeText(view.getContext(), "добавлен тренер \n" + editTextnameStudent.getText(), Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent(this, StudentListActivity.class);
-                        startActivity(intent);
-                        finish();
+                        File destinationDirectory = new File(this.getCacheDir().getAbsolutePath());
+                        String filePath = SiliCompressor.with(this).compress(filePut, destinationDirectory);
+
+                        Uri file = Uri.fromFile(new File(filePath));
+                        StorageReference mStorageRef1 = FirebaseStorage.getInstance().getReference();
+                        StorageReference riversRef = mStorageRef1.child("StudentFoto/" + editTextnameStudent.getText() + ".jpg");
+
+                        riversRef.putFile(file)
+                                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                    @Override
+                                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                        Task<Uri> task = taskSnapshot.getMetadata().getReference().getDownloadUrl();
+                                        task.addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                            @Override
+                                            public void onSuccess(Uri uri) {
+                                                photoLink = uri.toString();
+                                                studentСardEntity.setUrlStudentFotoCard(photoLink);
+                                                addJson(studentСardEntity);
+                                            }
+                                        });
+                                        finish();
+                                        return;
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception exception) {
+                                        // Handle unsuccessful uploads
+                                        // ...
+                                    }
+                                });
+                    } else {
+                        addJson(studentСardEntity);
                     }
+
+                    Toast.makeText(view.getContext(), "добавлен тренер \n" + editTextnameStudent.getText(), Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(this, StudentListActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
 
                 break;
             }

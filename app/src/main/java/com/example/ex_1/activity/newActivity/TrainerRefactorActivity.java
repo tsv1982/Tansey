@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -17,9 +18,12 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,7 +59,7 @@ public class TrainerRefactorActivity extends AppCompatActivity implements View.O
     private SharedPreferences sharedPreferences;   // для сохранения позиции
     private String saveIdTrenerRefactor;
 
-    private EditText editTextAdminOrUserTrenerRefactor;
+    private Spinner spinerAdminOrUserTrenerRefactor;
     private TextView editTextIdEnterUserTrener1Refactor;
     private EditText editTextTrenerNameRefactor;
     private EditText editTextTrenerDataBRefactor;
@@ -71,6 +75,11 @@ public class TrainerRefactorActivity extends AppCompatActivity implements View.O
     private String filePutRefactor;
     private Context context;
 
+    private String spinerAdmonOrUserArray[] = {"user", "admin", "trainer"};
+    private ArrayAdapter<String> adapterSpinerUserOrAdmin;
+    private Spinner spinerTextUserOrAdmin;
+    private int positionSpinerAdminOrUser;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,7 +94,27 @@ public class TrainerRefactorActivity extends AppCompatActivity implements View.O
 
         mStorageRef = FirebaseStorage.getInstance().getReference();
 
-        editTextAdminOrUserTrenerRefactor = findViewById(R.id.ET_AdminOrUser_Trener1_Refactor);
+        adapterSpinerUserOrAdmin = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, spinerAdmonOrUserArray);
+        adapterSpinerUserOrAdmin.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinerTextUserOrAdmin = findViewById(R.id.SP_AdminOrUser_Trener1_Refactor);
+        spinerTextUserOrAdmin.getBackground().setColorFilter(getResources().getColor(R.color.colorText), PorterDuff.Mode.SRC_ATOP);
+        spinerTextUserOrAdmin.setAdapter(adapterSpinerUserOrAdmin);
+        spinerTextUserOrAdmin.setSelection(0);
+
+        spinerTextUserOrAdmin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view,int position, long id) {
+                ((TextView) parent.getChildAt(0)).setTextColor(getResources().getColor(R.color.colorText));
+                ((TextView) parent.getChildAt(0)).setTextSize(20);
+                positionSpinerAdminOrUser = position;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+            }
+        });
+
+        spinerAdminOrUserTrenerRefactor = findViewById(R.id.SP_AdminOrUser_Trener1_Refactor);
         editTextIdEnterUserTrener1Refactor = findViewById(R.id.ET_idEnterUser_Trener1_Refactor);
         editTextTrenerNameRefactor = findViewById(R.id.ET_Trener_Name1_Refactor);
         editTextTrenerDataBRefactor = findViewById(R.id.ET_Trener_Data_B1_Refactor);
@@ -117,7 +146,15 @@ public class TrainerRefactorActivity extends AppCompatActivity implements View.O
                     editTextAbautTrnerRefactor.setText(trenierEntityFromBD.getAboutTrener());
                     editTextGraficZanjatiyRefactor.setText(trenierEntityFromBD.getGrafikZanjatiy());
                     editTextTrenerURLPictureRefactor.setText(trenierEntityFromBD.getUrlFotoTrener());
-                    editTextAdminOrUserTrenerRefactor.setText(trenierEntityFromBD.getAdminOrUser());
+
+                    for (int i = 0; i <spinerAdmonOrUserArray.length ; i++) {
+                        if (trenierEntityFromBD.getAdminOrUser().equals(spinerAdmonOrUserArray[i])){
+                            spinerTextUserOrAdmin.setSelection(i);
+                            adapterSpinerUserOrAdmin.notifyDataSetChanged();
+                        }
+                    }
+//
+
                     editTextIdEnterUserTrener1Refactor.setText(trenierEntityFromBD.getIdEnterUser());
 
                     Picasso.with(context)
@@ -204,7 +241,7 @@ public class TrainerRefactorActivity extends AppCompatActivity implements View.O
                 trenierEntity.setDateObirth(String.valueOf(editTextTrenerDataBRefactor.getText()));
                 trenierEntity.setAboutTrener(String.valueOf(editTextAbautTrnerRefactor.getText()));
                 trenierEntity.setGrafikZanjatiy(String.valueOf(editTextGraficZanjatiyRefactor.getText()));
-                trenierEntity.setAdminOrUser(String.valueOf(editTextAdminOrUserTrenerRefactor.getText()));
+                trenierEntity.setAdminOrUser(String.valueOf(spinerAdmonOrUserArray[positionSpinerAdminOrUser]));
                 trenierEntity.setIdEnterUser(String.valueOf(editTextIdEnterUserTrener1Refactor.getText()));
 
 

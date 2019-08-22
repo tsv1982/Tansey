@@ -1,5 +1,7 @@
-package com.example.ex_1.activity;
+package com.example.ex_1.activity.newActivity;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,14 +16,26 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.ex_1.Entity.StudentСardEntity;
 import com.example.ex_1.R;
-import com.example.ex_1.activity.newActivity.StudentGraficPosActivity;
-import com.example.ex_1.activity.newActivity.ShopActivity;
-import com.example.ex_1.activity.newActivity.StudentActivity;
-import com.example.ex_1.activity.newActivity.TrenerActivity;
+import com.example.ex_1.ZaprosF;
+import com.example.ex_1.activity.KalendarActivity;
+import com.example.ex_1.activity.LentaNewsActivity1;
+import com.example.ex_1.activity.MessageActivity;
+import com.example.ex_1.activity.MyService;
+import com.example.ex_1.activity.PaymentActivity;
 import com.example.ex_1.java.UtilZaprosov;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.gson.Gson;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
+
+    private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+    private DatabaseReference databaseReferenceStudent = firebaseDatabase.getReference("student");
 
     private Button bntLenta;
     private Button btnKartaPeople;
@@ -34,18 +48,18 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     private ActionBar bar;
     private UtilZaprosov utilZaprosov;
 
-    SharedPreferences sharedPreferences;
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor editor;
+
+    String adminOrUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-
-        sharedPreferences = getSharedPreferences("MyPref", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("userOrAdmin", "admin");
-        editor.apply();
+        sharedPreferences = getSharedPreferences("MyPref", MODE_PRIVATE);   // вытаскиваем переменную
+        adminOrUser = sharedPreferences.getString("passSaveUserOrAdmin", "");
 
         utilZaprosov = new UtilZaprosov();
 
@@ -76,7 +90,44 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         bar = getSupportActionBar();
         bar.setBackgroundDrawable(new ColorDrawable(Color.BLACK));    // задаем цвет бара
 
-        startService(new Intent(this, MyService.class));
+        databaseReferenceStudent.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {  //вытаскиваем с базы
+
+                String s1 = String.valueOf(dataSnapshot.getValue());
+                StudentСardEntity studentСardEntity = new Gson().fromJson(s1, StudentСardEntity.class);
+
+                if (studentСardEntity.getIdEnterStudent().equals(sharedPreferences.getString("passSaveIdEnterUser", ""))){
+
+                    editor = sharedPreferences.edit();
+                    editor.putString("saveIdStudent", dataSnapshot.getKey());
+                    editor.apply();
+                }
+
+
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
 
     }
 
@@ -102,9 +153,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 stopService(new Intent(this, MyService.class));
                 return true;
             case R.id.action_2:
-//                infoTextView.setText("Вы выбрали кошку!");
-                return true;
-            case R.id.action_3:
                 SharedPreferences sharedPreferences = getSharedPreferences("MyPref", MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putBoolean("passSave", false);
@@ -133,8 +181,15 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             }
             case R.id.btnKartaPeople: {
 
-                Intent intent = new Intent(this, StudentActivity.class);
-                startActivity(intent);
+                if (adminOrUser.equals("admin")){
+                    Intent intent = new Intent(this, StudentActivity.class);
+                    startActivity(intent);
+                }else {
+                    Intent intent = new Intent(this, StudentKartaPeopleActivity.class);
+                    startActivity(intent);
+                }
+
+
 
                 break;
             }

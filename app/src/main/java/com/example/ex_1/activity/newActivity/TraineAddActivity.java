@@ -58,7 +58,7 @@ public class TraineAddActivity extends AppCompatActivity implements View.OnClick
     private EditText editTextTrenerURLPicture;
     private ImageView imageViewFotoTrener;
 
-    String spinerAdmonOrUserArray[] = {"user", "admin"};
+    private String spinerAdmonOrUserArray[] = {"user", "admin"};
     private ArrayAdapter<String> adapterSpinerUserOrAdmin;
     private Spinner spinerTextUserOrAdmin;
 
@@ -99,7 +99,6 @@ public class TraineAddActivity extends AppCompatActivity implements View.OnClick
             }
         });
 
-//        editTextAdminOrUserTrener = findViewById(R.id.ET_AdminOrUser_Trener1);
         editTextIdEnterUserTrener1 = findViewById(R.id.ET_idEnterUser_Trener1);
         editTextTrenerName = findViewById(R.id.ET_Trener_Name1);
         editTextTrenerDataB = findViewById(R.id.ET_Trener_Data_B1);
