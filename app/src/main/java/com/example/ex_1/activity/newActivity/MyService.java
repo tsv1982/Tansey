@@ -1,4 +1,4 @@
-package com.example.ex_1.activity;
+package com.example.ex_1.activity.newActivity;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -16,6 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 
 import com.example.ex_1.R;
+import com.example.ex_1.activity.newActivity.MessageActivity;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -135,14 +136,15 @@ public class MyService extends Service {
     }
 
     public IBinder onBind(Intent intent) {
-        startService(new Intent(this, MyService.class));
+//        startService(new Intent(getWindow().getContext(), MyService.class));
+//        startService(new Intent(this, MyService.class));
         return null;
     }
 
 
     @Override
     public void onDestroy() {
-        startService(new Intent(this, MyService.class));
+//        startService(new Intent(this, MyService.class));
         Toast.makeText(this, "destroy", Toast.LENGTH_LONG).show();
         super.onDestroy();
     }

@@ -5,13 +5,12 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.IntentService;
+import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -23,8 +22,6 @@ import android.widget.EditText;
 import com.example.ex_1.Entity.StudentСardEntity;
 import com.example.ex_1.Entity.TrenierEntity;
 import com.example.ex_1.R;
-import com.example.ex_1.activity.ErrorUserActivity;
-import com.example.ex_1.activity.MyService;
 import com.example.ex_1.java.UtilZaprosov;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -169,7 +166,10 @@ public class User_passActivity extends AppCompatActivity implements View.OnClick
 
                         isTrueEnter = false;
 
-                        startService(new Intent(this, MyService.class));
+
+                        if (isMyServiceRunning(MyService.class)) {
+                            startService(new Intent(getWindow().getContext(), MyService.class));
+                        }
 
                         Intent intent = new Intent(this, HomeActivity.class);
                         startActivity(intent);
@@ -196,8 +196,10 @@ public class User_passActivity extends AppCompatActivity implements View.OnClick
 
                         isTrueEnter = false;
 
-                        startService(new Intent(this, MyService.class));
-
+//                        startService(new Intent(this, MyService.class));
+                       if (isMyServiceRunning(MyService.class)) {
+                           startService(new Intent(getWindow().getContext(), MyService.class));
+                       }
                         Intent intent = new Intent(this, HomeActivity.class);
 
                         startActivity(intent);
@@ -219,6 +221,16 @@ public class User_passActivity extends AppCompatActivity implements View.OnClick
                 break;
             }
         }
+    }
+
+    private boolean isMyServiceRunning(Class<?> serviceClass) {
+        ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
+            if (serviceClass.getName().equals(service.service.getClassName())) {
+                return true;
+            }
+        }
+        return false;
     }
 
 

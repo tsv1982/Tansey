@@ -5,6 +5,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ActivityManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -14,15 +16,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.example.ex_1.Entity.StudentСardEntity;
 import com.example.ex_1.R;
-import com.example.ex_1.ZaprosF;
 import com.example.ex_1.activity.KalendarActivity;
 import com.example.ex_1.activity.LentaNewsActivity1;
-import com.example.ex_1.activity.MessageActivity;
-import com.example.ex_1.activity.MyService;
 import com.example.ex_1.activity.PaymentActivity;
 import com.example.ex_1.java.UtilZaprosov;
 import com.google.firebase.database.ChildEventListener;
@@ -57,6 +55,13 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        if (isMyServiceRunning(MyService.class)){
+
+        }else {
+            startService(new Intent(getWindow().getContext(), MyService.class));
+        }
+
 
         sharedPreferences = getSharedPreferences("MyPref", MODE_PRIVATE);   // вытаскиваем переменную
         adminOrUser = sharedPreferences.getString("passSaveUserOrAdmin", "");
@@ -159,6 +164,16 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    private boolean isMyServiceRunning(Class<?> serviceClass) {
+        ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
+            if (serviceClass.getName().equals(service.service.getClassName())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     @Override
     public void onClick(View view) {
@@ -230,7 +245,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btnGrafic: {
                 Intent intent;
                 if (utilZaprosov.hasConnection(this)) {
-                    intent = new Intent(this, StudentGraficPosActivity.class);
+                    intent = new Intent(this, StudentReitingActivity.class);
                     startActivity(intent);
                 } else
                     break;

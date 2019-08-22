@@ -3,16 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.ex_1">
 
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-<!--    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETE" />-->
-<!--    <uses-permission android:name="android.intent.action.BOOT_COMPLETED"/>-->
-
-
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -21,10 +11,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activity.newActivity.StudentRefactorActivity"
-        android:label="изменить ученика"
-        android:parentActivityName=".activity.newActivity.StudentRefactorActivity" />
-
+        <activity android:name=".activity.newActivity.StudentReitingActivity"
+        android:label="рейтинг"
+        android:parentActivityName=".activity.newActivity.StudentReitingActivity" />
+        <activity
+            android:name=".activity.newActivity.StudentRefactorActivity"
+            android:label="изменить ученика"
+            android:parentActivityName=".activity.newActivity.StudentRefactorActivity" />
         <activity
             android:name=".activity.newActivity.StudentAddActivity"
             android:label="добавить ученика"
@@ -97,23 +90,19 @@
             android:label="TANSEY SHOP"
             android:parentActivityName=".activity.ShopActivity1" />
         <activity
-            android:name=".activity.ErrorUserActivity"
+            android:name=".activity.newActivity.ErrorUserActivity"
             android:label="@string/app_name"
-            android:parentActivityName=".activity.ErrorUserActivity" />
-
-        <service
-            android:name=".activity.MyService"
-            android:enabled="true"
-            android:exported="true" />
+            android:parentActivityName=".activity.newActivity.ErrorUserActivity" />
 
         <activity
             android:name=".activity.PaymentActivity"
             android:label="Оплата"
             android:parentActivityName=".activity.PaymentActivity" />
+
         <activity
-            android:name=".activity.MessageActivity"
+            android:name=".activity.newActivity.MessageActivity"
             android:label="Сообщение"
-            android:parentActivityName=".activity.MessageActivity" />
+            android:parentActivityName=".activity.newActivity.MessageActivity" />
         <activity
             android:name=".activity.KalendarActivity"
             android:label="Календарь событий"
@@ -132,6 +121,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <service
+            android:name=".activity.newActivity.MyService"
+            android:enabled="true"
+            android:exported="true" />
     </application>
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
 </manifest>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.MessageActivity"
+    tools:context=".activity.newActivity.MessageActivity"
     android:background="@drawable/error_user_id"
     android:orientation="vertical">
 
