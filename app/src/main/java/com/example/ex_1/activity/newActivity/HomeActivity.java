@@ -20,7 +20,6 @@ import android.widget.Button;
 import com.example.ex_1.Entity.StudentСardEntity;
 import com.example.ex_1.R;
 import com.example.ex_1.activity.KalendarActivity;
-import com.example.ex_1.activity.LentaNewsActivity1;
 import com.example.ex_1.activity.PaymentActivity;
 import com.example.ex_1.java.UtilZaprosov;
 import com.google.firebase.database.ChildEventListener;
@@ -61,6 +60,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         }else {
             startService(new Intent(getWindow().getContext(), MyService.class));
         }
+
+
 
 
         sharedPreferences = getSharedPreferences("MyPref", MODE_PRIVATE);   // вытаскиваем переменную
@@ -181,7 +182,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btnLenta: {
                 Intent intent;
                 if (utilZaprosov.hasConnection(this)) {
-                    intent = new Intent(this, LentaNewsActivity1.class);
+                    intent = new Intent(this, LentaNewsActivity.class);
                     startActivity(intent);
                 }
                 break;
@@ -228,7 +229,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_shop: {
                 Intent intent;
                 if (utilZaprosov.hasConnection(this)) {
-                    intent = new Intent(this, ShopActivity.class);
+//                    intent = new Intent(this, ShopActivity.class);
+                    intent = new Intent(this, AddLentaNewsActivity.class);
                     startActivity(intent);
                 }
                 break;

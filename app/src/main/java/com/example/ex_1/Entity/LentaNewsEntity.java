@@ -1,26 +1,42 @@
 package com.example.ex_1.Entity;
 
 public class LentaNewsEntity {
-    private int idlentaNews;
+
+    private String idlentaNews;
     private String nameNews;
     private String data;
     private String time;
     private String text;
-    private String urlPictureNews;
     private String authorNews;
+    private String urlPictureNews1;
+    private String urlPictureNews2;
+    private String urlPictureNews3;
+    private String urlPictureNews4;
+    private String urlPictureNews5;
 
-    public LentaNewsEntity(int idlentaNews, String data, String time, String nameNews,
-                           String text, String urlPictureNews, String authorNews) {
+    public LentaNewsEntity() {
+    }
+
+    public LentaNewsEntity(String idlentaNews, String nameNews, String data, String time, String text, String authorNews, String urlPictureNews1, String urlPictureNews2, String urlPictureNews3, String urlPictureNews4, String urlPictureNews5) {
         this.idlentaNews = idlentaNews;
+        this.nameNews = nameNews;
         this.data = data;
         this.time = time;
         this.text = text;
-        this.urlPictureNews = urlPictureNews;
         this.authorNews = authorNews;
-        this.nameNews = nameNews;
+        this.urlPictureNews1 = urlPictureNews1;
+        this.urlPictureNews2 = urlPictureNews2;
+        this.urlPictureNews3 = urlPictureNews3;
+        this.urlPictureNews4 = urlPictureNews4;
+        this.urlPictureNews5 = urlPictureNews5;
     }
 
-    public LentaNewsEntity() {
+    public String getIdlentaNews() {
+        return idlentaNews;
+    }
+
+    public void setIdlentaNews(String idlentaNews) {
+        this.idlentaNews = idlentaNews;
     }
 
     public String getNameNews() {
@@ -29,14 +45,6 @@ public class LentaNewsEntity {
 
     public void setNameNews(String nameNews) {
         this.nameNews = nameNews;
-    }
-
-    public int getIdlentaNews() {
-        return idlentaNews;
-    }
-
-    public void setIdlentaNews(int idlentaNews) {
-        this.idlentaNews = idlentaNews;
     }
 
     public String getData() {
@@ -63,14 +71,6 @@ public class LentaNewsEntity {
         this.text = text;
     }
 
-    public String getUrlPictureNews() {
-        return urlPictureNews;
-    }
-
-    public void setUrlPictureNews(String urlPictureNews) {
-        this.urlPictureNews = urlPictureNews;
-    }
-
     public String getAuthorNews() {
         return authorNews;
     }
@@ -79,30 +79,43 @@ public class LentaNewsEntity {
         this.authorNews = authorNews;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        LentaNewsEntity that = (LentaNewsEntity) o;
-        if (idlentaNews != that.idlentaNews) return false;
-        if (data != null ? !data.equals(that.data) : that.data != null) return false;
-        if (time != null ? !time.equals(that.time) : that.time != null) return false;
-        if (text != null ? !text.equals(that.text) : that.text != null) return false;
-        if (urlPictureNews != null ? !urlPictureNews.equals(that.urlPictureNews) : that.urlPictureNews != null)
-            return false;
-        if (authorNews != null ? !authorNews.equals(that.authorNews) : that.authorNews != null)
-            return false;
-        return true;
+    public String getUrlPictureNews1() {
+        return urlPictureNews1;
     }
 
-    @Override
-    public int hashCode() {
-        int result = idlentaNews;
-        result = 31 * result + (data != null ? data.hashCode() : 0);
-        result = 31 * result + (time != null ? time.hashCode() : 0);
-        result = 31 * result + (text != null ? text.hashCode() : 0);
-        result = 31 * result + (urlPictureNews != null ? urlPictureNews.hashCode() : 0);
-        result = 31 * result + (authorNews != null ? authorNews.hashCode() : 0);
-        return result;
+    public void setUrlPictureNews1(String urlPictureNews1) {
+        this.urlPictureNews1 = urlPictureNews1;
+    }
+
+    public String getUrlPictureNews2() {
+        return urlPictureNews2;
+    }
+
+    public void setUrlPictureNews2(String urlPictureNews2) {
+        this.urlPictureNews2 = urlPictureNews2;
+    }
+
+    public String getUrlPictureNews3() {
+        return urlPictureNews3;
+    }
+
+    public void setUrlPictureNews3(String urlPictureNews3) {
+        this.urlPictureNews3 = urlPictureNews3;
+    }
+
+    public String getUrlPictureNews4() {
+        return urlPictureNews4;
+    }
+
+    public void setUrlPictureNews4(String urlPictureNews4) {
+        this.urlPictureNews4 = urlPictureNews4;
+    }
+
+    public String getUrlPictureNews5() {
+        return urlPictureNews5;
+    }
+
+    public void setUrlPictureNews5(String urlPictureNews5) {
+        this.urlPictureNews5 = urlPictureNews5;
     }
 }

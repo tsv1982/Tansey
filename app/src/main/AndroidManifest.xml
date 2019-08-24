@@ -11,9 +11,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activity.newActivity.StudentReitingActivity"
-        android:label="рейтинг"
-        android:parentActivityName=".activity.newActivity.StudentReitingActivity" />
+        <activity android:name=".activity.newActivity.LentaNewsActivity"
+        android:label="лента новостей"
+        android:parentActivityName=".activity.newActivity.LentaNewsActivity" />
+        <activity
+            android:name=".activity.newActivity.StudentReitingActivity"
+            android:label="рейтинг"
+            android:parentActivityName=".activity.newActivity.StudentReitingActivity" />
         <activity
             android:name=".activity.newActivity.StudentRefactorActivity"
             android:label="изменить ученика"
@@ -71,7 +75,7 @@
             android:label="list people"
             android:parentActivityName=".activity.ListPeopleActivity" />
         <activity
-            android:name=".activity.AddLentaNewsActivity"
+            android:name=".activity.newActivity.AddLentaNewsActivity"
             android:label="добавить новость"
             android:parentActivityName=".activity.LentaNewsActivity1" />
         <activity
@@ -93,12 +97,10 @@
             android:name=".activity.newActivity.ErrorUserActivity"
             android:label="@string/app_name"
             android:parentActivityName=".activity.newActivity.ErrorUserActivity" />
-
         <activity
             android:name=".activity.PaymentActivity"
             android:label="Оплата"
             android:parentActivityName=".activity.PaymentActivity" />
-
         <activity
             android:name=".activity.newActivity.MessageActivity"
             android:label="Сообщение"
@@ -114,6 +116,7 @@
         <activity
             android:name=".activity.newActivity.HomeActivity"
             android:label="@string/app_name" />
+
         <activity android:name=".activity.newActivity.User_passActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -121,16 +124,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <service
             android:name=".activity.newActivity.MyService"
             android:enabled="true"
             android:exported="true" />
     </application>
-    <uses-permission android:name="android.permission.VIBRATE" />
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-permission android:name="android.permission.VIBRATE" />
 
 </manifest>

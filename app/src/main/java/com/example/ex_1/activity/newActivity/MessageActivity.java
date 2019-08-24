@@ -5,10 +5,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ActivityManager;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -24,7 +22,6 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.ex_1.R;
-import com.example.ex_1.ZaprosF;
 import com.example.ex_1.adapter.MesengerAdapter;
 import com.example.ex_1.Entity.Mesage;
 import com.google.firebase.database.ChildEventListener;
@@ -62,7 +59,7 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_message);
+        setContentView(R.layout.message_activity);
 
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN); // убрать фокус при загрузке
@@ -88,7 +85,7 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
 
         mesageList = findViewById(R.id.countriesListMesage);
 
-        mesageAdapter = new MesengerAdapter(this, R.layout.list_mesage, mesagesArray);
+        mesageAdapter = new MesengerAdapter(this, R.layout.mesage_list, mesagesArray);
 
         mesageList.setAdapter(mesageAdapter);
         // слушатель выбора в списке

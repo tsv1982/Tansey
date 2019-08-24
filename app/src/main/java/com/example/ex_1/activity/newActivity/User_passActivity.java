@@ -55,6 +55,8 @@ public class User_passActivity extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_pass);
 
+        // TODO: 23.08.19 проверка на админа при новой установке должно быть  user pass
+
         bar = getSupportActionBar();
         bar.setBackgroundDrawable(new ColorDrawable(Color.BLACK));    // задаем цвет бара
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN); // убрать фокус при загрузке
@@ -131,7 +133,7 @@ public class User_passActivity extends AppCompatActivity implements View.OnClick
 
         sharedPreferences = getSharedPreferences("MyPref", MODE_PRIVATE);
 
-        if (sharedPreferences.getBoolean("passSave", true)) {
+        if (sharedPreferences.getBoolean("passSave", false)) {
             Intent intent = new Intent(this, HomeActivity.class);
             startActivity(intent);
             finish();
@@ -232,7 +234,6 @@ public class User_passActivity extends AppCompatActivity implements View.OnClick
         }
         return false;
     }
-
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {

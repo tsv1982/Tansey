@@ -17,11 +17,10 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.ex_1.Entity.LentaNewsEntity;
-import com.example.ex_1.Entity.ShopEntity;
 import com.example.ex_1.R;
 import com.example.ex_1.ZaprosF;
+import com.example.ex_1.activity.newActivity.AddLentaNewsActivity;
 import com.example.ex_1.adapter.LentaNewsAdapter1;
-import com.example.ex_1.adapter.ShopAdapter;
 import com.example.ex_1.java.UtilZaprosov;
 import com.google.gson.Gson;
 

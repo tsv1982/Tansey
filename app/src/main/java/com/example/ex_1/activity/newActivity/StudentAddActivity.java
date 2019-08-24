@@ -372,7 +372,7 @@ public class StudentAddActivity extends AppCompatActivity implements View.OnClic
                                     }
                                 });
 
-                        Toast.makeText(view.getContext(), "добавлен тренер \n" + editTextnameStudent.getText(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(view.getContext(), "добавлен ученик \n" + editTextnameStudent.getText(), Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(this, StudentListActivity.class);
                         startActivity(intent);
                         finish();

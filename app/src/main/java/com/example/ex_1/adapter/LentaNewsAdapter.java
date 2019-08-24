@@ -23,13 +23,13 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LentaNewsAdapter1 extends ArrayAdapter<LentaNewsEntity> {
+public class LentaNewsAdapter extends ArrayAdapter<LentaNewsEntity> {
     private LayoutInflater inflater;
     private int layout;
     private List<LentaNewsEntity> listLentaNewsEntities;
     ArrayList<ImageNewsEntity> listImage;
 
-    public LentaNewsAdapter1(Context context, int resource, List<LentaNewsEntity> listLentaNewsEntities) {
+    public LentaNewsAdapter(Context context, int resource, List<LentaNewsEntity> listLentaNewsEntities) {
         super(context, resource, listLentaNewsEntities);
         this.listLentaNewsEntities = listLentaNewsEntities;
         this.layout = resource;
