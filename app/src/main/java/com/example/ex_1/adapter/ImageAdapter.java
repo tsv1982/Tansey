@@ -35,9 +35,11 @@ public class ImageAdapter extends ArrayAdapter<ImageNewsEntity> {
         final ImageView imageNewsView = view.findViewById(R.id.image_list_view_News_for_dialog);
 
         imageNewsView.setOnClickListener(new View.OnClickListener() {
+
             private boolean isImageScaled = false;
             @Override
             public void onClick(View view) {  // увеличение картинки
+
                         if (!isImageScaled) view.animate().scaleX(1.4f).scaleY(1.4f).setDuration(500);
                         if (isImageScaled) view.animate().scaleX(1f).scaleY(1f).setDuration(500);
                         isImageScaled = !isImageScaled;
@@ -46,16 +48,14 @@ public class ImageAdapter extends ArrayAdapter<ImageNewsEntity> {
 
         });
 
-        ImageNewsEntity entity1 = imageList.get(0);
-
-        String s = entity1.getURL();
-        String[] arr = s.split(",");
+        ImageNewsEntity entity1 = imageList.get(position);
 
            Picasso.with(view.getContext())
-                    .load(arr[position].replaceAll(",", "").trim())
+//                    .load(arr[position])
+                    .load(entity1.getURL())
                     .placeholder(R.drawable.loading)   // заглушка во время загрузки
                     .error(R.drawable.loading_error)  // если еррор
-                    .resize(1000, 800)
+//                    .resize(1000, 800)
                     .into(imageNewsView);
 
         return view;

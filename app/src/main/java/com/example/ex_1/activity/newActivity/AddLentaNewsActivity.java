@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -17,20 +16,13 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ex_1.Entity.LentaNewsEntity;
-import com.example.ex_1.Entity.TrenierEntity;
 import com.example.ex_1.R;
-import com.example.ex_1.ZaprosF;
-import com.example.ex_1.activity.newActivity.TrenerActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -46,11 +38,6 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
 
 
 public class AddLentaNewsActivity extends AppCompatActivity implements View.OnClickListener {
@@ -74,12 +61,12 @@ public class AddLentaNewsActivity extends AppCompatActivity implements View.OnCl
     private Button btnAddTrener;
     private Button btnGetFotoTrener1;
 
+    ArrayList<String> arrayListPaht = new ArrayList<>();
+    ArrayList<String> arrayListUrl = new ArrayList<>();
 
-    private String[] filePut = {"", "", "", "", ""};
-    private String[] photoLink = {"", "", "", "", ""};
-    int aa = 0;
-    int wait = 0;
-
+    int count = 0;
+    volatile int ii = 1;
+    String s1ListFotoUrl = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -139,35 +126,40 @@ public class AddLentaNewsActivity extends AppCompatActivity implements View.OnCl
             String picturePath = cursor.getString(columnIndex);
 
 
-            if (filePut[0].equals("")) {
-                filePut[0] = picturePath;
-                File imgFile = new File(filePut[0]);
+            if (count == 0) {
+                arrayListPaht.add(picturePath);
+                File imgFile = new File(arrayListPaht.get(0));
                 Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
                 imageViewFotoNews1.setImageBitmap(myBitmap);
+                count++;
             } else {
-                if (filePut[1].equals("")) {
-                    filePut[1] = picturePath;
-                    File imgFile = new File(filePut[1]);
+                if (count == 1) {
+                    arrayListPaht.add(picturePath);
+                    File imgFile = new File(arrayListPaht.get(1));
                     Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
                     imageViewFotoNews2.setImageBitmap(myBitmap);
+                    count++;
                 } else {
-                    if (filePut[2].equals("")) {
-                        filePut[2] = picturePath;
-                        File imgFile = new File(filePut[2]);
+                    if (count == 2) {
+                        arrayListPaht.add(picturePath);
+                        File imgFile = new File(arrayListPaht.get(2));
                         Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
                         imageViewFotoNews3.setImageBitmap(myBitmap);
+                        count++;
                     } else {
-                        if (filePut[3].equals("")) {
-                            filePut[3] = picturePath;
-                            File imgFile = new File(filePut[3]);
+                        if (count == 3) {
+                            arrayListPaht.add(picturePath);
+                            File imgFile = new File(arrayListPaht.get(3));
                             Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
                             imageViewFotoNews4.setImageBitmap(myBitmap);
+                            count++;
                         } else {
-                            if (filePut[4].equals("")) {
-                                filePut[4] = picturePath;
-                                File imgFile = new File(filePut[4]);
+                            if (count == 4) {
+                                arrayListPaht.add(picturePath);
+                                File imgFile = new File(arrayListPaht.get(4));
                                 Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
                                 imageViewFotoNews5.setImageBitmap(myBitmap);
+                                count++;
                             } else {
                                 Toast.makeText(this, "лимит 5 изображений", Toast.LENGTH_LONG).show();
                             }
@@ -181,12 +173,67 @@ public class AddLentaNewsActivity extends AppCompatActivity implements View.OnCl
         }
     }
 
+    void addFoto(String s, String nameF) {
+        File destinationDirectory = new File(this.getCacheDir().getAbsolutePath());
+        String filePath = SiliCompressor.with(this).compress(s, destinationDirectory);
+        Uri file = Uri.fromFile(new File(filePath));
+        StorageReference riversRef = mStorageRef.child("LentaNewsFoto/" + nameNews.getText() + nameF + ".jpg");
+        riversRef.putFile(file)
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        Task<Uri> task = taskSnapshot.getMetadata().getReference().getDownloadUrl();
+                        task.addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+
+//                                lentaNewsEntity.setUrlPictureNews1(
+//                                        lentaNewsEntity.getUrlPictureNews1() + "," + uri);
+                                arrayListUrl.add(String.valueOf(uri));
+
+                                if (ii == arrayListPaht.size()) {
+
+                                    for (int i = 0; i < arrayListUrl.size(); i++) {
+                                        s1ListFotoUrl = s1ListFotoUrl + "," + arrayListUrl.get(i);
+                                    }
+                                    lentaNewsEntity.setUrlPictureNews1(s1ListFotoUrl);
+                                    addJson(lentaNewsEntity);
+                                }
+
+                                ii++;
+
+
+                            }
+
+                        });
+                        finish();
+
+                        return;
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {
+                        // Handle unsuccessful uploads
+                        // ...
+                    }
+                });
+    }
+
+    private void slep() {              // assyngron адача
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_ADD_Lenta_News11: {
 
-                if (filePut[0].equals("")) {
+                if (arrayListPaht.size() == 0) {
                     Toast.makeText(view.getContext(), "выберите изображение", Toast.LENGTH_LONG).show();
                 } else {
 
@@ -200,78 +247,11 @@ public class AddLentaNewsActivity extends AppCompatActivity implements View.OnCl
                     lentaNewsEntity.setText(String.valueOf(text.getText()));
                     lentaNewsEntity.setAuthorNews(String.valueOf(authorNews.getText()));
 
-                    for (int i = 0; i < 5; i++) {
 
-                        if (!filePut[i].equals("")) {
-                            wait++;
-                            File destinationDirectory = new File(this.getCacheDir().getAbsolutePath());
-                            String filePath = SiliCompressor.with(this).compress(filePut[i], destinationDirectory);
-
-                            Uri file = Uri.fromFile(new File(filePath));
-                            StorageReference riversRef = mStorageRef.child("LentaNewsFoto/" + nameNews.getText() + i + ".jpg");
-
-                            riversRef.putFile(file)
-                                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                                        @Override
-                                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                            Task<Uri> task = taskSnapshot.getMetadata().getReference().getDownloadUrl();
-                                            task.addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                                @Override
-                                                public void onSuccess(Uri uri) {
-                                                    System.out.println("kkkkkkkkkkyyyyyy  " + uri);
-
-                                                    photoLink[aa] = uri.toString();
-                                                    System.out.println("sdfsdf  " + photoLink[aa]);
-
-                                                    aa++;
-
-
-                                                }
-                                            });
-                                            finish();
-                                            return;
-                                        }
-                                    })
-                                    .addOnFailureListener(new OnFailureListener() {
-                                        @Override
-                                        public void onFailure(@NonNull Exception exception) {
-                                            // Handle unsuccessful uploads
-                                            // ...
-                                        }
-                                    });
-                        }
+                    for (int i = 0; i < arrayListPaht.size(); i++) {
+                        addFoto(arrayListPaht.get(i), String.valueOf(i));
+                        slep();
                     }
-
-                    while (wait == aa) {
-
-                    }
-
-                    System.out.println("ggggggggggggggggggg  " + photoLink[0]);
-                    System.out.println("ggggggggggggggggggg  " + photoLink[1]);
-                    System.out.println("ggggggggggggggggggg  " + photoLink[2]);
-                    if (!photoLink[0].equals("")) {
-                        System.out.println("ssssssssssssssssssss   " + "1");
-                        lentaNewsEntity.setUrlPictureNews1(photoLink[0]);
-                    }
-                    if (!photoLink[1].equals("")) {
-                        System.out.println("ssssssssssssssssssss   " + "2");
-                        lentaNewsEntity.setUrlPictureNews1(photoLink[1]);
-                    }
-                    if (!photoLink[2].equals("")) {
-                        System.out.println("ssssssssssssssssssss   " + "3");
-                        lentaNewsEntity.setUrlPictureNews1(photoLink[2]);
-                    }
-                    if (!photoLink[3].equals("")) {
-                        System.out.println("ssssssssssssssssssss   " + "4");
-                        lentaNewsEntity.setUrlPictureNews1(photoLink[3]);
-                    }
-                    if (!photoLink[4].equals("")) {
-                        System.out.println("ssssssssssssssssssss   " + "5");
-                        lentaNewsEntity.setUrlPictureNews1(photoLink[4]);
-                    }
-
-                    addJson(lentaNewsEntity);
-
 
                     Toast.makeText(view.getContext(), "добавлен тренер \n" + nameNews.getText(), Toast.LENGTH_LONG).show();
 //                    Intent intent = new Intent(this, TrenerActivity.class);

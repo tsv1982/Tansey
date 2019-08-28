@@ -27,7 +27,9 @@ public class LentaNewsAdapter extends ArrayAdapter<LentaNewsEntity> {
     private LayoutInflater inflater;
     private int layout;
     private List<LentaNewsEntity> listLentaNewsEntities;
-    ArrayList<ImageNewsEntity> listImage;
+    ArrayList<ImageNewsEntity> listImage = new ArrayList<>();
+    ImageAdapter imageAdapter;
+
 
     public LentaNewsAdapter(Context context, int resource, List<LentaNewsEntity> listLentaNewsEntities) {
         super(context, resource, listLentaNewsEntities);
@@ -36,15 +38,14 @@ public class LentaNewsAdapter extends ArrayAdapter<LentaNewsEntity> {
         this.inflater = LayoutInflater.from(context);
     }
 
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
 
         View view = inflater.inflate(this.layout, parent, false);
 
-        ImageView imageNewsVie = view.findViewById(R.id.IV_news_image1);
+        final ImageView imageNewsVie = view.findViewById(R.id.IV_news_image1);
         TextView nameNewsView = view.findViewById(R.id.name_news1);
         TextView textNewsView = view.findViewById(R.id.text_news1);
         TextView dateNewsView = view.findViewById(R.id.data_news1);
-        TextView timeNewsView = view.findViewById(R.id.time_news1);
         TextView autorNewsView = view.findViewById(R.id.autor_news1);
 
         TextView textViewPlusFoto = view.findViewById(R.id.TV_Lenta_News_Plus_foto);
@@ -56,13 +57,12 @@ public class LentaNewsAdapter extends ArrayAdapter<LentaNewsEntity> {
 
         String textReplace = lentaNewsEntity.getText();
 
-        if (textReplace.length() > 65){
+        if (textReplace.length() > 65) {
             textReplace = textReplace.substring(0, 65) + " ..........";
         }
 
         textNewsView.setText(textReplace);
         dateNewsView.setText(lentaNewsEntity.getData());
-        timeNewsView.setText(lentaNewsEntity.getTime());
         autorNewsView.setText(lentaNewsEntity.getAuthorNews());
 
         textNewsView.setOnClickListener(new View.OnClickListener() {
@@ -89,16 +89,31 @@ public class LentaNewsAdapter extends ArrayAdapter<LentaNewsEntity> {
             }
         });
 
-
         imageNewsVie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 ListView listView = new ListView(view.getContext());
 
-                ImageAdapter imageAdapter = new ImageAdapter(view.getContext(), R.layout.list_image_image_view, listImage);
+                if (lentaNewsEntity.getUrlPictureNews1() != null) {
+                    listImage.add(new ImageNewsEntity(lentaNewsEntity.getUrlPictureNews1()));
+                }
+                if (lentaNewsEntity.getUrlPictureNews2() != null) {
+                    listImage.add(new ImageNewsEntity(lentaNewsEntity.getUrlPictureNews2()));
+                }
+                if (lentaNewsEntity.getUrlPictureNews3() != null) {
+                    listImage.add(new ImageNewsEntity(lentaNewsEntity.getUrlPictureNews3()));
+                }
+                if (lentaNewsEntity.getUrlPictureNews4() != null) {
+                    listImage.add(new ImageNewsEntity(lentaNewsEntity.getUrlPictureNews4()));
+                }
+                if (lentaNewsEntity.getUrlPictureNews5() != null) {
+                    listImage.add(new ImageNewsEntity(lentaNewsEntity.getUrlPictureNews5()));
+                }
 
+                imageAdapter = new ImageAdapter(view.getContext(), R.layout.lenta_news_list_image_image_view, listImage);
                 listView.setAdapter(imageAdapter);
+                imageAdapter.notifyDataSetChanged();
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
                 builder.setView(listView)
@@ -118,17 +133,13 @@ public class LentaNewsAdapter extends ArrayAdapter<LentaNewsEntity> {
             }
         });
 
-        String s = lentaNewsEntity.getUrlPictureNews1();
-        String[] arr = s.split(",");
-        listImage = new ArrayList<>();
-        for (int i = 0; i < arr.length; i++) {
+        for (int i = 0; i < 5; i++) {
 
-            listImage.add(new ImageNewsEntity(lentaNewsEntity.getUrlPictureNews1()));
 
         }
-        textViewPlusFoto.setText("+ " + (listImage.size() ));
+        textViewPlusFoto.setText("+ " + (lentaNewsEntity.getTime())); // количество фото
 
-        ImageNewsEntity imageNewsEntity = new ImageNewsEntity(arr[0]);
+        ImageNewsEntity imageNewsEntity = new ImageNewsEntity(lentaNewsEntity.getUrlPictureNews1());
 
         Picasso.with(view.getContext())
                 .load(imageNewsEntity.getURL())

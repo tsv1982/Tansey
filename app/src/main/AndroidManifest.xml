@@ -77,18 +77,11 @@
         <activity
             android:name=".activity.newActivity.AddLentaNewsActivity"
             android:label="добавить новость"
-            android:parentActivityName=".activity.LentaNewsActivity1" />
-        <activity
-            android:name=".activity.LentaNewsActivity1"
-            android:label="TANSEY NEWS"
-            android:parentActivityName=".activity.LentaNewsActivity1" />
+            android:parentActivityName=".activity.newActivity.LentaNewsActivity" />
         <activity
             android:name=".activity.newActivity.ShopAddActivity"
             android:label="добавить товар"
             android:parentActivityName=".activity.newActivity.ShopAddActivity" />
-        <activity
-            android:name=".activity.AddNewsActivity"
-            android:parentActivityName=".activity.AddNewsActivity" />
         <activity
             android:name=".activity.ShopActivity1"
             android:label="TANSEY SHOP"
@@ -135,6 +128,9 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <uses-permission android:name="android.permission.VIBRATE" />
 
