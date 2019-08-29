@@ -45,10 +45,12 @@ import com.iceteck.silicompressorr.SiliCompressor;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 public class TrainerRefactorActivity extends AppCompatActivity implements View.OnClickListener {
 
-    TrenierEntity trenierEntity;
+    private TrenierEntity trenierEntity;
 
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference("trener");
@@ -103,7 +105,7 @@ public class TrainerRefactorActivity extends AppCompatActivity implements View.O
 
         spinerTextUserOrAdmin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view,int position, long id) {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 ((TextView) parent.getChildAt(0)).setTextColor(getResources().getColor(R.color.colorText));
                 ((TextView) parent.getChildAt(0)).setTextSize(20);
                 positionSpinerAdminOrUser = position;
@@ -134,6 +136,7 @@ public class TrainerRefactorActivity extends AppCompatActivity implements View.O
         btnGetFotoTrener1Refactor.setOnClickListener(this);
 
         databaseReference.addChildEventListener(new ChildEventListener() {
+
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {  //вытаскиваем с базы
 
@@ -147,13 +150,12 @@ public class TrainerRefactorActivity extends AppCompatActivity implements View.O
                     editTextGraficZanjatiyRefactor.setText(trenierEntityFromBD.getGrafikZanjatiy());
                     editTextTrenerURLPictureRefactor.setText(trenierEntityFromBD.getUrlFotoTrener());
 
-                    for (int i = 0; i <spinerAdmonOrUserArray.length ; i++) {
-                        if (trenierEntityFromBD.getAdminOrUser().equals(spinerAdmonOrUserArray[i])){
+                    for (int i = 0; i < spinerAdmonOrUserArray.length; i++) {
+                        if (trenierEntityFromBD.getAdminOrUser().equals(spinerAdmonOrUserArray[i])) {
                             spinerTextUserOrAdmin.setSelection(i);
                             adapterSpinerUserOrAdmin.notifyDataSetChanged();
                         }
                     }
-//
 
                     editTextIdEnterUserTrener1Refactor.setText(trenierEntityFromBD.getIdEnterUser());
 
@@ -200,7 +202,10 @@ public class TrainerRefactorActivity extends AppCompatActivity implements View.O
                 trenierEntity.getUrlFotoTrener(),
                 trenierEntity.getAdminOrUser(),
                 trenierEntity.getIdEnterUser()));
-        databaseReference.push().setValue(jsonAdd);
+
+        Map<String, Object> childUpdates = new HashMap<>();
+        childUpdates.put(saveIdTrenerRefactor, jsonAdd);
+        databaseReference.updateChildren(childUpdates);
     }
 
     @Override
@@ -233,8 +238,6 @@ public class TrainerRefactorActivity extends AppCompatActivity implements View.O
         switch (view.getId()) {
             case R.id.btn_ADD_Trener1_Refactor: {
 
-                databaseReference.child(saveIdTrenerRefactor).removeValue();
-
                 trenierEntity = new TrenierEntity();
                 trenierEntity.setIdtrainers("255");
                 trenierEntity.setNameTener(String.valueOf(editTextTrenerNameRefactor.getText()));
@@ -243,7 +246,6 @@ public class TrainerRefactorActivity extends AppCompatActivity implements View.O
                 trenierEntity.setGrafikZanjatiy(String.valueOf(editTextGraficZanjatiyRefactor.getText()));
                 trenierEntity.setAdminOrUser(String.valueOf(spinerAdmonOrUserArray[positionSpinerAdminOrUser]));
                 trenierEntity.setIdEnterUser(String.valueOf(editTextIdEnterUserTrener1Refactor.getText()));
-
 
                 if (filePutRefactor != null) {
 
@@ -297,9 +299,8 @@ public class TrainerRefactorActivity extends AppCompatActivity implements View.O
                     addJson(trenierEntity);
                 }
 
-
                 Toast.makeText(view.getContext(), "изменено \n" + editTextTrenerNameRefactor.getText(), Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(this, TrenerActivity.class);
+                Intent intent = new Intent(this, HomeActivity.class);
                 startActivity(intent);
                 finish();
                 break;

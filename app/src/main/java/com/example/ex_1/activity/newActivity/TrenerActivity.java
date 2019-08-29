@@ -12,9 +12,10 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.View;
-import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ex_1.Entity.TrenierEntity;
@@ -50,9 +51,10 @@ public class TrenerActivity extends AppCompatActivity implements View.OnClickLis
     private Button btnRefactorTrener1;
     private TrenierAdapter trenierAdapter;
     private List<TrenierEntity> trenerArray = new ArrayList();
+    private TextView textViewGetTrener;
     private int position;
-    String adminOrUser;
-
+    private String saveIdTrener;
+    private String adminOrUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +68,8 @@ public class TrenerActivity extends AppCompatActivity implements View.OnClickLis
         btnRefactorTrener1 = findViewById(R.id.btnRefactorTrenet1);
         btnRefactorTrener1.setOnClickListener(this);
 
+        textViewGetTrener = findViewById(R.id.TV_Get_Trener);
+
         sharedPreferences = getSharedPreferences("MyPref", MODE_PRIVATE);
         adminOrUser = sharedPreferences.getString("passSaveUserOrAdmin", "");
 
@@ -73,24 +77,25 @@ public class TrenerActivity extends AppCompatActivity implements View.OnClickLis
            btnAddTrener1.setVisibility(View.VISIBLE);
            btnDeleteTrener1.setVisibility(View.VISIBLE);
            btnRefactorTrener1.setVisibility(View.VISIBLE);
+           textViewGetTrener.setVisibility(View.VISIBLE);
         }else {
             btnAddTrener1.setVisibility(View.GONE);
             btnDeleteTrener1.setVisibility(View.GONE);
             btnRefactorTrener1.setVisibility(View.GONE);
+            textViewGetTrener.setVisibility(View.GONE);
         }
 
         listViewTrenier1 = findViewById(R.id.LV_Trainer1);
         trenierAdapter = new TrenierAdapter(this, R.layout.trainer_list_activity, trenerArray);
         listViewTrenier1.setAdapter(trenierAdapter);   // сетаем адаптер в листвиев
 
-        listViewTrenier1.setOnScrollListener(new AbsListView.OnScrollListener() {
+        listViewTrenier1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onScrollStateChanged(AbsListView absListView, int i) {
-            }
-
-            @Override
-            public void onScroll(AbsListView absListView, int i, int i1, int i2) {
-                position = i;
+            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+                position = position;
+                textViewGetTrener.setText(trenerArray.get(position).getNameTener());
+                saveIdTrener = trenerArray.get(position).getIdtrainers();
+                textViewGetTrener.setTextColor(getResources().getColor(R.color.colorText2));
             }
         });
 
@@ -143,7 +148,7 @@ public class TrenerActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.btnRefactorTrenet1: {
                 sharedPreferences = getSharedPreferences("MyPref", MODE_PRIVATE);
                 editor = sharedPreferences.edit();
-                editor.putString("saveIdRefactorTrener", trenerArray.get(position).getIdtrainers());
+                editor.putString("saveIdRefactorTrener", saveIdTrener );
                 editor.apply();
 
                 Intent intent = new Intent(this, TrainerRefactorActivity.class);
@@ -198,4 +203,6 @@ public class TrenerActivity extends AppCompatActivity implements View.OnClickLis
             }
         }
     }
+
+
 }

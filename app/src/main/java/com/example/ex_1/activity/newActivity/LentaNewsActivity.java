@@ -80,10 +80,12 @@ public class LentaNewsActivity extends AppCompatActivity implements View.OnClick
             btnAddLentaNews.setVisibility(View.VISIBLE);
             btnDeleteLentaNews.setVisibility(View.VISIBLE);
             btnRefactorNews.setVisibility(View.VISIBLE);
+            textViewGetLentaNews.setVisibility(View.VISIBLE);
         } else {
             btnAddLentaNews.setVisibility(View.GONE);
             btnDeleteLentaNews.setVisibility(View.GONE);
             btnRefactorNews.setVisibility(View.GONE);
+            textViewGetLentaNews.setVisibility(View.GONE);
         }
 
         listViewLentaNews = findViewById(R.id.LV_LentaNews);  // передаем в адаптер лояут и лист объектов тренер

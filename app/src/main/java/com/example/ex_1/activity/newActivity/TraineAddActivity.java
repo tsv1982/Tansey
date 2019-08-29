@@ -49,7 +49,6 @@ public class TraineAddActivity extends AppCompatActivity implements View.OnClick
 
     private StorageReference mStorageRef;
 
-//    private EditText editTextAdminOrUserTrener;
     private EditText editTextIdEnterUserTrener1;
     private EditText editTextTrenerName;
     private EditText editTextTrenerDataB;
@@ -88,7 +87,7 @@ public class TraineAddActivity extends AppCompatActivity implements View.OnClick
 
         spinerTextUserOrAdmin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view,int position, long id) {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 ((TextView) parent.getChildAt(0)).setTextColor(getResources().getColor(R.color.colorText));
                 ((TextView) parent.getChildAt(0)).setTextSize(20);
                 positionSpinerAdminOrUser = position;
@@ -117,7 +116,6 @@ public class TraineAddActivity extends AppCompatActivity implements View.OnClick
 
         btnGetFotoTrener1 = findViewById(R.id.btn_getPahsFotoTrener1);
         btnGetFotoTrener1.setOnClickListener(this);
-
 
     }
 
@@ -223,12 +221,8 @@ public class TraineAddActivity extends AppCompatActivity implements View.OnClick
                 break;
             }
 
-
         }
     }
-
-
-
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {   // для удаления фокуса при клике на пустое место
