@@ -53,7 +53,7 @@
         <activity
             android:name=".activity.newActivity.StudentActivity"
             android:label="TANSEY"
-            android:parentActivityName=".activity.newActivity.StudentActivity" />
+            android:parentActivityName=".activity.newActivity.HomeActivity" />
         <activity
             android:name=".activity.newActivity.ShopActivity"
             android:label="TANSEY SHOP"

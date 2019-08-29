@@ -96,7 +96,11 @@ public class StudentGroupAddActivity extends AppCompatActivity implements View.O
                 TrenierEntity trenierEntity = new Gson().fromJson(s1, TrenierEntity.class);
                 trenierEntity.setIdtrainers(dataSnapshot.getKey());                         // присваиваем id c базы
                 trenerEntityArrayList.add(trenierEntity);
+
+                System.out.println("hhhhhhhhhhhhhhh   === " + trenierEntity.getNameTener());
+
                 arrayListNameTrener.add(trenierEntity.getNameTener());
+
                 adapter.notifyDataSetChanged();
             }
 

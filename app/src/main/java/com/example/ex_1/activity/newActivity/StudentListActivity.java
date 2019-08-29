@@ -210,6 +210,7 @@ public class StudentListActivity extends AppCompatActivity implements View.OnCli
 
                 Intent intent = new Intent(view.getContext(), StudentKartaPeopleActivity.class);
                 startActivity(intent);
+
                 break;
             }
         }

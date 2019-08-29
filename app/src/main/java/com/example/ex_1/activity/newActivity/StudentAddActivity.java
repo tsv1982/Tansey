@@ -57,7 +57,7 @@ import okhttp3.RequestBody;
 
 public class StudentAddActivity extends AppCompatActivity implements View.OnClickListener {
 
-    StudentСardEntity studentСardEntity;
+    private StudentСardEntity studentСardEntity;
 
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference("student");
@@ -68,11 +68,6 @@ public class StudentAddActivity extends AppCompatActivity implements View.OnClic
     private ArrayAdapter<String> adapterSpiner;
     private ArrayList<String> arrayListNameGroupStudent = new ArrayList<>();
     private Spinner spinnerGroup;
-
-//    private ArrayAdapter<String> adapterSpinerUserOrAdmin;
-//    String spinerAdmonOrUserArray[] = {"user", "admin"};
-//    private Spinner spinerTextUserOrAdmin;
-
 
     private EditText editTextidEnterStudent;
     private EditText editTextnameStudent;
@@ -105,7 +100,6 @@ public class StudentAddActivity extends AppCompatActivity implements View.OnClic
     private String filePut;
 
     private int positionSpiner;
-    private int positionSpinerAdminOrUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,35 +130,12 @@ public class StudentAddActivity extends AppCompatActivity implements View.OnClic
         editTextprugkiNorma = findViewById(R.id.ET_Add_prigki_norma_Student1);
         editTextprugkiFact = findViewById(R.id.ET_Add_prigki_fact_Student1);
 
-
         imageViewFotoStudent = findViewById(R.id.IV_student_image_Add);
 
         btnPashUrlFoto = findViewById(R.id.btn_Add_getPahsFotoStudent1);
         btnPashUrlFoto.setOnClickListener(this);
         btnAddStudent = findViewById(R.id.btn_ADD_Student1);
         btnAddStudent.setOnClickListener(this);
-
-
-//        adapterSpinerUserOrAdmin = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, spinerAdmonOrUserArray);
-//        adapterSpinerUserOrAdmin.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        spinerTextUserOrAdmin = findViewById(R.id.ET_Add_AdminOrUser_Student1);
-//        spinerTextUserOrAdmin.getBackground().setColorFilter(getResources().getColor(R.color.colorText), PorterDuff.Mode.SRC_ATOP);
-//        spinerTextUserOrAdmin.setAdapter(adapterSpinerUserOrAdmin);
-//        spinerTextUserOrAdmin.setSelection(0);
-//
-//        spinerTextUserOrAdmin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                ((TextView) parent.getChildAt(0)).setTextColor(getResources().getColor(R.color.colorText));
-//                ((TextView) parent.getChildAt(0)).setTextSize(20);
-//                positionSpinerAdminOrUser = position;
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> arg0) {
-//            }
-//        });
-
 
         adapterSpiner = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, arrayListNameGroupStudent);
         adapterSpiner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -219,8 +190,6 @@ public class StudentAddActivity extends AppCompatActivity implements View.OnClic
             }
 
         });
-
-
     }
 
     private void addJson(StudentСardEntity studentСardEntity) {   //  c EDIT TEXT парсим JSON
@@ -279,20 +248,6 @@ public class StudentAddActivity extends AppCompatActivity implements View.OnClic
         }
     }
 
-
-    @Override
-    public boolean dispatchTouchEvent(MotionEvent ev) {   // для удаления фокуса при клике на пустое место
-        if (ev.getAction() == MotionEvent.ACTION_DOWN) {
-            View v = getCurrentFocus();
-            if (v instanceof EditText) {
-                v.clearFocus();
-                InputMethodManager imm = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
-            }
-        }
-        return super.dispatchTouchEvent(ev);
-    }
-
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -340,7 +295,6 @@ public class StudentAddActivity extends AppCompatActivity implements View.OnClic
                         studentСardEntity.setPrugkiFact(String.valueOf(editTextprugkiFact.getText()));
                         studentСardEntity.setReiting("0");
 
-
                         File destinationDirectory = new File(this.getCacheDir().getAbsolutePath());
                         String filePath = SiliCompressor.with(this).compress(filePut, destinationDirectory);
 
@@ -380,9 +334,22 @@ public class StudentAddActivity extends AppCompatActivity implements View.OnClic
                 }
                 break;
             }
-
-
         }
     }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {   // для удаления фокуса при клике на пустое место
+        if (ev.getAction() == MotionEvent.ACTION_DOWN) {
+            View v = getCurrentFocus();
+            if (v instanceof EditText) {
+                v.clearFocus();
+                InputMethodManager imm = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+            }
+        }
+        return super.dispatchTouchEvent(ev);
+    }
 }
+
+
 

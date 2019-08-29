@@ -68,9 +68,6 @@ public class StudentActivity extends AppCompatActivity implements View.OnClickLi
         listViewStudentTrenier.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-//                position2 = position;
-//                Toast.makeText(v.getContext(), "группа добавлена \n" + trenerEntityArrayList.get(position).getNameTener(), Toast.LENGTH_LONG).show();
-
                 arrayListNameGroup = new ArrayList<>();
                 for (int i = 0; i <studentGroupEntityArrayList.size() ; i++) {
                     if (trenerEntityArrayList.get(position).getIdEnterUser()
@@ -98,8 +95,6 @@ public class StudentActivity extends AppCompatActivity implements View.OnClickLi
                     @Override
                     public void onClick(DialogInterface dialog, int item) {
                         // TODO Auto-generated method stub
-//                        Toast.makeText(getApplicationContext(),"Выбранный кот: " + mCatsName[item],
-//                                Toast.LENGTH_SHORT).show();
                         sharedPreferences = getSharedPreferences("MyPref", MODE_PRIVATE);
                         editor = sharedPreferences.edit();
                         editor.putString("saveIdGroup", groupName[item]);
@@ -189,22 +184,19 @@ public class StudentActivity extends AppCompatActivity implements View.OnClickLi
 
     }
 
-
-
-
     @Override
     public void onClick(View view) {
        switch (view.getId()){
            case R.id.btnListGroup:{
                Intent intent = new Intent(this, StudentGroupActivity.class);
                startActivity(intent);
-//               finish();
+               finish();
                break;
            }
            case R.id.btnListStudent_List:{
                Intent intent = new Intent(this, StudentListActivity.class);
                startActivity(intent);
-//               finish();
+               finish();
                break;
            }
        }

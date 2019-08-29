@@ -55,7 +55,6 @@ public class StudentGraficPosActivity extends AppCompatActivity {
     private ArrayList<DateEntity> arrayListDataEntity = new ArrayList<>();
     private ArrayList<DateEntity> arrayListNawDataEntity = new ArrayList<>();
 
-
     private Spinner spinnerMonts;
     private Spinner spinnerYears;
 
@@ -66,13 +65,12 @@ public class StudentGraficPosActivity extends AppCompatActivity {
     private ArrayAdapter<String> adapterSpinerMonts;
     private ArrayAdapter<String> adapterSpinerYears;
 
-    StudentСardEntity studentСardEntity;
-    DateEntity dateEntity;
+    private StudentСardEntity studentСardEntity;
+    private DateEntity dateEntity;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.student_grafic_pos_activity);
-
 
         sharedPreferences = getSharedPreferences("MyPref", MODE_PRIVATE);   // вытаскиваем переменную
         saveIdStudent = sharedPreferences.getString("saveIdStudent", "");
@@ -106,8 +104,6 @@ public class StudentGraficPosActivity extends AppCompatActivity {
 
                         }
                     }
-
-
                 }
             }
 
@@ -131,7 +127,6 @@ public class StudentGraficPosActivity extends AppCompatActivity {
 
             }
         });
-
 
         Calendar aDate = new GregorianCalendar(Locale.getDefault());
         monts = (aDate.get(Calendar.MONTH) + 1);
@@ -192,12 +187,9 @@ public class StudentGraficPosActivity extends AppCompatActivity {
             }
         });
 
-
     }
 
-
     private void tt() {
-
         arrayListNawDataEntity = new ArrayList<>();
         for (int i = 0; i <arrayListDataEntity.size() ; i++) {
             if (arrayListDataEntity.get(i).getMonts() == monts && arrayListDataEntity.get(i).getYear() == year ){

@@ -98,7 +98,6 @@ public class StudentKartaPeopleActivity extends AppCompatActivity implements Vie
         textViewRoznogkaFact = findViewById(R.id.TV_Roznogka_Fact_Student);
         textViewPrugkiFact = findViewById(R.id.TV_Prugki_Fact_Student);
 
-
         databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {  //вытаскиваем с базы
@@ -131,35 +130,35 @@ public class StudentKartaPeopleActivity extends AppCompatActivity implements Vie
                     textViewPressNorma.setText(studentСardEntity.getPressNorma());
                     textViewPressFact.setText(studentСardEntity.getPressFact());
                     if (Integer.parseInt(studentСardEntity.getPressNorma()) >
-                           Integer.parseInt(studentСardEntity.getPressFact())){
+                            Integer.parseInt(studentСardEntity.getPressFact())) {
                         textViewPressFact.setTextColor(Color.RED);
                     }
 
                     textViewOtgimaniyNorma.setText(studentСardEntity.getOtgimaniyNorma());
                     textViewOtgimaniyFact.setText(studentСardEntity.getOtgimaniyFact());
                     if (Integer.parseInt(studentСardEntity.getOtgimaniyNorma()) >
-                            Integer.parseInt(studentСardEntity.getOtgimaniyFact())){
+                            Integer.parseInt(studentСardEntity.getOtgimaniyFact())) {
                         textViewOtgimaniyFact.setTextColor(Color.RED);
                     }
 
                     textViewPodtjagNorma.setText(studentСardEntity.getPodtjagNorma());
                     textViewPodtjagFact.setText(studentСardEntity.getPodtjagFact());
                     if (Integer.parseInt(studentСardEntity.getPodtjagNorma()) >
-                            Integer.parseInt(studentСardEntity.getPodtjagFact())){
+                            Integer.parseInt(studentСardEntity.getPodtjagFact())) {
                         textViewPodtjagFact.setTextColor(Color.RED);
                     }
 
                     textViewRoznogkaNorma.setText(studentСardEntity.getRoznogkaNorma());
                     textViewRoznogkaFact.setText(studentСardEntity.getRoznogkaFact());
                     if (Integer.parseInt(studentСardEntity.getRoznogkaNorma()) >
-                            Integer.parseInt(studentСardEntity.getRoznogkaFact())){
+                            Integer.parseInt(studentСardEntity.getRoznogkaFact())) {
                         textViewRoznogkaFact.setTextColor(Color.RED);
                     }
 
                     textViewPrugkiNorma.setText(studentСardEntity.getPrugkiNorma());
                     textViewPrugkiFact.setText(studentСardEntity.getPrugkiFact());
                     if (Integer.parseInt(studentСardEntity.getPrugkiNorma()) >
-                            Integer.parseInt(studentСardEntity.getPrugkiFact())){
+                            Integer.parseInt(studentСardEntity.getPrugkiFact())) {
                         textViewPrugkiFact.setTextColor(Color.RED);
                     }
 
@@ -202,17 +201,13 @@ public class StudentKartaPeopleActivity extends AppCompatActivity implements Vie
             case R.id.btnPeoplePay_student: {
                 Intent intent = new Intent(this, PaymentActivity.class);
                 startActivity(intent);
+                finish();
                 break;
             }
             case R.id.btnPeopleGrofik_student: {
-
-//                SharedPreferences sharedPreferences = getSharedPreferences("MyPref", MODE_PRIVATE);
-//                SharedPreferences.Editor editor = sharedPreferences.edit();
-//                editor.putString("passSave", studentСardEntity.geti);
-//                editor.apply();
-
                 Intent intent = new Intent(this, StudentGraficPosActivity.class);
                 startActivity(intent);
+                finish();
                 break;
             }
 

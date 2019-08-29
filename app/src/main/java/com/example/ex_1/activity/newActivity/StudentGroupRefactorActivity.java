@@ -32,6 +32,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class StudentGroupRefactorActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -175,7 +177,10 @@ public class StudentGroupRefactorActivity extends AppCompatActivity implements V
                 studentGroupEntity.getNameGroup(),
                 studentGroupEntity.getNameTrener()));
 
-        databaseReferenceGroup.push().setValue(jsonAdd);
+        Map<String, Object> childUpdates = new HashMap<>();
+        childUpdates.put(saveIdGroup, jsonAdd);
+        databaseReferenceGroup.updateChildren(childUpdates);
+
     }
 
     @Override
@@ -183,8 +188,6 @@ public class StudentGroupRefactorActivity extends AppCompatActivity implements V
 
         switch (view.getId()) {
             case R.id.btn_ADD_Group_Refactor: {
-
-                databaseReferenceGroup.child(studentGroupEntity.getIdGroupBD()).removeValue();
 
                 StudentGroupEntity studentGroupEntity = new StudentGroupEntity();
                 studentGroupEntity.setIdGroupBD(studentGroupEntity.getIdGroupBD());
@@ -195,7 +198,7 @@ public class StudentGroupRefactorActivity extends AppCompatActivity implements V
                 addJson(studentGroupEntity);
 
                 Toast.makeText(view.getContext(), "группа измененная \n" + studentGroupEntity.getNameGroup(), Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(this, StudentGroupActivity.class);
+                Intent intent = new Intent(this, StudentActivity.class);
                 startActivity(intent);
                 finish();
             }

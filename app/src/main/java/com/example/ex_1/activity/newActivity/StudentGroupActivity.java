@@ -46,7 +46,6 @@ public class StudentGroupActivity extends AppCompatActivity implements View.OnCl
     private SharedPreferences sharedPreferences;   // для сохранения позиции
     private SharedPreferences.Editor editor;
 
-
     private Button btnAddGroup;
     private Button btnRefactorGroup;
     private Button btnDeleteGroup;
