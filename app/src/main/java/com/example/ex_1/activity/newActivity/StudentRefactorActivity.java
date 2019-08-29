@@ -48,25 +48,24 @@ import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class StudentRefactorActivity extends AppCompatActivity implements View.OnClickListener {
 
     private SharedPreferences sharedPreferences;
     private String saveIdStudent;
 
-    StudentСardEntity studentСardEntity;
+    private StudentСardEntity studentСardEntity;
 
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference("student");
     private DatabaseReference databaseReferenceGroup = firebaseDatabase.getReference("group");
 
-//    private StorageReference mStorageRef = FirebaseStorage.getInstance().getReference();
-
     private ArrayAdapter<String> adapterSpiner;
     private ArrayList<String> arrayListNameGroupStudent = new ArrayList<>();
 
     private Spinner spinnerGroup;
-
 
     private TextView textViewIdEnterStudent;
     private EditText editTextnameStudent;
@@ -99,16 +98,9 @@ public class StudentRefactorActivity extends AppCompatActivity implements View.O
     private String filePut;
 
     private int positionSpiner;
-
-    //    private int positionSpinerAdminOrUser;
-//    private ArrayAdapter<String> adapterSpinerUserOrAdmin;
-//    String spinerAdmonOrUserArray[] = {"user", "admin"};
-//    private Spinner spinerTextUserOrAdmin;
-
     private Context context;
 
-    LinearLayout linearLayout;
-
+    private LinearLayout linearLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -152,27 +144,6 @@ public class StudentRefactorActivity extends AppCompatActivity implements View.O
         btnPashUrlFoto.setOnClickListener(this);
         btnAddStudent = findViewById(R.id.btn_ADD_Student1_Refactor);
         btnAddStudent.setOnClickListener(this);
-
-
-//        adapterSpinerUserOrAdmin = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, spinerAdmonOrUserArray);
-//        adapterSpinerUserOrAdmin.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        spinerTextUserOrAdmin = findViewById(R.id.ET_Add_AdminOrUser_Student1_Refactor);
-//        spinerTextUserOrAdmin.getBackground().setColorFilter(getResources().getColor(R.color.colorText), PorterDuff.Mode.SRC_ATOP);
-//        spinerTextUserOrAdmin.setAdapter(adapterSpinerUserOrAdmin);
-//        spinerTextUserOrAdmin.setSelection(0);
-//
-//        spinerTextUserOrAdmin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                ((TextView) parent.getChildAt(0)).setTextColor(getResources().getColor(R.color.colorText));
-//                ((TextView) parent.getChildAt(0)).setTextSize(20);
-//                positionSpinerAdminOrUser = position;
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> arg0) {
-//            }
-//        });
 
 
         adapterSpiner = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, arrayListNameGroupStudent);
@@ -267,6 +238,7 @@ public class StudentRefactorActivity extends AppCompatActivity implements View.O
 
                 StudentGroupEntity studentGroupEntity = new Gson().fromJson(s1, StudentGroupEntity.class);
                 studentGroupEntity.setIdGroupBD(dataSnapshot.getKey());
+
                 arrayListNameGroupStudent.add(studentGroupEntity.getNameGroup());
                 for (int i = 0; i < arrayListNameGroupStudent.size(); i++) {
                     if (arrayListNameGroupStudent.get(i).equals(studentСardEntity.getGroupName())) {
@@ -299,7 +271,6 @@ public class StudentRefactorActivity extends AppCompatActivity implements View.O
 
         });
 
-
     }
 
     private void addJson(StudentСardEntity studentСardEntity) {   //  c EDIT TEXT парсим JSON
@@ -330,9 +301,12 @@ public class StudentRefactorActivity extends AppCompatActivity implements View.O
                 studentСardEntity.getPrugkiNorma(),
                 studentСardEntity.getPrugkiFact(),
                 studentСardEntity.getUrlStudentFotoCard(),
-                studentСardEntity.getReiting()));
+                studentСardEntity.getReiting(),
+                studentСardEntity.getDataPosicheniy()));
 
-        databaseReference.push().setValue(jsonAdd);
+        Map<String, Object> childUpdates = new HashMap<>();
+        childUpdates.put(saveIdStudent, jsonAdd);
+        databaseReference.updateChildren(childUpdates);
     }
 
     @Override
@@ -358,7 +332,6 @@ public class StudentRefactorActivity extends AppCompatActivity implements View.O
         }
     }
 
-
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {   // для удаления фокуса при клике на пустое место
         if (ev.getAction() == MotionEvent.ACTION_DOWN) {
@@ -382,10 +355,6 @@ public class StudentRefactorActivity extends AppCompatActivity implements View.O
                 break;
             }
             case R.id.btn_ADD_Student1_Refactor: {
-
-                databaseReference.child(studentСardEntity.getIdstudent()).removeValue();
-
-                System.out.println(filePut);
 
                 studentСardEntity.setIdstudent("000");
                 studentСardEntity.setIdEnterStudent(String.valueOf(textViewIdEnterStudent.getText()));
@@ -417,9 +386,10 @@ public class StudentRefactorActivity extends AppCompatActivity implements View.O
                     studentСardEntity.setPrugkiNorma(String.valueOf(editTextprugkiNorma.getText()));
                     studentСardEntity.setPrugkiFact(String.valueOf(editTextprugkiFact.getText()));
                     studentСardEntity.setReiting("0");
+                    studentСardEntity.setDataPosicheniy(studentСardEntity.getDataPosicheniy());
+
 
                     if (filePut != null) {
-
 
                         StorageReference mStorageRef = FirebaseStorage.getInstance().getReferenceFromUrl(studentСardEntity.getUrlStudentFotoCard());
                         mStorageRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -470,14 +440,13 @@ public class StudentRefactorActivity extends AppCompatActivity implements View.O
                     }
 
                     Toast.makeText(view.getContext(), "добавлен тренер \n" + editTextnameStudent.getText(), Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(this, StudentListActivity.class);
+                    Intent intent = new Intent(this, StudentActivity.class);
                     startActivity(intent);
                     finish();
                 }
 
                 break;
             }
-
 
         }
     }

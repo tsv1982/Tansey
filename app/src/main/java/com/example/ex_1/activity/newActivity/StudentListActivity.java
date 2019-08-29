@@ -132,7 +132,6 @@ public class StudentListActivity extends AppCompatActivity implements View.OnCli
             }
         });
 
-
     }
 
     @Override
@@ -200,6 +199,7 @@ public class StudentListActivity extends AppCompatActivity implements View.OnCli
 
                 Intent intent = new Intent(this, StudentRefactorActivity.class);
                 startActivity(intent);
+                finish();
                 break;
             }
             case R.id.btn_ADD_Prosmotr_Student01: {
