@@ -75,7 +75,7 @@ public class StudentBoxAdapter extends BaseAdapter {
         // пишем позицию
         cbBuy.setTag(position);
         // заполняем данными из товаров: в корзине или нет
-        cbBuy.setChecked(false);
+        cbBuy.setChecked(studentCardEntityArray.get(position).getIsChecket());
         return view;
     }
 
@@ -86,19 +86,10 @@ public class StudentBoxAdapter extends BaseAdapter {
     // обработчик для чекбоксов
     OnCheckedChangeListener myCheckChangeList = new OnCheckedChangeListener() {
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//            SimpleDateFormat sdf = new SimpleDateFormat("yyyy MM dd");
-//            String currentDateandTime = sdf.format(new Date());
-//            studentСardEntity.setDate(currentDateandTime);
+
             studentCardEntityArray.get((Integer) buttonView.getTag()).setChecket(isChecked);
             reternStudentArray.add(studentCardEntityArray.get((Integer) buttonView.getTag()));
 
-
-//            System.out.println(buttonView.getTag());
-//            System.out.println(studentCardEntityArray.get((Integer) buttonView.getTag()).getNameStudent());
-//            System.out.println(buttonView.isChecked());
-//            System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  " + currentDateandTime);
-            // меняем данные товара (в корзине или нет)
-//            getProduct((Integer) buttonView.getTag()).getPrice() = isChecked;
         }
     };
 }

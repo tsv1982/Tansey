@@ -30,8 +30,10 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 public class StudentChekActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -71,31 +73,28 @@ public class StudentChekActivity extends AppCompatActivity implements View.OnCli
         nameGroupSave = sharedPreferences.getString("saveIdGroup", "");
 
         boxAdapter = new StudentBoxAdapter(this, (ArrayList<StudentСardEntity>) studentСardArray);
+        listViewStudentChek = findViewById(R.id.lvMain222);
+        listViewStudentChek.setAdapter(boxAdapter);
+
 
         btnChekAddDate = findViewById(R.id.bntChekDateAdd);
         btnChekAddDate.setOnClickListener(this);
 
-        // настраиваем список
-        listViewStudentChek = findViewById(R.id.lvMain222);
-        listViewStudentChek.setAdapter(boxAdapter);
-
         Calendar aDate = new GregorianCalendar(Locale.getDefault());
         monts = (aDate.get(Calendar.MONTH) + 1);
-        day = aDate.get(Calendar.DATE);
+        day = aDate.get(Calendar.DATE );
         year = aDate.get(Calendar.YEAR);
 
 
         for (int i = 1; i <= getMondayDay(monts, year); i++) {
             dayName.add(String.valueOf(i));
         }
-
-
         spinnerDay = findViewById(R.id.TV_Day_Kalendar_Cheked);
         adapterSpinerDay = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, dayName);
         adapterSpinerDay.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerDay.getBackground().setColorFilter(getResources().getColor(R.color.colorText), PorterDuff.Mode.SRC_ATOP);
         spinnerDay.setAdapter(adapterSpinerDay);
-        spinnerDay.setSelection(day);
+        spinnerDay.setSelection(day-1);
         spinnerDay.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -108,7 +107,6 @@ public class StudentChekActivity extends AppCompatActivity implements View.OnCli
             public void onNothingSelected(AdapterView<?> arg0) {
             }
         });
-
 
         spinnerMonts = findViewById(R.id.TV_Mounts_Kalendar_Cheked);
         adapterSpinerMonts = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, montsName);
@@ -133,7 +131,6 @@ public class StudentChekActivity extends AppCompatActivity implements View.OnCli
             int a = 2018 + i;
             yearsName.add(String.valueOf(a));
         }
-
         spinnerYears = findViewById(R.id.TV_Year_Kalendar_Cheked);
         adapterSpinerYears = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, yearsName);
         adapterSpinerYears.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -202,9 +199,8 @@ public class StudentChekActivity extends AppCompatActivity implements View.OnCli
                 ArrayList<StudentСardEntity> array = boxAdapter.getReternStudentArray();
                 for (int i = 0; i < array.size(); i++) {
                     StudentСardEntity studentСardEntity = boxAdapter.getReternStudentArray().get(i);
-                    databaseReference.child(studentСardEntity.getIdstudent()).removeValue();
 
-                    addJson(studentСardEntity);
+                    addJson(studentСardEntity.getIdstudent(),studentСardEntity);
                     Intent intent = new Intent(this, StudentActivity.class);
                     startActivity(intent);
                     finish();
@@ -214,7 +210,7 @@ public class StudentChekActivity extends AppCompatActivity implements View.OnCli
         }
     }
 
-    private void addJson(StudentСardEntity studentСardEntity) {   //  c EDIT TEXT парсим JSON
+    private void addJson(String id, StudentСardEntity studentСardEntity) {   //  c EDIT TEXT парсим JSON
         String jsonAddDate = new Gson().toJson(new DateEntity(
                 day, monts, year));
         String jsonAdd = new Gson().toJson(new StudentСardEntity(
@@ -248,7 +244,11 @@ public class StudentChekActivity extends AppCompatActivity implements View.OnCli
 
         studentСardEntity.setDataPosicheniy(jsonAddDate);
 
-        databaseReference.push().setValue(jsonAdd);
+//        databaseReference.push().setValue(jsonAdd);
+
+        Map<String, Object> childUpdates = new HashMap<>();
+        childUpdates.put(id, jsonAdd);
+        databaseReference.updateChildren(childUpdates);
     }
 
     public static int getMondayDay(int m, int y) {
