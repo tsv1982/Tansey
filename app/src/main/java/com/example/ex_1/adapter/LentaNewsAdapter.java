@@ -133,10 +133,6 @@ public class LentaNewsAdapter extends ArrayAdapter<LentaNewsEntity> {
             }
         });
 
-        for (int i = 0; i < 5; i++) {
-
-
-        }
         textViewPlusFoto.setText("+ " + (lentaNewsEntity.getTime())); // количество фото
 
         ImageNewsEntity imageNewsEntity = new ImageNewsEntity(lentaNewsEntity.getUrlPictureNews1());

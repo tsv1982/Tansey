@@ -230,7 +230,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 Intent intent;
                 if (utilZaprosov.hasConnection(this)) {
 //                    intent = new Intent(this, ShopActivity.class);
-                    intent = new Intent(this, AddLentaNewsActivity.class);
+                    intent = new Intent(this, LentaAddNewsActivity.class);
                     startActivity(intent);
                 }
                 break;

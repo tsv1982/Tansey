@@ -9,7 +9,6 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.MotionEvent;
@@ -39,8 +38,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-
-public class AddLentaNewsActivity extends AppCompatActivity implements View.OnClickListener {
+public class LentaAddNewsActivity extends AppCompatActivity implements View.OnClickListener {
 
     private LentaNewsEntity lentaNewsEntity = new LentaNewsEntity();
 
@@ -61,12 +59,12 @@ public class AddLentaNewsActivity extends AppCompatActivity implements View.OnCl
     private Button btnAddTrener;
     private Button btnGetFotoTrener1;
 
-    ArrayList<String> arrayListPaht = new ArrayList<>();
-    ArrayList<String> arrayListUrl = new ArrayList<>();
+    private ArrayList<String> arrayListPaht = new ArrayList<>();
+    private ArrayList<String> arrayListUrl = new ArrayList<>();
 
-    int count = 0;
-    volatile int ii = 1;
-    String s1ListFotoUrl = "";
+    private int count = 0;
+    private volatile int ii = 1;
+    private String s1ListFotoUrl = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,25 +89,6 @@ public class AddLentaNewsActivity extends AppCompatActivity implements View.OnCl
         text = findViewById(R.id.ET_Text_Lenta_News1);
         authorNews = findViewById(R.id.ET_Autor_Lenta_News1);
 
-
-    }
-
-    private void addJson(LentaNewsEntity lentaNewsEntity) {   //  c EDIT TEXT парсим JSON
-
-        String jsonAdd = new Gson().toJson(new LentaNewsEntity(
-                lentaNewsEntity.getIdlentaNews(),
-                lentaNewsEntity.getNameNews(),
-                lentaNewsEntity.getData(),
-                lentaNewsEntity.getTime(),
-                lentaNewsEntity.getText(),
-                lentaNewsEntity.getAuthorNews(),
-                lentaNewsEntity.getUrlPictureNews1(),
-                lentaNewsEntity.getUrlPictureNews2(),
-                lentaNewsEntity.getUrlPictureNews3(),
-                lentaNewsEntity.getUrlPictureNews4(),
-                lentaNewsEntity.getUrlPictureNews5()));
-
-        databaseReference.push().setValue(jsonAdd);
     }
 
     @Override
@@ -124,7 +103,6 @@ public class AddLentaNewsActivity extends AppCompatActivity implements View.OnCl
             cursor.moveToFirst();
             int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
             String picturePath = cursor.getString(columnIndex);
-
 
             if (count == 0) {
                 arrayListPaht.add(picturePath);
@@ -166,14 +144,30 @@ public class AddLentaNewsActivity extends AppCompatActivity implements View.OnCl
                         }
                     }
                 }
-
             }
-
             cursor.close();
         }
     }
 
-    void addFoto(String s, String nameF) {
+    private void addJson(LentaNewsEntity lentaNewsEntity) {   //  c EDIT TEXT парсим JSON
+
+        String jsonAdd = new Gson().toJson(new LentaNewsEntity(
+                lentaNewsEntity.getIdlentaNews(),
+                lentaNewsEntity.getNameNews(),
+                lentaNewsEntity.getData(),
+                lentaNewsEntity.getTime(),
+                lentaNewsEntity.getText(),
+                lentaNewsEntity.getAuthorNews(),
+                lentaNewsEntity.getUrlPictureNews1(),
+                lentaNewsEntity.getUrlPictureNews2(),
+                lentaNewsEntity.getUrlPictureNews3(),
+                lentaNewsEntity.getUrlPictureNews4(),
+                lentaNewsEntity.getUrlPictureNews5()));
+
+        databaseReference.push().setValue(jsonAdd);
+    }
+
+    private void addFoto(String s, String nameF) {
         File destinationDirectory = new File(this.getCacheDir().getAbsolutePath());
         String filePath = SiliCompressor.with(this).compress(s, destinationDirectory);
         Uri file = Uri.fromFile(new File(filePath));
@@ -187,27 +181,19 @@ public class AddLentaNewsActivity extends AppCompatActivity implements View.OnCl
                             @Override
                             public void onSuccess(Uri uri) {
 
-//                                lentaNewsEntity.setUrlPictureNews1(
-//                                        lentaNewsEntity.getUrlPictureNews1() + "," + uri);
                                 arrayListUrl.add(String.valueOf(uri));
-
                                 if (ii == arrayListPaht.size()) {
-
                                     for (int i = 0; i < arrayListUrl.size(); i++) {
                                         s1ListFotoUrl = s1ListFotoUrl + "," + arrayListUrl.get(i);
                                     }
                                     lentaNewsEntity.setUrlPictureNews1(s1ListFotoUrl);
                                     addJson(lentaNewsEntity);
                                 }
-
                                 ii++;
-
-
                             }
 
                         });
                         finish();
-
                         return;
                     }
                 })
@@ -220,7 +206,7 @@ public class AddLentaNewsActivity extends AppCompatActivity implements View.OnCl
                 });
     }
 
-    private void slep() {              // assyngron адача
+    private void slep() {
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
@@ -247,16 +233,15 @@ public class AddLentaNewsActivity extends AppCompatActivity implements View.OnCl
                     lentaNewsEntity.setText(String.valueOf(text.getText()));
                     lentaNewsEntity.setAuthorNews(String.valueOf(authorNews.getText()));
 
-
                     for (int i = 0; i < arrayListPaht.size(); i++) {
                         addFoto(arrayListPaht.get(i), String.valueOf(i));
                         slep();
                     }
 
                     Toast.makeText(view.getContext(), "добавлен тренер \n" + nameNews.getText(), Toast.LENGTH_LONG).show();
-//                    Intent intent = new Intent(this, TrenerActivity.class);
-//                    startActivity(intent);
-//                    finish();
+                    Intent intent = new Intent(this, LentaNewsActivity.class);
+                    startActivity(intent);
+                    finish();
                 }
                 break;
             }
@@ -266,11 +251,8 @@ public class AddLentaNewsActivity extends AppCompatActivity implements View.OnCl
                 startActivityForResult(intent, 101);
                 break;
             }
-
-
         }
     }
-
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {   // для удаления фокуса при клике на пустое место

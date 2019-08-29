@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/error_user_id"
     android:orientation="vertical"
-    tools:context=".activity.newActivity.AddLentaNewsActivity">
+    tools:context=".activity.newActivity.LentaAddNewsActivity">
 
     <ScrollView
         android:layout_width="match_parent"

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="@drawable/error_user_id"
+android:orientation="vertical"
+tools:context=".activity.newActivity.LentaNewsRefactorActivity">
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <EditText
+            android:id="@+id/ET_Lenta_News_Name1_Refactor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="тема новости"
+            android:textColor="@color/colorText" />
+
+        <EditText
+            android:id="@+id/ET_Text_Lenta_News1_Refactor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Text новости"
+            android:textColor="@color/colorText" />
+
+        <EditText
+            android:id="@+id/ET_Autor_Lenta_News1_Refactor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="автор новости"
+            android:textColor="@color/colorText" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/IV_Lenta_News_image_Add_1_Refactor"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:layout_height="78dp" />
+
+                <ImageView
+                    android:id="@+id/IV_Lenta_News_image_Add_2_Refactor"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:layout_height="78dp" />
+
+                <ImageView
+                    android:id="@+id/IV_Lenta_News_image_Add_3_Refactor"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:layout_height="78dp" />
+
+                <ImageView
+                    android:id="@+id/IV_Lenta_News_image_Add_4_Refactor"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:layout_height="78dp" />
+
+                <ImageView
+                    android:id="@+id/IV_Lenta_News_image_Add_5_Refactor"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:layout_height="78dp" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_getPahsFotoLentaNews_Refactor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1"
+                android:background="@drawable/btn_open_gal" />
+
+            <Button
+                android:id="@+id/btn_ADD_Lenta_News11_Refactor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1"
+                android:background="@drawable/btn_chench" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</ScrollView>
+
+</LinearLayout>

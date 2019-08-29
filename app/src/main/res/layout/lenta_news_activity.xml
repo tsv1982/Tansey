@@ -41,8 +41,20 @@ android:orientation="vertical">
         android:textColor="@color/colorEnterId" />
 </LinearLayout>
 
+    <TextView
+        android:id="@+id/TV_Get_LentaNews"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:textAlignment="center"
+        android:textColor="@color/colorText"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
 <ListView
     android:id="@+id/LV_LentaNews"
+    android:layout_marginTop="20dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
