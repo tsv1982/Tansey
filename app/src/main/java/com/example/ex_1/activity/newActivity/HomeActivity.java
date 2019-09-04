@@ -19,8 +19,6 @@ import android.widget.Button;
 
 import com.example.ex_1.Entity.StudentСardEntity;
 import com.example.ex_1.R;
-import com.example.ex_1.activity.KalendarActivity;
-import com.example.ex_1.activity.PaymentActivity;
 import com.example.ex_1.java.UtilZaprosov;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -53,15 +51,14 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.home_activity);
 
         if (isMyServiceRunning(MyService.class)){
 
         }else {
+//            startService(new Intent(this, MyService.class));
             startService(new Intent(getWindow().getContext(), MyService.class));
         }
-
-
 
 
         sharedPreferences = getSharedPreferences("MyPref", MODE_PRIVATE);   // вытаскиваем переменную
@@ -137,6 +134,9 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
+
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -205,7 +205,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btnKalendar: {
                 Intent intent;
                 if (utilZaprosov.hasConnection(this)) {
-                    intent = new Intent(this, KalendarActivity.class);
+                    intent = new Intent(this, KalendarSobActivity.class);
                     startActivity(intent);
                 }
                 break;
@@ -213,8 +213,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btnPay: {
                 Intent intent;
                 if (utilZaprosov.hasConnection(this)) {
-                    intent = new Intent(this, PaymentActivity.class);
-                    startActivity(intent);
+//                    intent = new Intent(this, PaymentActivity.class);
+//                    startActivity(intent);
                 }
                 break;
             }
@@ -229,7 +229,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_shop: {
                 Intent intent;
                 if (utilZaprosov.hasConnection(this)) {
-//                    intent = new Intent(this, ShopActivity.class);
                     intent = new Intent(this, ShopActivity.class);
                     startActivity(intent);
                 }
@@ -255,4 +254,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
         }
     }
+
+
 }

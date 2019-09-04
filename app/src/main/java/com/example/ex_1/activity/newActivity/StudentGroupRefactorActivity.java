@@ -198,9 +198,10 @@ public class StudentGroupRefactorActivity extends AppCompatActivity implements V
                 addJson(studentGroupEntity);
 
                 Toast.makeText(view.getContext(), "группа измененная \n" + studentGroupEntity.getNameGroup(), Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(this, StudentActivity.class);
-                startActivity(intent);
+                Intent intent = new Intent(this, StudentGroupActivity.class);
                 finish();
+                startActivity(intent);
+
             }
         }
 

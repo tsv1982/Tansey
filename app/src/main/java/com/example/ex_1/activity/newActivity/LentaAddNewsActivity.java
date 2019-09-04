@@ -240,8 +240,8 @@ public class LentaAddNewsActivity extends AppCompatActivity implements View.OnCl
 
                     Toast.makeText(view.getContext(), "добавлен тренер \n" + nameNews.getText(), Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(this, LentaNewsActivity.class);
-                    startActivity(intent);
                     finish();
+                    startActivity(intent);
                 }
                 break;
             }

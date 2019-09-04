@@ -1,0 +1,47 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/TV_text_sob"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:text="текст события"
+        android:textColor="@color/colorText"
+        android:textSize="18dp"
+        android:textStyle="bold|italic" />
+
+
+        <TextView
+            android:id="@+id/TV_IsSobbb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorText2"
+            android:layout_marginLeft="11dp"
+            android:layout_gravity="left"
+            android:text="участвую   "
+            android:textSize="14dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/TV_Date_sob"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="10.10.10"
+            android:layout_gravity="right"
+            android:textColor="@color/colorText"
+            android:textSize="12dp"
+            android:textStyle="bold" />
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#ffffff" />
+
+
+</LinearLayout>

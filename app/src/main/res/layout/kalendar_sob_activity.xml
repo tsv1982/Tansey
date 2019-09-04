@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".activity.newActivity.KalendarSobActivity"
+    android:background="@drawable/error_user_id"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnAddSobutiy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/colorPrimaryDark"
+            android:text="добавить"
+            android:textColor="@color/colorEnterId" />
+
+        <Button
+            android:id="@+id/btnRefactorSobutiy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/colorPrimaryDark"
+            android:text="изменить"
+            android:textColor="@color/colorEnterId" />
+
+        <Button
+            android:id="@+id/btnDeleteSobutiy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/colorPrimaryDark"
+            android:text="удалить"
+            android:textColor="@color/colorEnterId" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnProsmotr_Sob"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:text="просмотр списка участников"
+        android:textColor="@color/colorEnterId" />
+
+
+    <TextView
+        android:id="@+id/TV_Get_Sobutiy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:textAlignment="center"
+        android:textColor="@color/colorText"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <View android:background="#ffffff"
+        android:layout_width = "match_parent"
+        android:layout_marginTop="15dp"
+        android:layout_height="1dp"/>
+
+    <ListView
+        android:id="@+id/LV_Sobutiy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </ListView>
+
+</LinearLayout>

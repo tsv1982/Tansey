@@ -3,6 +3,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.ex_1">
 
+    <permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,9 +22,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activity.newActivity.LentaNewsRefactorActivity"
-        android:label="редактировать ленту новостей"
-        android:parentActivityName=".activity.newActivity.LentaNewsRefactorActivity" />
+        <activity android:name=".activity.newActivity.KalendarSobAddActivity"
+            android:label="добавить событие"
+            android:parentActivityName=".activity.newActivity.KalendarSobAddActivity" />
+        <activity
+            android:name=".activity.newActivity.LentaNewsRefactorActivity"
+            android:label="редактировать ленту новостей"
+            android:parentActivityName=".activity.newActivity.LentaNewsActivity" />
         <activity
             android:name=".activity.newActivity.LentaNewsActivity"
             android:label="лента новостей"
@@ -95,17 +110,13 @@
             android:label="@string/app_name"
             android:parentActivityName=".activity.newActivity.ErrorUserActivity" />
         <activity
-            android:name=".activity.PaymentActivity"
-            android:label="Оплата"
-            android:parentActivityName=".activity.PaymentActivity" />
-        <activity
             android:name=".activity.newActivity.MessageActivity"
             android:label="Сообщение"
             android:parentActivityName=".activity.newActivity.MessageActivity" />
         <activity
-            android:name=".activity.KalendarActivity"
+            android:name=".activity.newActivity.KalendarSobActivity"
             android:label="Календарь событий"
-            android:parentActivityName=".activity.KalendarActivity" />
+            android:parentActivityName=".activity.newActivity.KalendarSobActivity" />
         <activity
             android:name=".activity.newActivity.StudentKartaPeopleActivity"
             android:label="Карта ученика"
@@ -126,15 +137,5 @@
             android:enabled="true"
             android:exported="true" />
     </application>
-    <permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
-    <uses-permission android:name="android.permission.VIBRATE" />
-
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
 </manifest>

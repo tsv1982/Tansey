@@ -16,7 +16,6 @@ import android.widget.TextView;
 
 import com.example.ex_1.Entity.StudentСardEntity;
 import com.example.ex_1.R;
-import com.example.ex_1.activity.PaymentActivity;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -199,8 +198,8 @@ public class StudentKartaPeopleActivity extends AppCompatActivity implements Vie
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btnPeoplePay_student: {
-                Intent intent = new Intent(this, PaymentActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(this, PaymentActivity.class);
+//                startActivity(intent);
                 finish();
                 break;
             }

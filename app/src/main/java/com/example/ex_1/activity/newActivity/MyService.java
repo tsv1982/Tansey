@@ -1,5 +1,7 @@
 package com.example.ex_1.activity.newActivity;
 
+import android.annotation.SuppressLint;
+import android.app.ActivityManager;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -23,9 +25,13 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+
 public class MyService extends Service {
 
+    Context context;
+
     public MyService() {
+        context = this;
     }
 
     private NotificationCompat.Builder notBuilder;
@@ -43,29 +49,11 @@ public class MyService extends Service {
         this.notBuilder = new NotificationCompat.Builder(this);
         this.notBuilder.setAutoCancel(true);
 
+        Toast.makeText(context, "onCreate Servis", Toast.LENGTH_LONG).show();
+
         aBoolean = false;
 
         pauseMessage();
-    }
-
-    void pauseMessage() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(10000);
-                    aBoolean = true;
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
-    }
-
-    @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-
-
 
         databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
@@ -102,11 +90,39 @@ public class MyService extends Service {
 
             }
         });
+    }
 
-        return super.onStartCommand(intent, flags, startId);
-//        return Service.START_REDELIVER_INTENT;
+    void pauseMessage() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(100);
+                    aBoolean = true;
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+
 
     }
+
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+
+        Toast.makeText(context, "on Start Servis", Toast.LENGTH_LONG).show();
+
+
+
+
+//        return super.onStartCommand(intent, START_REDELIVER_INTENT, startId);
+        return Service.START_REDELIVER_INTENT;
+
+    }
+
+
 
 
     void sendNotif(String s) {
@@ -127,25 +143,26 @@ public class MyService extends Service {
 
         sharedPreferences = getSharedPreferences("MyPref", MODE_PRIVATE);
 
-            long mills = 1000L;
-            Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-            if (vibrator.hasVibrator()) {
-                vibrator.vibrate(mills);
-            }
+        long mills = 1000L;
+        Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        if (vibrator.hasVibrator()) {
+            vibrator.vibrate(mills);
+        }
 
     }
 
+
+    @Override
     public IBinder onBind(Intent intent) {
-//        startService(new Intent(getWindow().getContext(), MyService.class));
-//        startService(new Intent(this, MyService.class));
+        Toast.makeText(context, "onBind Servis", Toast.LENGTH_LONG).show();
         return null;
     }
 
 
     @Override
     public void onDestroy() {
-//        startService(new Intent(this, MyService.class));
-        Toast.makeText(this, "destroy", Toast.LENGTH_LONG).show();
+        Toast.makeText(context, "onDestroy Servis", Toast.LENGTH_LONG).show();
+//            context.startService(new Intent());
         super.onDestroy();
     }
 }

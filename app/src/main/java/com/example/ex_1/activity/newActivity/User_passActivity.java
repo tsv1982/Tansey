@@ -53,9 +53,16 @@ public class User_passActivity extends AppCompatActivity implements View.OnClick
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_pass);
+        setContentView(R.layout.user_pass_activity);
 
         // TODO: 23.08.19 проверка на админа при новой установке должно быть  user pass
+
+        if (isMyServiceRunning(MyService.class)) {
+
+        } else {
+            startService(new Intent(getWindow().getContext(), MyService.class));
+        }
+
 
         bar = getSupportActionBar();
         bar.setBackgroundDrawable(new ColorDrawable(Color.BLACK));    // задаем цвет бара
@@ -75,6 +82,7 @@ public class User_passActivity extends AppCompatActivity implements View.OnClick
                 String s1 = String.valueOf(dataSnapshot.getValue());
 
                 StudentСardEntity studentСardEntity = new Gson().fromJson(s1, StudentСardEntity.class);
+                studentСardEntity.setIdstudent(dataSnapshot.getKey());
                 studentСardEntityArrayList.add(studentСardEntity);
 
             }
@@ -149,73 +157,76 @@ public class User_passActivity extends AppCompatActivity implements View.OnClick
                 if (utilZaprosov.hasConnection(this)) {
 
 
+                    for (int i = 0; i < trenierEntityArrayList.size(); i++) {
+                        if (trenierEntityArrayList.get(i).getIdEnterUser().equals(String.valueOf(editText.getText()))) {
 
-                for (int i = 0; i < trenierEntityArrayList.size(); i++) {
-                    if (trenierEntityArrayList.get(i).getIdEnterUser().equals(String.valueOf(editText.getText()))) {
+                            editor = sharedPreferences.edit();
+                            editor.putBoolean("passSave", true);
+                            editor.apply();
 
-                        editor = sharedPreferences.edit();
-                        editor.putBoolean("passSave", true);
-                        editor.apply();
+                            editor = sharedPreferences.edit();
+                            editor.putString("passSaveIdEnterUser", trenierEntityArrayList.get(i).getIdEnterUser());
 
-                        editor = sharedPreferences.edit();
-                        editor.putString("passSaveIdEnterUser", trenierEntityArrayList.get(i).getIdEnterUser());
+                            editor.apply();
 
-                        editor.apply();
+                            editor = sharedPreferences.edit();
+                            editor.putString("passSaveUserOrAdmin", trenierEntityArrayList.get(i).getAdminOrUser());
+                            editor.apply();
 
-                        editor = sharedPreferences.edit();
-                        editor.putString("passSaveUserOrAdmin", trenierEntityArrayList.get(i).getAdminOrUser());
-                        editor.apply();
-
-                        isTrueEnter = false;
+                            isTrueEnter = false;
 
 
-                        if (isMyServiceRunning(MyService.class)) {
-                            startService(new Intent(getWindow().getContext(), MyService.class));
+                            if (isMyServiceRunning(MyService.class)) {
+                                startService(new Intent(getWindow().getContext(), MyService.class));
+                            }
+
+                            Intent intent = new Intent(this, HomeActivity.class);
+                            startActivity(intent);
+                            finish();
+                            return;
                         }
-
-                        Intent intent = new Intent(this, HomeActivity.class);
-                        startActivity(intent);
-                        finish();
-                        return;
                     }
-                }
 
 
-                for (int i = 0; i < studentСardEntityArrayList.size(); i++) {
-                    if (studentСardEntityArrayList.get(i).getIdEnterStudent().equals(String.valueOf(editText.getText()))) {
+                    for (int i = 0; i < studentСardEntityArrayList.size(); i++) {
+                        if (studentСardEntityArrayList.get(i).getIdEnterStudent().equals(String.valueOf(editText.getText()))) {
 
-                        editor = sharedPreferences.edit();
-                        editor.putBoolean("passSave", true);
-                        editor.apply();
+                            editor = sharedPreferences.edit();
+                            editor.putBoolean("passSave", true);
+                            editor.apply();
 
-                        editor = sharedPreferences.edit();
-                        editor.putString("passSaveIdEnterUser", studentСardEntityArrayList.get(i).getIdEnterStudent());
-                        editor.apply();
+                            editor = sharedPreferences.edit();
+                            editor.putString("SaveIdUser", studentСardEntityArrayList.get(i).getIdstudent());
+                            editor.apply();
 
-                        editor = sharedPreferences.edit();
-                        editor.putString("passSaveUserOrAdmin", studentСardEntityArrayList.get(i).getUserOrAdmin());
-                        editor.apply();
+                            editor = sharedPreferences.edit();
+                            editor.putString("passSaveIdEnterUser", studentСardEntityArrayList.get(i).getIdEnterStudent());
+                            editor.apply();
 
-                        isTrueEnter = false;
+                            editor = sharedPreferences.edit();
+                            editor.putString("passSaveUserOrAdmin", studentСardEntityArrayList.get(i).getUserOrAdmin());
+                            editor.apply();
+
+                            isTrueEnter = false;
 
 //                        startService(new Intent(this, MyService.class));
-                       if (isMyServiceRunning(MyService.class)) {
-                           startService(new Intent(getWindow().getContext(), MyService.class));
-                       }
-                        Intent intent = new Intent(this, HomeActivity.class);
+                            if (isMyServiceRunning(MyService.class)) {
+                                startService(new Intent(getWindow().getContext(), MyService.class));
+                            }
+                            Intent intent = new Intent(this, HomeActivity.class);
 
-                        startActivity(intent);
-                        finish();
-                        return;
+                            startActivity(intent);
+                            finish();
+                            return;
+                        }
                     }
-                }
 
-                if (isTrueEnter) {
-                    Intent intent = new Intent(this, ErrorUserActivity.class);
-                    startActivity(intent);
+                    if (isTrueEnter) {
+                        Intent intent = new Intent(this, ErrorUserActivity.class);
+                        startActivity(intent);
+                    }
+                    break;
                 }
-                break;
-            }
             }
 
             case R.id.editText: {

@@ -440,9 +440,10 @@ public class StudentRefactorActivity extends AppCompatActivity implements View.O
                     }
 
                     Toast.makeText(view.getContext(), "добавлен тренер \n" + editTextnameStudent.getText(), Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(this, StudentActivity.class);
-                    startActivity(intent);
+                    Intent intent = new Intent(this, StudentListActivity.class);
                     finish();
+                    startActivity(intent);
+
                 }
 
                 break;

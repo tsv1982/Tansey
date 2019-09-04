@@ -167,8 +167,9 @@ public class LentaNewsActivity extends AppCompatActivity implements View.OnClick
             case R.id.btnAdd_LentaNews: {    //  менять на активити адд шоп
                 if (utilZaprosov.hasConnection(this)) {
                     Intent intent = new Intent(this, LentaAddNewsActivity.class);
-                    startActivity(intent);   // запуск активити добавления тренера
                     finish();
+                    startActivity(intent);   // запуск активити добавления тренера
+
                 }
                 break;
             }
@@ -243,8 +244,9 @@ public class LentaNewsActivity extends AppCompatActivity implements View.OnClick
                         editor.apply();
 
                         Intent intent = new Intent(view.getContext(), LentaNewsRefactorActivity.class);
-                        startActivity(intent);
                         finish();
+                        startActivity(intent);
+
                     }
                 }
                 break;

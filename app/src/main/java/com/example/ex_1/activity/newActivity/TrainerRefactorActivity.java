@@ -300,9 +300,10 @@ public class TrainerRefactorActivity extends AppCompatActivity implements View.O
                 }
 
                 Toast.makeText(view.getContext(), "изменено \n" + editTextTrenerNameRefactor.getText(), Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(this, HomeActivity.class);
-                startActivity(intent);
+                Intent intent = new Intent(this, TrenerActivity.class);
                 finish();
+                startActivity(intent);
+
                 break;
             }
             case R.id.btn_getPahsFotoTrener1_Refactor: {

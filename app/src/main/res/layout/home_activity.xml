@@ -50,12 +50,13 @@
                 android:background="@drawable/btn_lenta_news" />
 
             <Button
-                android:id="@+id/btn_shop"
+                android:id="@+id/btnKalendar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
-                android:background="@drawable/btn_shop" />
-        </LinearLayout>
+                android:background="@drawable/btn_cal_sob" />
+
+           </LinearLayout>
 
     </LinearLayout>
 
@@ -122,18 +123,18 @@
             android:orientation="vertical">
 
             <Button
+                android:id="@+id/btn_shop"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:background="@drawable/btn_shop" />
+
+            <Button
                 android:id="@+id/btnPay"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
                 android:background="@drawable/btn_play" />
-
-            <Button
-                android:id="@+id/btnKalendar"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:background="@drawable/btn_cal_sob" />
         </LinearLayout>
 
     </LinearLayout>

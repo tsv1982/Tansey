@@ -411,9 +411,10 @@ public class LentaNewsRefactorActivity extends AppCompatActivity implements View
                 }
 
                 Toast.makeText(view.getContext(), "добавлен тренер \n" + nameNewsRefactor.getText(), Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(this, HomeActivity.class);
-                startActivity(intent);
+                Intent intent = new Intent(this, LentaNewsActivity.class);
                 finish();
+                startActivity(intent);
+
 
                 break;
             }
