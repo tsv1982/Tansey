@@ -22,7 +22,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activity.newActivity.KalendarSobAddActivity"
+        <activity android:name=".activity.newActivity.KalendarSobSmsGetActivity"></activity>
+        <activity
+            android:name=".activity.newActivity.KalendarSobRefaktorActivity"
+            android:label="изменить событие"
+            android:parentActivityName=".activity.newActivity.KalendarSobRefaktorActivity" />
+        <activity
+            android:name=".activity.newActivity.KalendarSobYasActivity"
+            android:label="список участников"
+            android:parentActivityName=".activity.newActivity.KalendarSobYasActivity" />
+        <activity
+            android:name=".activity.newActivity.KalendarSobAddActivity"
             android:label="добавить событие"
             android:parentActivityName=".activity.newActivity.KalendarSobAddActivity" />
         <activity

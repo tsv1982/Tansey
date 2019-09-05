@@ -5,6 +5,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ActivityManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -37,6 +39,8 @@ public class KalendarSobActivity extends AppCompatActivity implements View.OnCli
 
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference("sobutie");
+    private FirebaseDatabase firebaseDatabaseSMS = FirebaseDatabase.getInstance();
+    private DatabaseReference databaseReferenceSMS = firebaseDatabaseSMS.getReference("messagesSob");
 
     private SharedPreferences sharedPreferences;   // для сохранения позиции
     private SharedPreferences.Editor editor;
@@ -45,6 +49,8 @@ public class KalendarSobActivity extends AppCompatActivity implements View.OnCli
     private Button btnAddSobutiy;
     private Button btnDeleteSobutie;
     private Button btnRefactorSobutie;
+    private Button btnTVGetSobutiy;
+    private Button btnSendSms;
     private SobutieAdapterUser sobutieAdapterUser;
     private List<SobutieEntity> sobutieArray = new ArrayList();
     private TextView textViewGetSobutie;
@@ -52,11 +58,21 @@ public class KalendarSobActivity extends AppCompatActivity implements View.OnCli
     private String saveIdSobutie;
     private String adminOrUser;
     private String saveIdUser;
+    private String saveListIdUser;
+    private int countSms;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.kalendar_sob_activity);
+
+//        if (isMyServiceRunning(MyService.class)) {
+//
+//        } else {
+//            startService(new Intent(this, MyService.class));
+//            startService(new Intent(getWindow().getContext(), MyService.class));
+//        }
 
         btnAddSobutiy = findViewById(R.id.btnAddSobutiy);
         btnAddSobutiy.setOnClickListener(this);
@@ -64,6 +80,10 @@ public class KalendarSobActivity extends AppCompatActivity implements View.OnCli
         btnDeleteSobutie.setOnClickListener(this);
         btnRefactorSobutie = findViewById(R.id.btnRefactorSobutiy);
         btnRefactorSobutie.setOnClickListener(this);
+        btnTVGetSobutiy = findViewById(R.id.btnProsmotr_Sob);
+        btnTVGetSobutiy.setOnClickListener(this);
+        btnSendSms = findViewById(R.id.btnSend_sms_Sobutie);
+        btnSendSms.setOnClickListener(this);
 
         textViewGetSobutie = findViewById(R.id.TV_Get_Sobutiy);
 
@@ -76,16 +96,24 @@ public class KalendarSobActivity extends AppCompatActivity implements View.OnCli
             btnDeleteSobutie.setVisibility(View.VISIBLE);
             btnRefactorSobutie.setVisibility(View.VISIBLE);
             textViewGetSobutie.setVisibility(View.VISIBLE);
+            btnSendSms.setVisibility(View.VISIBLE);
+            btnTVGetSobutiy.setVisibility(View.VISIBLE);
+
+
         } else {
             btnAddSobutiy.setVisibility(View.GONE);
             btnDeleteSobutie.setVisibility(View.GONE);
             btnRefactorSobutie.setVisibility(View.GONE);
             textViewGetSobutie.setVisibility(View.GONE);
+            btnSendSms.setVisibility(View.GONE);
+            btnTVGetSobutiy.setVisibility(View.GONE);
         }
 
         listViewSobutie = findViewById(R.id.LV_Sobutiy);
         sobutieAdapterUser = new SobutieAdapterUser(this, R.layout.kalendar_sob_list, sobutieArray);
         listViewSobutie.setAdapter(sobutieAdapterUser);   // сетаем адаптер в листвиев
+
+
 
         listViewSobutie.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -93,9 +121,20 @@ public class KalendarSobActivity extends AppCompatActivity implements View.OnCli
                 position1 = position;
 
                 if (adminOrUser.equals("admin")) {
-                    textViewGetSobutie.setText(sobutieArray.get(position).getTextSobutie());
+
+                    String s = sobutieArray.get(position).getTextSobutie();
+                    if (s.length() > 30) {
+                        s = s.substring(0, 30) + " ..........";
+                    }
+
+
+                    textViewGetSobutie.setText(s);
                     saveIdSobutie = sobutieArray.get(position).getIdBDSobutie();
+                    saveListIdUser = sobutieArray.get(position).getIdUserYas();
                     textViewGetSobutie.setTextColor(getResources().getColor(R.color.colorText2));
+
+
+
                 } else {
                     user(v);
                 }
@@ -112,7 +151,8 @@ public class KalendarSobActivity extends AppCompatActivity implements View.OnCli
                 SobutieEntity sobutieEntity = new Gson().fromJson(s1, SobutieEntity.class);
                 sobutieEntity.setIdBDSobutie(dataSnapshot.getKey());                         // присваиваем id c базы
                 sobutieArray.add(sobutieEntity);
-                sobutieAdapterUser.notifyDataSetChanged();
+
+                 sobutieAdapterUser.notifyDataSetChanged();
 
             }
 
@@ -137,6 +177,45 @@ public class KalendarSobActivity extends AppCompatActivity implements View.OnCli
             }
         });
 
+        databaseReferenceSMS.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {  //вытаскиваем с базы
+
+                countSms++;
+
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+    private boolean isMyServiceRunning(Class<?> serviceClass) {
+        ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
+            if (serviceClass.getName().equals(service.service.getClassName())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private void addJsonYasOrNo(SobutieEntity sobutieEntity) {   //  c EDIT TEXT парсим JSON
@@ -172,16 +251,16 @@ public class KalendarSobActivity extends AppCompatActivity implements View.OnCli
 
         String s = "";
 
-            String[] arr = sobutieEntity.getIdUserYas().split(",");
+        String[] arr = sobutieEntity.getIdUserYas().split(",");
 
-            for (String ss : arr) {
-                if (ss.equals(saveIdUser)) {
+        for (String ss : arr) {
+            if (ss.equals(saveIdUser)) {
 
-                } else {
-                    s = s + ss;
-                }
-
+            } else {
+                s = s + ss;
             }
+
+        }
 
         String jsonAdd = new Gson().toJson(new SobutieEntity(
                 sobutieEntity.getIdBDSobutie(),
@@ -199,8 +278,7 @@ public class KalendarSobActivity extends AppCompatActivity implements View.OnCli
         boolean isSob = false;
         if (sobutieArray.get(position1).getIdUserYas() == null) {
             isSob = false;
-        }
-        else {
+        } else {
             String[] arr = sobutieArray.get(position1).getIdUserYas().split(",");
             for (String ss : arr) {
                 if (ss.equals(saveIdUser)) {
@@ -266,72 +344,98 @@ public class KalendarSobActivity extends AppCompatActivity implements View.OnCli
 
     }
 
+    private boolean tt(View view) {
+        if (textViewGetSobutie.getText().equals("")) {
+            Toast.makeText(view.getContext(), "не выбранно событие", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        return true;
+    }
+
     @Override
     public void onClick(final View view) {
 
         switch (view.getId()) {
             case R.id.btnAddSobutiy: {
                 Intent intent = new Intent(this, KalendarSobAddActivity.class);
-                startActivity(intent);   // запуск активити добавления тренера
                 finish();
+                startActivity(intent);   // запуск активити добавления тренера
                 break;
             }
-            case R.id.btnRefactorTrenet1: {
-                sharedPreferences = getSharedPreferences("MyPref", MODE_PRIVATE);
-                editor = sharedPreferences.edit();
-                editor.putString("saveIdRefactorTrener", saveIdSobutie);
-                editor.apply();
 
-                Intent intent = new Intent(this, TrainerRefactorActivity.class);
-                startActivity(intent);   // запуск активити добавления тренера
-                finish();
+            case R.id.btnRefactorSobutiy: {
+                if (tt(view)) {
+                    sharedPreferences = getSharedPreferences("MyPref", MODE_PRIVATE);
+                    editor = sharedPreferences.edit();
+                    editor.putString("saveIdRefactorSobutie", saveIdSobutie);
+                    editor.apply();
+                    Intent intent = new Intent(this, KalendarSobRefaktorActivity.class);
+                    finish();
+                    startActivity(intent);   // запуск активити добавления тренера
+                }
                 break;
             }
-//                case R.id.btnDeleteTrenet1: {
-//                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//                    builder.setTitle(Html.fromHtml("<font color='#91BFE9'>" + sobutieArray.get(position).getNameTener() + "</font>"))
-//                            .setIcon(R.drawable.logo)
-//                            .setCancelable(true)
-//                            .setPositiveButton("отмена", new DialogInterface.OnClickListener() {
-//                                @Override
-//                                public void onClick(DialogInterface dialog, int i) {
-//                                    dialog.cancel();
-//                                }
-//                            })
-//                            .setNegativeButton("удалить",
-//                                    new DialogInterface.OnClickListener() {
-//                                        public void onClick(DialogInterface dialog, int id) {
-////                                            databaseReference.child(sobutieArray.get(position).getIdtrainers()).removeValue();
-//
-////                                            mStorageRef = FirebaseStorage.getInstance().getReferenceFromUrl(sobutieArray.get(position).getUrlFotoTrener());
-////                                            mStorageRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-////                                                @Override
-////                                                public void onSuccess(Void aVoid) {
-//                                                     File deleted successfully
-////                                                }
-////                                            }).addOnFailureListener(new OnFailureListener() {
-////                                                @Override
-////                                                public void onFailure(@NonNull Exception exception) {
-//                                                     Uh-oh, an error occurred!
-////                                                }
-////                                            });
-//
-//                                            Toast.makeText(view.getContext(), "удаленный тренер \n" + sobutieArray.get(position).getNameTener(), Toast.LENGTH_LONG).show();
-//                                            sobutieAdapterUser.remove(sobutieArray.get(position));
-//                                            dialog.cancel();
-//                                        }
-//                                    });
-//                    AlertDialog alert = builder.create();
-//                    alert.show();
-//                    alert.getWindow().setBackgroundDrawableResource(R.drawable.error_user_id);
-//
-//                    Button nbuttonN = alert.getButton(DialogInterface.BUTTON_NEGATIVE);
-//                    nbuttonN.setTextColor(Color.RED);
-//
-//                    Button nbuttonP = alert.getButton(DialogInterface.BUTTON_POSITIVE);
-//                    nbuttonP.setTextColor(Color.BLUE);
-//                    break;
-//                }
+
+            case R.id.btnProsmotr_Sob: {
+                if (tt(view)) {
+                    editor = sharedPreferences.edit();
+                    editor.putString("saveIdListUser", saveListIdUser);
+                    editor.apply();
+                    Intent intent = new Intent(this, KalendarSobYasActivity.class);
+                    startActivity(intent);   // запуск активити добавления тренера
+                }
+                break;
+            }
+
+            case R.id.btnDeleteSobutiy: {
+                if (tt(view)) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    builder.setTitle(Html.fromHtml("<font color='#91BFE9'>" + sobutieArray.get(position1).getTextSobutie() + "</font>"))
+                            .setIcon(R.drawable.logo)
+                            .setCancelable(true)
+                            .setPositiveButton("отмена", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int i) {
+                                    dialog.cancel();
+                                }
+                            })
+                            .setNegativeButton("удалить",
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            databaseReference.child(sobutieArray.get(position1).getIdBDSobutie()).removeValue();
+
+                                            Toast.makeText(view.getContext(), "удаленно", Toast.LENGTH_LONG).show();
+                                            sobutieAdapterUser.remove(sobutieArray.get(position1));
+                                            sobutieAdapterUser.notifyDataSetChanged();
+                                            textViewGetSobutie.setText("");
+                                            dialog.cancel();
+                                        }
+                                    });
+                    AlertDialog alert = builder.create();
+                    alert.show();
+                    alert.getWindow().setBackgroundDrawableResource(R.drawable.error_user_id);
+
+                    Button nbuttonN = alert.getButton(DialogInterface.BUTTON_NEGATIVE);
+                    nbuttonN.setTextColor(Color.RED);
+
+                    Button nbuttonP = alert.getButton(DialogInterface.BUTTON_POSITIVE);
+                    nbuttonP.setTextColor(Color.BLUE);
+                }
+                break;
+            }
+
+            case R.id.btnSend_sms_Sobutie: {
+                if (tt(view)) {
+                    if (countSms > 50){
+                        databaseReferenceSMS.removeValue();
+                        countSms = 0;
+                    }
+                    databaseReferenceSMS.push().setValue(saveIdSobutie);
+                    Toast.makeText(view.getContext(), "запрос отравлен", Toast.LENGTH_LONG).show();
+                    textViewGetSobutie.setText("");
+                }
+                break;
+            }
         }
     }
 

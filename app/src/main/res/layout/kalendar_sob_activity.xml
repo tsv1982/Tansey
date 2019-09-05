@@ -49,6 +49,14 @@
         android:text="просмотр списка участников"
         android:textColor="@color/colorEnterId" />
 
+    <Button
+        android:id="@+id/btnSend_sms_Sobutie"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:text="отправить запрос"
+        android:textColor="@color/colorEnterId" />
+
 
     <TextView
         android:id="@+id/TV_Get_Sobutiy"

@@ -53,12 +53,12 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_activity);
 
-        if (isMyServiceRunning(MyService.class)){
-
-        }else {
+//        if (isMyServiceRunning(MyService.class)){
+//
+//        }else {
 //            startService(new Intent(this, MyService.class));
-            startService(new Intent(getWindow().getContext(), MyService.class));
-        }
+////            startService(new Intent(getWindow().getContext(), MyService.class));
+//        }
 
 
         sharedPreferences = getSharedPreferences("MyPref", MODE_PRIVATE);   // вытаскиваем переменную

@@ -62,23 +62,36 @@ public class SobutieAdapterUser extends ArrayAdapter<SobutieEntity> {
         TextView textSobutiy = view.findViewById(R.id.TV_text_sob);
         TextView dateSobutiy = view.findViewById(R.id.TV_Date_sob);
         TextView textView = view.findViewById(R.id.TV_IsSobbb);
+        TextView textViewTVCountStudentSobutiy = view.findViewById(R.id.TV_cout_Sobutie);
 
         sobutieEntity = SobutieList.get(position);
 
-        textSobutiy.setText(sobutieEntity.getTextSobutie());
+        String s = sobutieEntity.getTextSobutie();
+        if (s.length() > 30) {
+            s = s.substring(0, 30) + " ..........";
+        }
+
+        textSobutiy.setText(s);
         dateSobutiy.setText(sobutieEntity.getDataSobutie());
 
-       textView.setVisibility(view.GONE);
-        if (sobutieEntity.getIdUserYas() == null) {
 
-        }
-        else {
+        textView.setVisibility(view.GONE);
+
+        if (sobutieEntity.getIdUserYas() == null) {
+            textViewTVCountStudentSobutiy.setText("количество учеников = " + "0");
+        } else {
             String[] arr = sobutieEntity.getIdUserYas().split(",");
+            textViewTVCountStudentSobutiy.setText("количество учеников = " + arr.length);
             for (String ss : arr) {
                 if (ss.equals(saveIdUser)) {
                     textView.setVisibility(view.VISIBLE);
                 }
             }
+        }
+
+        if (adminOrUser.equals("admin")) {
+            textView.setVisibility(view.GONE);
+
         }
 
 

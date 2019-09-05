@@ -16,26 +16,36 @@
         android:textStyle="bold|italic" />
 
 
-        <TextView
-            android:id="@+id/TV_IsSobbb"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/colorText2"
-            android:layout_marginLeft="11dp"
-            android:layout_gravity="left"
-            android:text="участвую   "
-            android:textSize="14dp"
-            android:textStyle="bold" />
+    <TextView
+        android:id="@+id/TV_IsSobbb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginLeft="11dp"
+        android:text="участвую   "
+        android:textColor="@color/colorText2"
+        android:textSize="14dp"
+        android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/TV_Date_sob"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="10.10.10"
-            android:layout_gravity="right"
-            android:textColor="@color/colorText"
-            android:textSize="12dp"
-            android:textStyle="bold" />
+    <TextView
+        android:id="@+id/TV_cout_Sobutie"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:text="текст события"
+        android:textColor="@color/colorText"
+        android:textSize="12dp" />
+
+
+    <TextView
+        android:id="@+id/TV_Date_sob"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:text="10.10.10"
+        android:textColor="@color/colorText"
+        android:textSize="12dp"
+        android:textStyle="bold" />
 
 
     <View

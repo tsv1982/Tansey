@@ -57,12 +57,12 @@ public class User_passActivity extends AppCompatActivity implements View.OnClick
 
         // TODO: 23.08.19 проверка на админа при новой установке должно быть  user pass
 
-        if (isMyServiceRunning(MyService.class)) {
+        if (isMyServiceRunning(MyService.class)){
 
-        } else {
+        }else {
+//            startService(new Intent(this, MyService.class));
             startService(new Intent(getWindow().getContext(), MyService.class));
         }
-
 
         bar = getSupportActionBar();
         bar.setBackgroundDrawable(new ColorDrawable(Color.BLACK));    // задаем цвет бара

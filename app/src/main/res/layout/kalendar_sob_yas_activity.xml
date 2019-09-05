@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:background="@drawable/error_user_id"
+android:orientation="vertical"
+tools:context=".activity.newActivity.KalendarSobYasActivity">
+
+<TextView
+    android:id="@+id/TV_Count_Student_Sobutiy"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="10dp"
+    android:layout_marginTop="20dp"
+    android:textColor="@color/colorText"
+    android:textSize="15dp"
+    android:text="количество учеников "
+    android:textStyle="bold" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#ffffff" />
+
+<ListView
+    android:id="@+id/LV_Student_Sobutiy"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp">
+
+</ListView>
+
+</LinearLayout>

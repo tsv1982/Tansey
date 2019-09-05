@@ -67,9 +67,9 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
 //        if (isMyServiceRunning(MyService.class)){
 //
 //        }else {
-//            startService(new Intent(getWindow().getContext(), MyService.class));
+//            startService(new Intent(this, MyService.class));
+////            startService(new Intent(getWindow().getContext(), MyService.class));
 //        }
-
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN); // убрать фокус при загрузке
 
