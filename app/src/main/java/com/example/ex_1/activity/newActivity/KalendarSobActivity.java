@@ -60,6 +60,7 @@ public class KalendarSobActivity extends AppCompatActivity implements View.OnCli
     private String saveIdUser;
     private String saveListIdUser;
     private int countSms;
+     String saveIdMesage = "";
 
 
     @Override
@@ -67,12 +68,12 @@ public class KalendarSobActivity extends AppCompatActivity implements View.OnCli
         super.onCreate(savedInstanceState);
         setContentView(R.layout.kalendar_sob_activity);
 
-//        if (isMyServiceRunning(MyService.class)) {
-//
-//        } else {
+        if (isMyServiceRunning(MyService.class)){
+
+        }else {
 //            startService(new Intent(this, MyService.class));
-//            startService(new Intent(getWindow().getContext(), MyService.class));
-//        }
+            startService(new Intent(getWindow().getContext(), MyService.class));
+        }
 
         btnAddSobutiy = findViewById(R.id.btnAddSobutiy);
         btnAddSobutiy.setOnClickListener(this);
@@ -180,6 +181,12 @@ public class KalendarSobActivity extends AppCompatActivity implements View.OnCli
         databaseReferenceSMS.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {  //вытаскиваем с базы
+
+                saveIdMesage = saveIdMesage + dataSnapshot.getKey() + ",";
+                sharedPreferences = getSharedPreferences("MyPref", MODE_PRIVATE);
+                editor = sharedPreferences.edit();
+                editor.putString("saveIdMesageSmsSob", saveIdMesage );
+                editor.apply();
 
                 countSms++;
 
@@ -350,6 +357,17 @@ public class KalendarSobActivity extends AppCompatActivity implements View.OnCli
             return false;
         }
         return true;
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (isMyServiceRunning(MyService.class)){
+
+        }else {
+            startService(new Intent(this, MyService.class));
+//            startService(new Intent(getWindow().getContext(), MyService.class));
+        }
+        super.onDestroy();
     }
 
     @Override

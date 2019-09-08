@@ -50,11 +50,13 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
     private MesengerAdapter mesageAdapter;
 
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-    private DatabaseReference databaseReference = firebaseDatabase.getReference("messages");
+    private DatabaseReference databaseReference = firebaseDatabase.getReference("messages2");
 
     private List<Mesage> mesagesArray = new ArrayList();
 
     private ListView mesageList;
+
+    private String saveIdMesage = "";
 
     String adminOrUser;
 
@@ -64,12 +66,12 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
         setContentView(R.layout.message_activity);
 
 
-//        if (isMyServiceRunning(MyService.class)){
-//
-//        }else {
+        if (isMyServiceRunning(MyService.class)){
+
+        }else {
 //            startService(new Intent(this, MyService.class));
-////            startService(new Intent(getWindow().getContext(), MyService.class));
-//        }
+            startService(new Intent(getWindow().getContext(), MyService.class));
+        }
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN); // убрать фокус при загрузке
 
@@ -178,6 +180,12 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
                 mesagesArray.add(new Mesage(dataSnapshot.getKey(), arr[1], arr[0]));
                 mesageAdapter.notifyDataSetChanged();
 
+                saveIdMesage = saveIdMesage + dataSnapshot.getKey() + ",";
+                sharedPreferences = getSharedPreferences("MyPref", MODE_PRIVATE);
+                editor = sharedPreferences.edit();
+                editor.putString("saveIdMesage", saveIdMesage );
+                editor.apply();
+
 
             }
 
@@ -234,6 +242,17 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
                 editTextMessage.setText("");
             }
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (isMyServiceRunning(MyService.class)){
+
+        }else {
+            startService(new Intent(this, MyService.class));
+//            startService(new Intent(getWindow().getContext(), MyService.class));
+        }
+        super.onDestroy();
     }
 
     @Override

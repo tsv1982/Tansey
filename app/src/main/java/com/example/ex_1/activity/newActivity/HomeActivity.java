@@ -53,12 +53,12 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_activity);
 
-//        if (isMyServiceRunning(MyService.class)){
-//
-//        }else {
-//            startService(new Intent(this, MyService.class));
-////            startService(new Intent(getWindow().getContext(), MyService.class));
-//        }
+        if (isMyServiceRunning(MyService.class)){
+
+        }else {
+            startService(new Intent(this, MyService.class));
+//            startService(new Intent(getWindow().getContext(), MyService.class));
+        }
 
 
         sharedPreferences = getSharedPreferences("MyPref", MODE_PRIVATE);   // вытаскиваем переменную
@@ -175,6 +175,30 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         return false;
     }
 
+    @Override
+    protected void onDestroy() {
+        if (isMyServiceRunning(MyService.class)){
+
+        }else {
+            startService(new Intent(this, MyService.class));
+//            startService(new Intent(getWindow().getContext(), MyService.class));
+        }
+        super.onDestroy();
+
+
+    }
+
+    @Override
+    protected void onStop() {
+        if (isMyServiceRunning(MyService.class)){
+
+        }else {
+            startService(new Intent(this, MyService.class));
+//            startService(new Intent(getWindow().getContext(), MyService.class));
+        }
+        super.onStop();
+
+    }
 
     @Override
     public void onClick(View view) {

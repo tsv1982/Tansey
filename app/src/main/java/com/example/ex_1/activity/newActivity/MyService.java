@@ -1,31 +1,22 @@
 package com.example.ex_1.activity.newActivity;
 
 import android.annotation.SuppressLint;
-import android.app.ActivityManager;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.IBinder;
 import android.os.Vibrator;
-import android.text.Html;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.NotificationCompat;
 
-import com.example.ex_1.Entity.SobutieEntity;
 import com.example.ex_1.R;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -44,14 +35,13 @@ public class MyService extends Service {
     private NotificationCompat.Builder notBuilder;
     private static final int MY_NOTIFICATION_ID = 12345;
     private static final int MY_REQUEST_CODE = 100;
-    private boolean aBoolean = true;
     private String adminOrUser;
 
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
 
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-    private DatabaseReference databaseReference = firebaseDatabase.getReference("messages");
+    private DatabaseReference databaseReference = firebaseDatabase.getReference("messages2");
 
     private FirebaseDatabase firebaseDatabaseSms = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReferenceSms = firebaseDatabaseSms.getReference("messagesSob");
@@ -71,8 +61,6 @@ public class MyService extends Service {
         pauseMessage();
 
 
-
-
     }
 
     void pauseMessage() {
@@ -81,7 +69,6 @@ public class MyService extends Service {
             public void run() {
                 try {
                     Thread.sleep(100);
-                    aBoolean = true;
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -99,16 +86,12 @@ public class MyService extends Service {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
+
                 String textReplace = String.valueOf(dataSnapshot.getValue());
                 if (textReplace.length() > 30) {
                     textReplace = textReplace.substring(0, 30) + " ..........";
                 }
-
-//                if (aBoolean) {
-
-                sendNotif(textReplace);
-//                }
-
+                sendNotif(textReplace, dataSnapshot.getKey());
             }
 
             @Override
@@ -139,8 +122,7 @@ public class MyService extends Service {
                 public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
                     String textReplace = String.valueOf(dataSnapshot.getValue());
-
-                    sendNotifSobutie(textReplace);
+                    sendNotifSobutie(textReplace , dataSnapshot.getKey());
 
 
                 }
@@ -171,58 +153,84 @@ public class MyService extends Service {
     }
 
 
-    void sendNotif(String s) {
-        this.notBuilder.setSmallIcon(R.drawable.logo);
-        this.notBuilder.setTicker("TANSAY MESSAGE");
-        this.notBuilder.setWhen(System.currentTimeMillis() + 10 * 1000);
-        this.notBuilder.setContentTitle("TANSAY MESSAGE");
-        this.notBuilder.setContentText(s);
+    void sendNotif(String s, String key) {
 
-        Intent intent = new Intent(this, MessageActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, MY_REQUEST_CODE,
-                intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        NotificationManager notificationService =
-                (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
-        this.notBuilder.setContentIntent(pendingIntent);
-        Notification notification = notBuilder.build();
-        notificationService.notify(MY_NOTIFICATION_ID, notification);
+        String ss1 = sharedPreferences.getString("saveIdMesage", "");
+        String[] arr = ss1.split(",");
+        boolean bol = true;
 
-//        sharedPreferences = getSharedPreferences("MyPref", MODE_PRIVATE);
-
-        long mills = 1000L;
-        Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        if (vibrator.hasVibrator()) {
-            vibrator.vibrate(mills);
+        for (int i = 0; i < arr.length; i++) {
+            if (key.equals(arr[i])) {
+                bol = false;
+            }
         }
+
+        if (bol) {
+            this.notBuilder.setSmallIcon(R.drawable.logo);
+            this.notBuilder.setTicker("TANSAY MESSAGE");
+            this.notBuilder.setWhen(System.currentTimeMillis() + 10 * 1000);
+            this.notBuilder.setContentTitle("TANSAY MESSAGE");
+            this.notBuilder.setContentText(s);
+
+            Intent intent = new Intent(this, MessageActivity.class);
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, MY_REQUEST_CODE,
+                    intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            NotificationManager notificationService =
+                    (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
+            this.notBuilder.setContentIntent(pendingIntent);
+            Notification notification = notBuilder.build();
+            notificationService.notify(MY_NOTIFICATION_ID, notification);
+
+            long mills = 1000L;
+            Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+            if (vibrator.hasVibrator()) {
+                vibrator.vibrate(mills);
+            }
+        }
+
+
     }
 
-    void sendNotifSobutie(String s) {
-        this.notBuilder.setSmallIcon(R.drawable.logo);
-        this.notBuilder.setTicker("TANSAY MESSAGE");
-        this.notBuilder.setWhen(System.currentTimeMillis() + 10 * 1000);
-        this.notBuilder.setContentTitle("TANSAY MESSAGE");
-        this.notBuilder.setContentText("примите участие в опросе");
+    void sendNotifSobutie(String s, String key) {
 
-        Intent intent = new Intent(this, KalendarSobSmsGetActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, MY_REQUEST_CODE,
-                intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        NotificationManager notificationService =
-                (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
-        this.notBuilder.setContentIntent(pendingIntent);
-        Notification notification = notBuilder.build();
-        notificationService.notify(MY_NOTIFICATION_ID, notification);
+        String ss1 = sharedPreferences.getString("saveIdMesageSmsSob", "");
+        String[] arr = ss1.split(",");
+        boolean bol = true;
 
-        sharedPreferences = getSharedPreferences("MyPref", MODE_PRIVATE);
-        editor = sharedPreferences.edit();
-        editor.putString("saveSmsIdSobstie", s);
-        editor.apply();
-
-        long mills = 1000L;
-        Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        if (vibrator.hasVibrator()) {
-            vibrator.vibrate(mills);
+        for (int i = 0; i < arr.length; i++) {
+            if (key.equals(arr[i])) {
+                bol = false;
+            }
         }
 
+        if (bol) {
+
+            this.notBuilder.setSmallIcon(R.drawable.logo);
+            this.notBuilder.setTicker("TANSAY MESSAGE");
+            this.notBuilder.setWhen(System.currentTimeMillis() + 10 * 1000);
+            this.notBuilder.setContentTitle("TANSAY MESSAGE");
+            this.notBuilder.setContentText("примите участие в опросе");
+
+            Intent intent = new Intent(this, KalendarSobSmsGetActivity.class);
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, MY_REQUEST_CODE,
+                    intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            NotificationManager notificationService =
+                    (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
+            this.notBuilder.setContentIntent(pendingIntent);
+            Notification notification = notBuilder.build();
+            notificationService.notify(MY_NOTIFICATION_ID, notification);
+
+            sharedPreferences = getSharedPreferences("MyPref", MODE_PRIVATE);
+            editor = sharedPreferences.edit();
+            editor.putString("saveSmsIdSobstie", s);
+            editor.apply();
+
+            long mills = 1000L;
+            Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+            if (vibrator.hasVibrator()) {
+                vibrator.vibrate(mills);
+            }
+        }
     }
 
     @Override
@@ -230,7 +238,6 @@ public class MyService extends Service {
 //        Toast.makeText(context, "onBind Servis", Toast.LENGTH_LONG).show();
         return null;
     }
-
 
     @Override
     public void onDestroy() {
