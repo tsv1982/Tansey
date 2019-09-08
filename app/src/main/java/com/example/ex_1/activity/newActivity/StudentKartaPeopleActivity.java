@@ -189,6 +189,7 @@ public class StudentKartaPeopleActivity extends AppCompatActivity implements Vie
 
         btnPeoplePay = findViewById(R.id.btnPeoplePay_student);
         btnPeoplePay.setOnClickListener(this);
+        btnPeoplePay.setVisibility(View.GONE);
         btnGrafic = findViewById(R.id.btnPeopleGrofik_student);
         btnGrafic.setOnClickListener(this);
 

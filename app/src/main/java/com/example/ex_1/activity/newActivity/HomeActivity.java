@@ -77,12 +77,14 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
         btnPay = findViewById(R.id.btnPay);
         btnPay.setOnClickListener(this);
+        btnPay.setVisibility(View.GONE);
 
         btnMessage = findViewById(R.id.btnMessage);
         btnMessage.setOnClickListener(this);
 
         btnShop = findViewById(R.id.btn_shop);
         btnShop.setOnClickListener(this);
+        btnShop.setVisibility(View.GONE);
 
         btnTrener = findViewById(R.id.btnTrener);
         btnTrener.setOnClickListener(this);

@@ -8,6 +8,8 @@
     android:orientation="vertical"
     tools:context=".activity.newActivity.HomeActivity">
 
+
+
     <LinearLayout
         android:id="@+id/LinearLayout1"
         android:layout_width="match_parent"
@@ -50,15 +52,17 @@
                 android:background="@drawable/btn_lenta_news" />
 
             <Button
-                android:id="@+id/btnKalendar"
+                android:id="@+id/btnGrafic"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
-                android:background="@drawable/btn_cal_sob" />
+                android:background="@drawable/btn_reiting" />
 
-           </LinearLayout>
+
+        </LinearLayout>
 
     </LinearLayout>
+
 
     <LinearLayout
         android:id="@+id/LinearLayout2"
@@ -101,18 +105,18 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/btnMessage"
+                android:id="@+id/btnKalendar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
-                android:background="@drawable/btn_message" />
+                android:background="@drawable/btn_cal_sob" />
 
             <Button
-                android:id="@+id/btnGrafic"
+                android:id="@+id/btnPay"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
-                android:background="@drawable/btn_reiting" />
+                android:background="@drawable/btn_play" />
 
         </LinearLayout>
 
@@ -123,20 +127,27 @@
             android:orientation="vertical">
 
             <Button
+                android:id="@+id/btnMessage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:background="@drawable/btn_message" />
+
+            <Button
                 android:id="@+id/btn_shop"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
                 android:background="@drawable/btn_shop" />
 
-            <Button
-                android:id="@+id/btnPay"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:background="@drawable/btn_play" />
+
         </LinearLayout>
 
     </LinearLayout>
 
-</LinearLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/text_2"/>
+
+   </LinearLayout>

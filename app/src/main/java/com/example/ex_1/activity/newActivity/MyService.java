@@ -41,7 +41,7 @@ public class MyService extends Service {
     private SharedPreferences.Editor editor;
 
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-    private DatabaseReference databaseReference = firebaseDatabase.getReference("messages2");
+    private DatabaseReference databaseReference = firebaseDatabase.getReference("messages");
 
     private FirebaseDatabase firebaseDatabaseSms = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReferenceSms = firebaseDatabaseSms.getReference("messagesSob");

@@ -50,7 +50,7 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
     private MesengerAdapter mesageAdapter;
 
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-    private DatabaseReference databaseReference = firebaseDatabase.getReference("messages2");
+    private DatabaseReference databaseReference = firebaseDatabase.getReference("messages");
 
     private List<Mesage> mesagesArray = new ArrayList();
 
